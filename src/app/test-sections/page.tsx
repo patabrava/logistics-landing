@@ -2,7 +2,6 @@
 
 import React from 'react';
 import HeroSection from '../../components/sections/HeroSection';
-import TrustBarSection from '../../components/sections/TrustBarSection';
 import ServicesSection from '../../components/sections/ServicesSection';
 import QuoteSection from '../../components/sections/QuoteSection';
 
@@ -27,9 +26,6 @@ export default function TestSections() {
         onQuoteClick={handleQuoteClick}
       />
       
-      {/* TrustBarSection */}
-      <TrustBarSection variant="default" />
-      
       {/* ServicesSection */}
       <ServicesSection 
         variant="default"
@@ -51,15 +47,6 @@ export default function TestSections() {
                 <li>Default: Orange gradient background with full content</li>
                 <li>Minimal: Clean background with essential content</li>
                 <li>Image-background: Blue gradient for image overlay</li>
-              </ul>
-            </div>
-            
-            <div className="bg-white rounded-lg p-6 shadow">
-              <h3 className="text-xl font-semibold mb-4">TrustBarSection Variants</h3>
-              <ul className="list-disc list-inside space-y-2 text-gray-600">
-                <li>Default: Full section with title, logos, and stats</li>
-                <li>Compact: Reduced padding and simplified layout</li>
-                <li>Expanded: Extra spacing for premium feel</li>
               </ul>
             </div>
             

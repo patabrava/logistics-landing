@@ -1,6 +1,8 @@
 'use client';
 
 import React from 'react';
+import { motion } from 'framer-motion';
+import { Mail, AlertCircle } from 'lucide-react';
 import { useCurrentLanguage } from '../../hooks/useCurrentLanguage';
 
 // MONOCODE Principles Applied:
@@ -73,62 +75,67 @@ const logger = {
 };
 
 // MONOCODE Explicit Error Handling: Form validation with detailed errors
-const validateFormData = (data: Partial<FormData>): FormErrors => {
+const validateFormData = (data: Partial<FormData>, language: string): FormErrors => {
   const errors: FormErrors = {};
+  const isGerman = language === 'de';
 
   try {
-    // Required fields validation
+    // Required fields validation with localized messages
     if (!data.company?.trim()) {
-      errors.company = 'Firmenname ist erforderlich';
+      errors.company = isGerman ? 'Firmenname ist erforderlich' : 'Company name is required';
     }
 
     if (!data.contact?.trim()) {
-      errors.contact = 'Ansprechpartner ist erforderlich';
+      errors.contact = isGerman ? 'Ansprechpartner ist erforderlich' : 'Contact person is required';
     }
 
     if (!data.email?.trim()) {
-      errors.email = 'E-Mail-Adresse ist erforderlich';
+      errors.email = isGerman ? 'E-Mail-Adresse ist erforderlich' : 'Email address is required';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
-      errors.email = 'Ungültige E-Mail-Adresse';
+      errors.email = isGerman ? 'Ungültige E-Mail-Adresse' : 'Invalid email address';
     }
 
     if (!data.service?.trim()) {
-      errors.service = 'Service-Art ist erforderlich';
+      errors.service = isGerman ? 'Service-Art ist erforderlich' : 'Service type is required';
     }
 
     if (!data.pickupPostal?.trim()) {
-      errors.pickupPostal = 'PLZ Abholung ist erforderlich';
+      errors.pickupPostal = isGerman ? 'PLZ Abholung ist erforderlich' : 'Pickup postal code is required';
     }
 
     if (!data.pickupCity?.trim()) {
-      errors.pickupCity = 'Ort Abholung ist erforderlich';
+      errors.pickupCity = isGerman ? 'Ort Abholung ist erforderlich' : 'Pickup city is required';
     }
 
     if (!data.deliveryPostal?.trim()) {
-      errors.deliveryPostal = 'PLZ Zustellung ist erforderlich';
+      errors.deliveryPostal = isGerman ? 'PLZ Zustellung ist erforderlich' : 'Delivery postal code is required';
     }
 
     if (!data.deliveryCity?.trim()) {
-      errors.deliveryCity = 'Ort Zustellung ist erforderlich';
+      errors.deliveryCity = isGerman ? 'Ort Zustellung ist erforderlich' : 'Delivery city is required';
     }
 
     if (!data.goods?.trim()) {
-      errors.goods = 'Warenbeschreibung ist erforderlich';
+      errors.goods = isGerman ? 'Warenbeschreibung ist erforderlich' : 'Goods description is required';
     }
 
     logger.log('info', 'formValidation', {
       hasErrors: Object.keys(errors).length > 0,
       errorCount: Object.keys(errors).length,
-      fields: Object.keys(data)
+      fields: Object.keys(data),
+      language
     });
 
     return errors;
   } catch (error) {
     logger.log('error', 'validateFormData', {
-      error: error instanceof Error ? error.message : 'Unknown error'
+      error: error instanceof Error ? error.message : 'Unknown error',
+      language
     });
     
-    return { general: 'Validierungsfehler aufgetreten' };
+    return { 
+      general: isGerman ? 'Validierungsfehler aufgetreten' : 'Validation error occurred' 
+    };
   }
 };
 
@@ -361,22 +368,40 @@ const FormField: React.FC<{
     onChange(name, event.target.value);
   }, [name, onChange]);
 
-  const baseInputStyles = "w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-brand-600 transition-colors duration-200";
+  // Style Guide Section 8: Form styling with exact specifications using CSS custom properties
+  const baseInputStyles = "w-full h-12 px-4 py-3 rounded-xl transition-all duration-200 focus:outline-none focus:ring-3 focus:border-brand-600";
   const inputStyles = error 
-    ? `${baseInputStyles} border-red-300 bg-red-50`
-    : `${baseInputStyles} border-ink-300 bg-white hover:border-ink-400`;
+    ? `${baseInputStyles} border-err-600 text-ink-900` 
+    : `${baseInputStyles} border-gray-100 hover:border-gray-200 text-ink-900 placeholder:text-ink-500`;
+
+  // Enhanced styling with CSS custom properties for better design token compliance
+  const inputStyle = error ? {
+    backgroundColor: 'rgba(239, 68, 68, 0.05)', // Light red background for errors
+    borderColor: 'var(--err-600)',
+    '--tw-ring-color': 'rgba(239, 68, 68, 0.25)',
+  } : {
+    backgroundColor: 'var(--surface-0)',
+    borderColor: '#f3f4f6', // gray-100 equivalent
+    '--tw-ring-color': 'rgba(243, 127, 62, 0.25)', // brand-600 with opacity
+  };
+
+  // Style Guide Section 8: Label styling - 14px/500 weight  
+  const labelStyles = "block text-sm font-medium text-ink-900 mb-2";
+  const errorStyles = "mt-1 text-xs text-err-600";
 
   if (field.type === 'select') {
     return (
-      <div className="space-y-2">
-        <label className="block text-sm font-medium text-ink-700">
+      <div className="space-y-0">
+        <label className={labelStyles}>
           {field.label}
         </label>
         <select
           value={value}
           onChange={handleChange}
-          className={inputStyles}
+          className={`${inputStyles} cursor-pointer`}
+          style={inputStyle}
           required={field.required}
+          aria-describedby={error ? `${name}-error` : undefined}
         >
           {field.options?.map((option) => (
             <option key={option.value} value={option.value}>
@@ -385,7 +410,9 @@ const FormField: React.FC<{
           ))}
         </select>
         {error && (
-          <p className="text-sm text-red-600">{error}</p>
+          <p id={`${name}-error`} className={errorStyles} role="alert" aria-live="polite">
+            {error}
+          </p>
         )}
       </div>
     );
@@ -393,27 +420,32 @@ const FormField: React.FC<{
 
   if (field.type === 'textarea') {
     return (
-      <div className="space-y-2">
-        <label className="block text-sm font-medium text-ink-700">
+      <div className="space-y-0">
+        <label className={labelStyles}>
           {field.label}
         </label>
         <textarea
           value={value}
           onChange={handleChange}
           placeholder={field.placeholder}
-          className={`${inputStyles} min-h-[120px] resize-y`}
+          className={`${inputStyles} min-h-[120px] h-auto resize-y`}
+          style={inputStyle}
           required={field.required}
+          rows={4}
+          aria-describedby={error ? `${name}-error` : undefined}
         />
         {error && (
-          <p className="text-sm text-red-600">{error}</p>
+          <p id={`${name}-error`} className={errorStyles} role="alert" aria-live="polite">
+            {error}
+          </p>
         )}
       </div>
     );
   }
 
   return (
-    <div className="space-y-2">
-      <label className="block text-sm font-medium text-ink-700">
+    <div className="space-y-0">
+      <label className={labelStyles}>
         {field.label}
       </label>
       <input
@@ -422,13 +454,45 @@ const FormField: React.FC<{
         onChange={handleChange}
         placeholder={field.placeholder}
         className={inputStyles}
+        style={inputStyle}
         required={field.required}
+        aria-describedby={error ? `${name}-error` : undefined}
       />
       {error && (
-        <p className="text-sm text-red-600">{error}</p>
+        <p id={`${name}-error`} className={errorStyles} role="alert" aria-live="polite">
+          {error}
+        </p>
       )}
     </div>
   );
+};
+
+// Style Guide Section 5: Motion & Interaction - Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.3,
+      staggerChildren: 0.06, // 60ms stagger per style guide
+      ease: [0.2, 0.8, 0.2, 1] as const
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 4 // 4px translate per style guide
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.3,
+      ease: [0.2, 0.8, 0.2, 1] as const
+    }
+  }
 };
 
 // MONOCODE Observable Implementation: Main QuoteSection component
@@ -455,15 +519,37 @@ export const QuoteSection: React.FC<QuoteSectionProps> = ({
     });
 
     // Set preselected service from URL params or props
-    const urlParams = new URLSearchParams(window.location.search);
-    const serviceFromUrl = urlParams.get('service');
-    const initialService = serviceFromUrl || preselectedService;
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const serviceFromUrl = urlParams.get('service');
+      const initialService = serviceFromUrl || preselectedService;
 
-    if (initialService) {
-      setFormData(prev => ({ ...prev, service: initialService }));
-      logger.log('info', 'servicePreselected', { service: initialService });
+      if (initialService) {
+        setFormData(prev => ({ ...prev, service: initialService }));
+        logger.log('info', 'servicePreselected', { service: initialService });
+      }
     }
   }, [variant, currentLanguage, preselectedService]);
+
+  // Style Guide Section 11: Analytics tracking for form interaction
+  React.useEffect(() => {
+    const handleFirstInteraction = () => {
+      logger.log('info', 'quote_form_opened', { 
+        timestamp: new Date().toISOString(),
+        language: currentLanguage
+      });
+      
+      // Remove listener after first interaction
+      document.removeEventListener('focusin', handleFirstInteraction);
+    };
+
+    // Track first focus in form
+    document.addEventListener('focusin', handleFirstInteraction);
+    
+    return () => {
+      document.removeEventListener('focusin', handleFirstInteraction);
+    };
+  }, [currentLanguage]);
 
   // MONOCODE Explicit Error Handling: Safe content retrieval
   const content = React.useMemo(() => {
@@ -501,7 +587,7 @@ export const QuoteSection: React.FC<QuoteSectionProps> = ({
       });
 
       // Validate form data
-      const validationErrors = validateFormData(formData);
+      const validationErrors = validateFormData(formData, currentLanguage);
       
       if (Object.keys(validationErrors).length > 0) {
         setErrors(validationErrors);
@@ -545,258 +631,344 @@ export const QuoteSection: React.FC<QuoteSectionProps> = ({
         error: error instanceof Error ? error.message : 'Unknown error'
       });
       
-      setErrors({ general: 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.' });
+      setErrors({ 
+        general: currentLanguage === 'de' 
+          ? 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.' 
+          : 'An error occurred. Please try again.'
+      });
       setIsSubmitting(false);
     }
   }, [formData, currentLanguage]);
 
-  // MONOCODE Progressive Construction: Section styling
-  const sectionBaseStyles = "py-20";
+  // MONOCODE Progressive Construction: Section styling per Style Guide Section 6.12
+  const sectionBaseStyles = "py-20 lg:py-24"; // Style Guide Section 4: Section rhythm 80-120px
   const sectionStyles = variant === 'emphasized' 
     ? `${sectionBaseStyles} bg-gradient-to-br from-brand-50 to-orange-50`
-    : `${sectionBaseStyles} bg-gray-50`;
+    : `${sectionBaseStyles} bg-ink-100`; // Light section per Style Guide
 
   return (
+    // Style Guide Section 6.12: Quote Module - anchor id #quote  
     <section id="quote" className={`${sectionStyles} ${className}`.trim()}>
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Style Guide Section 4: Container max-width 1280px, centered, 24px gutter */}
+      <div className="container mx-auto px-6 max-w-container">
         
-        {/* MONOCODE Progressive Construction: Section header */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl lg:text-5xl font-bold text-ink-900 mb-4 tracking-tight">
-            {content.title}
-          </h2>
-          <p className="text-xl text-ink-600 max-w-2xl mx-auto">
-            {content.subtitle}
-          </p>
-        </div>
+        <motion.div
+          key={currentLanguage} // Force re-animation on language change
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, margin: "-50px" }}
+        >
+          {/* Style Guide Section 6.12: 1-line promise */}
+          <motion.div variants={itemVariants} className="text-center mb-12">
+            <h2 className="
+              font-manrope font-bold text-h2 text-ink-900 mb-4 
+              tracking-tight uppercase tracking-[-0.02em]
+            ">
+              {content.title}
+            </h2>
+            <p className="text-lg lg:text-xl text-ink-700 max-w-2xl mx-auto leading-relaxed">
+              {content.subtitle}
+            </p>
+          </motion.div>
 
-        {/* MONOCODE Progressive Construction: Quote form */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 lg:p-12">
-          
-          {/* MONOCODE Progressive Construction: Fallback banner */}
-          {showFallback && (
-            <div className="mb-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-              <p className="text-blue-800 text-sm">
-                {currentLanguage === 'de' 
-                  ? 'E-Mail-Client konnte nicht geöffnet werden. Bitte senden Sie Ihre Anfrage an: '
-                  : 'Email client could not be opened. Please send your request to: '
-                }
-                <strong>quotes@logisticspro.com</strong>
-              </p>
-            </div>
-          )}
-
-          <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Style Guide Section 6.12: Prominent white card with 24px radius, shadow-lg */}
+          <motion.div 
+            variants={itemVariants}
+            className="
+              bg-surface-0 rounded-[24px] shadow-lg 
+              p-8 lg:p-12 max-w-4xl mx-auto
+              border border-gray-100
+            "
+          >
             
-            {/* MONOCODE Progressive Construction: Form fields grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              
-              {/* Company Information */}
-              <FormField
-                name="company"
-                field={content.fields.company}
-                value={formData.company || ''}
-                error={errors.company}
-                onChange={handleFieldChange}
-              />
-              
-              <FormField
-                name="contact"
-                field={content.fields.contact}
-                value={formData.contact || ''}
-                error={errors.contact}
-                onChange={handleFieldChange}
-              />
-              
-              <FormField
-                name="email"
-                field={content.fields.email}
-                value={formData.email || ''}
-                error={errors.email}
-                onChange={handleFieldChange}
-              />
-              
-              <FormField
-                name="phone"
-                field={content.fields.phone}
-                value={formData.phone || ''}
-                error={errors.phone}
-                onChange={handleFieldChange}
-              />
-            </div>
-
-            {/* Service Selection */}
-            <FormField
-              name="service"
-              field={content.fields.service}
-              value={formData.service || ''}
-              error={errors.service}
-              onChange={handleFieldChange}
-            />
-
-            {/* Pickup and Delivery */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div className="space-y-6">
-                <h3 className="text-lg font-semibold text-ink-900 border-b border-ink-200 pb-2">
-                  {currentLanguage === 'de' ? 'Abholung' : 'Pickup'}
-                </h3>
-                
-                <div className="grid grid-cols-2 gap-4">
-                  <FormField
-                    name="pickupPostal"
-                    field={content.fields.pickupPostal}
-                    value={formData.pickupPostal || ''}
-                    error={errors.pickupPostal}
-                    onChange={handleFieldChange}
-                  />
-                  
-                  <FormField
-                    name="pickupCity"
-                    field={content.fields.pickupCity}
-                    value={formData.pickupCity || ''}
-                    error={errors.pickupCity}
-                    onChange={handleFieldChange}
-                  />
+            {/* MONOCODE Explicit Error Handling: Fallback banner */}
+            {showFallback && (
+              <motion.div 
+                variants={itemVariants}
+                className="
+                  mb-8 p-4 bg-blue-50 border border-blue-100 rounded-xl
+                  flex items-start gap-3
+                "
+              >
+                <AlertCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                <div className="text-blue-800 text-sm">
+                  <p className="font-medium mb-1">
+                    {currentLanguage === 'de' 
+                      ? 'E-Mail-Client konnte nicht geöffnet werden'
+                      : 'Email client could not be opened'
+                    }
+                  </p>
+                  <p>
+                    {currentLanguage === 'de' 
+                      ? 'Bitte senden Sie Ihre Anfrage direkt an: '
+                      : 'Please send your request directly to: '
+                    }
+                    <strong className="font-semibold">quotes@logisticspro.com</strong>
+                  </p>
                 </div>
-                
-                <FormField
-                  name="pickupCountry"
-                  field={content.fields.pickupCountry}
-                  value={formData.pickupCountry || ''}
-                  error={errors.pickupCountry}
-                  onChange={handleFieldChange}
-                />
-              </div>
-
-              <div className="space-y-6">
-                <h3 className="text-lg font-semibold text-ink-900 border-b border-ink-200 pb-2">
-                  {currentLanguage === 'de' ? 'Zustellung' : 'Delivery'}
-                </h3>
-                
-                <div className="grid grid-cols-2 gap-4">
-                  <FormField
-                    name="deliveryPostal"
-                    field={content.fields.deliveryPostal}
-                    value={formData.deliveryPostal || ''}
-                    error={errors.deliveryPostal}
-                    onChange={handleFieldChange}
-                  />
-                  
-                  <FormField
-                    name="deliveryCity"
-                    field={content.fields.deliveryCity}
-                    value={formData.deliveryCity || ''}
-                    error={errors.deliveryCity}
-                    onChange={handleFieldChange}
-                  />
-                </div>
-                
-                <FormField
-                  name="deliveryCountry"
-                  field={content.fields.deliveryCountry}
-                  value={formData.deliveryCountry || ''}
-                  error={errors.deliveryCountry}
-                  onChange={handleFieldChange}
-                />
-              </div>
-            </div>
-
-            {/* Shipment Details */}
-            <div className="space-y-6">
-              <h3 className="text-lg font-semibold text-ink-900 border-b border-ink-200 pb-2">
-                {currentLanguage === 'de' ? 'Sendungsdetails' : 'Shipment Details'}
-              </h3>
-              
-              <FormField
-                name="goods"
-                field={content.fields.goods}
-                value={formData.goods || ''}
-                error={errors.goods}
-                onChange={handleFieldChange}
-              />
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <FormField
-                  name="dimensions"
-                  field={content.fields.dimensions}
-                  value={formData.dimensions || ''}
-                  error={errors.dimensions}
-                  onChange={handleFieldChange}
-                />
-                
-                <FormField
-                  name="weight"
-                  field={content.fields.weight}
-                  value={formData.weight || ''}
-                  error={errors.weight}
-                  onChange={handleFieldChange}
-                />
-                
-                <FormField
-                  name="pallets"
-                  field={content.fields.pallets}
-                  value={formData.pallets || ''}
-                  error={errors.pallets}
-                  onChange={handleFieldChange}
-                />
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <FormField
-                  name="timeframe"
-                  field={content.fields.timeframe}
-                  value={formData.timeframe || ''}
-                  error={errors.timeframe}
-                  onChange={handleFieldChange}
-                />
-                
-                <FormField
-                  name="recurring"
-                  field={content.fields.recurring}
-                  value={formData.recurring || ''}
-                  error={errors.recurring}
-                  onChange={handleFieldChange}
-                />
-              </div>
-              
-              <FormField
-                name="requirements"
-                field={content.fields.requirements}
-                value={formData.requirements || ''}
-                error={errors.requirements}
-                onChange={handleFieldChange}
-              />
-            </div>
-
-            {/* MONOCODE Progressive Construction: General error display */}
-            {errors.general && (
-              <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-                <p className="text-red-800 text-sm">{errors.general}</p>
-              </div>
+              </motion.div>
             )}
 
-            {/* MONOCODE Progressive Construction: Submit button */}
-            <div className="pt-6">
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                data-analytics="mailto_initiated"
-                className="w-full lg:w-auto lg:ml-auto lg:block px-8 py-4 bg-brand-600 hover:bg-brand-500 disabled:bg-gray-400 text-white font-semibold rounded-full transition-all duration-200 hover:shadow-md hover:scale-[1.02] active:translate-y-px focus:outline-none focus:ring-2 focus:ring-brand-600 focus:ring-offset-2"
-              >
-                {isSubmitting ? (
-                  <span className="flex items-center justify-center gap-2">
-                    <svg className="animate-spin w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                    </svg>
-                    {currentLanguage === 'de' ? 'Wird gesendet...' : 'Sending...'}
-                  </span>
-                ) : (
-                  content.submitButtonText
-                )}
-              </button>
-            </div>
-          </form>
-        </div>
+            <form onSubmit={handleSubmit} className="space-y-8">
+              
+              {/* Style Guide Section 6.12: 2-column layout desktop, 1-column mobile */}
+              <motion.div variants={itemVariants}>
+                <h3 className="
+                  text-lg font-semibold text-ink-900 mb-6 
+                  border-b border-gray-100 pb-3
+                ">
+                  {currentLanguage === 'de' ? 'Kontaktdaten' : 'Contact Information'}
+                </h3>
+                
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <FormField
+                    name="company"
+                    field={content.fields.company}
+                    value={formData.company || ''}
+                    error={errors.company}
+                    onChange={handleFieldChange}
+                  />
+                  
+                  <FormField
+                    name="contact"
+                    field={content.fields.contact}
+                    value={formData.contact || ''}
+                    error={errors.contact}
+                    onChange={handleFieldChange}
+                  />
+                  
+                  <FormField
+                    name="email"
+                    field={content.fields.email}
+                    value={formData.email || ''}
+                    error={errors.email}
+                    onChange={handleFieldChange}
+                  />
+                  
+                  <FormField
+                    name="phone"
+                    field={content.fields.phone}
+                    value={formData.phone || ''}
+                    error={errors.phone}
+                    onChange={handleFieldChange}
+                  />
+                </div>
+              </motion.div>
+
+              {/* Service Selection */}
+              <motion.div variants={itemVariants}>
+                <h3 className="
+                  text-lg font-semibold text-ink-900 mb-6 
+                  border-b border-gray-100 pb-3
+                ">
+                  {currentLanguage === 'de' ? 'Service-Auswahl' : 'Service Selection'}
+                </h3>
+                
+                <FormField
+                  name="service"
+                  field={content.fields.service}
+                  value={formData.service || ''}
+                  error={errors.service}
+                  onChange={handleFieldChange}
+                />
+              </motion.div>
+
+              {/* Pickup and Delivery - Enhanced section layout */}
+              <motion.div variants={itemVariants} className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="space-y-6">
+                  <h3 className="
+                    text-lg font-semibold text-ink-900 
+                    border-b border-gray-100 pb-3
+                    flex items-center gap-2
+                  ">
+                    <span className="w-2 h-2 bg-brand-600 rounded-full"></span>
+                    {currentLanguage === 'de' ? 'Abholung' : 'Pickup'}
+                  </h3>
+                  
+                  <div className="grid grid-cols-2 gap-4">
+                    <FormField
+                      name="pickupPostal"
+                      field={content.fields.pickupPostal}
+                      value={formData.pickupPostal || ''}
+                      error={errors.pickupPostal}
+                      onChange={handleFieldChange}
+                    />
+                    
+                    <FormField
+                      name="pickupCity"
+                      field={content.fields.pickupCity}
+                      value={formData.pickupCity || ''}
+                      error={errors.pickupCity}
+                      onChange={handleFieldChange}
+                    />
+                  </div>
+                  
+                  <FormField
+                    name="pickupCountry"
+                    field={content.fields.pickupCountry}
+                    value={formData.pickupCountry || ''}
+                    error={errors.pickupCountry}
+                    onChange={handleFieldChange}
+                  />
+                </div>
+
+                <div className="space-y-6">
+                  <h3 className="
+                    text-lg font-semibold text-ink-900 
+                    border-b border-gray-100 pb-3
+                    flex items-center gap-2
+                  ">
+                    <span className="w-2 h-2 bg-brand-600 rounded-full"></span>
+                    {currentLanguage === 'de' ? 'Zustellung' : 'Delivery'}
+                  </h3>
+                  
+                  <div className="grid grid-cols-2 gap-4">
+                    <FormField
+                      name="deliveryPostal"
+                      field={content.fields.deliveryPostal}
+                      value={formData.deliveryPostal || ''}
+                      error={errors.deliveryPostal}
+                      onChange={handleFieldChange}
+                    />
+                    
+                    <FormField
+                      name="deliveryCity"
+                      field={content.fields.deliveryCity}
+                      value={formData.deliveryCity || ''}
+                      error={errors.deliveryCity}
+                      onChange={handleFieldChange}
+                    />
+                  </div>
+                  
+                  <FormField
+                    name="deliveryCountry"
+                    field={content.fields.deliveryCountry}
+                    value={formData.deliveryCountry || ''}
+                    error={errors.deliveryCountry}
+                    onChange={handleFieldChange}
+                  />
+                </div>
+              </motion.div>
+
+              {/* Shipment Details */}
+              <motion.div variants={itemVariants} className="space-y-6">
+                <h3 className="
+                  text-lg font-semibold text-ink-900 
+                  border-b border-gray-100 pb-3
+                ">
+                  {currentLanguage === 'de' ? 'Sendungsdetails' : 'Shipment Details'}
+                </h3>
+                
+                <FormField
+                  name="goods"
+                  field={content.fields.goods}
+                  value={formData.goods || ''}
+                  error={errors.goods}
+                  onChange={handleFieldChange}
+                />
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <FormField
+                    name="dimensions"
+                    field={content.fields.dimensions}
+                    value={formData.dimensions || ''}
+                    error={errors.dimensions}
+                    onChange={handleFieldChange}
+                  />
+                  
+                  <FormField
+                    name="weight"
+                    field={content.fields.weight}
+                    value={formData.weight || ''}
+                    error={errors.weight}
+                    onChange={handleFieldChange}
+                  />
+                  
+                  <FormField
+                    name="pallets"
+                    field={content.fields.pallets}
+                    value={formData.pallets || ''}
+                    error={errors.pallets}
+                    onChange={handleFieldChange}
+                  />
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <FormField
+                    name="timeframe"
+                    field={content.fields.timeframe}
+                    value={formData.timeframe || ''}
+                    error={errors.timeframe}
+                    onChange={handleFieldChange}
+                  />
+                  
+                  <FormField
+                    name="recurring"
+                    field={content.fields.recurring}
+                    value={formData.recurring || ''}
+                    error={errors.recurring}
+                    onChange={handleFieldChange}
+                  />
+                </div>
+                
+                <FormField
+                  name="requirements"
+                  field={content.fields.requirements}
+                  value={formData.requirements || ''}
+                  error={errors.requirements}
+                  onChange={handleFieldChange}
+                />
+              </motion.div>
+
+              {/* MONOCODE Explicit Error Handling: General error display */}
+              {errors.general && (
+                <motion.div variants={itemVariants} className="
+                  p-4 bg-err-50 border border-red-100 rounded-xl
+                  flex items-start gap-3
+                ">
+                  <AlertCircle className="w-5 h-5 text-err-600 mt-0.5 flex-shrink-0" />
+                  <p className="text-err-800 text-sm font-medium">{errors.general}</p>
+                </motion.div>
+              )}
+
+              {/* Style Guide Section 6.12: CTA button - full-width mobile, right-aligned desktop */}
+              <motion.div variants={itemVariants} className="pt-6 flex justify-end">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  data-analytics="mailto_initiated"
+                  className="
+                    w-full lg:w-auto px-8 py-4 
+                    bg-brand-600 hover:bg-brand-500 
+                    disabled:bg-ink-400 disabled:cursor-not-allowed
+                    text-white font-semibold rounded-full
+                    transition-all duration-200 ease-[cubic-bezier(0.2,0.8,0.2,1)]
+                    hover:shadow-md hover:scale-[1.01] 
+                    active:translate-y-px active:shadow-sm
+                    focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-brand-600
+                    flex items-center justify-center gap-2
+                    min-h-[48px]
+                  "
+                >
+                  {isSubmitting ? (
+                    <>
+                      <svg className="animate-spin w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                      </svg>
+                      <span>{currentLanguage === 'de' ? 'Wird gesendet...' : 'Sending...'}</span>
+                    </>
+                  ) : (
+                    <>
+                      <Mail className="w-4 h-4" />
+                      <span>{content.submitButtonText}</span>
+                    </>
+                  )}
+                </button>
+              </motion.div>
+            </form>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

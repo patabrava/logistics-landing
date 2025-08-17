@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { motion } from 'framer-motion';
 import { useCurrentLanguage } from '../../hooks/useCurrentLanguage';
 
 // MONOCODE Principles Applied:
@@ -203,6 +204,34 @@ const getServiceIconSVG = (iconName: string): React.ReactElement => {
   );
 };
 
+// Style Guide Section 5: Motion & Interaction - Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.3,
+      staggerChildren: 0.06, // 60ms stagger per style guide
+      ease: [0.2, 0.8, 0.2, 1] as const
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 4 // 4px translate per style guide
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.3,
+      ease: [0.2, 0.8, 0.2, 1] as const
+    }
+  }
+};
+
 // MONOCODE Progressive Construction: Service selection handler with analytics
 const createServiceSelectHandler = (
   serviceId: string,
@@ -267,79 +296,102 @@ const ServiceCard: React.FC<{
     handler(event);
   }, [service.id, onServiceSelect]);
 
-  // MONOCODE Progressive Construction: Style guide compliant card styling - unified white-to-navy design
-  const cardBaseStyles = "relative p-6 border transition-all duration-300 cursor-pointer group";
-  const cardStyles = `${cardBaseStyles} bg-white border-gray-100 hover:text-white hover:shadow-lg hover:-translate-y-1 hover:scale-[1.01]`;
-
-  // Style guide section 6.4: Service card anatomy with proper design tokens - consistent white base with navy hover
-  const cardStyle = {
-    backgroundColor: 'var(--surface-0)',
-    borderColor: 'var(--ink-300)',
-    borderRadius: 'var(--radius-lg)',
-  };
-
-  // MONOCODE Progressive Construction: Navy hover style using CSS custom properties
-  const cardHoverStyle = {
-    '--hover-bg': 'var(--navy-900)',
-    '--hover-border': 'var(--navy-800)',
-  } as React.CSSProperties;
-
-  const iconContainerStyles = "w-10 h-10 text-brand-600 group-hover:text-white flex items-center justify-center mb-4 transition-all duration-200";
-
-  const iconContainerStyle = {
-    backgroundColor: 'var(--brand-400)',
-    borderRadius: '50%', // Make it circular as per style guide
-  };
-
-  const titleStyles = "text-lg font-bold mb-3 text-ink-900 group-hover:text-white transition-colors duration-300";
-
-  const descriptionStyles = "text-ink-500 group-hover:text-white/80 mb-6 leading-relaxed text-sm transition-colors duration-300";
-
+  // Style Guide Section 6.4: Service card styling with exact specifications
+  // Section 1: Clean B2B SaaS vibe with soft rounded panels and subtle depth
   return (
-    <div 
-      className={cardStyles} 
-      style={{...cardStyle, ...cardHoverStyle}}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.backgroundColor = 'var(--navy-900)';
-        e.currentTarget.style.borderColor = 'var(--navy-800)';
+    <motion.div
+      variants={itemVariants}
+      className="group cursor-pointer"
+      style={{
+        padding: '24px', // 6 * 4px = 24px as per style guide
+        borderRadius: 'var(--radius-lg)', // 24px per style guide
+        backgroundColor: 'var(--surface-0)', // White background
+        border: '1px solid #f3f4f6', // gray-100 - subtle, non-black border
+        boxShadow: 'var(--shadow-sm)', // Subtle depth
+        transition: 'all 300ms cubic-bezier(0.2, 0.8, 0.2, 1)', // Style guide easing
       }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.backgroundColor = 'var(--surface-0)';
-        e.currentTarget.style.borderColor = 'var(--ink-300)';
+      whileHover={{
+        // Style Guide Section 5: Hover - lift +2-4px, scale 1.01, shadow up one step
+        y: -3,
+        scale: 1.01,
+        boxShadow: 'var(--shadow-md)',
+        transition: {
+          duration: 0.3,
+          ease: [0.2, 0.8, 0.2, 1]
+        }
+      }}
+      onHoverStart={() => {
+        // MONOCODE Observable Implementation: Track hover interaction
+        logger.log('info', 'serviceCardHover', { serviceId: service.id });
       }}
     >
-      {/* MONOCODE Progressive Construction: Service icon with style guide tokens - consistent orange icon */}
+      {/* Style Guide Section 6.4: Icon circle (40px) */}
       <div 
-        className={iconContainerStyles} 
-        style={iconContainerStyle}
+        className="mb-6 transition-all duration-300"
+        style={{
+          width: '40px',
+          height: '40px',
+          borderRadius: '50%',
+          backgroundColor: 'var(--brand-400)', // Subtle brand accent
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: 'var(--brand-600)' // Primary brand color for icon
+        }}
       >
         {getServiceIconSVG(service.icon)}
       </div>
 
-      {/* MONOCODE Progressive Construction: Service content with style guide typography */}
-      <h3 className={titleStyles}>
+      {/* Style Guide Section 3: Typography with exact specifications */}
+      <h3 
+        className="group-hover:text-white transition-colors duration-300"
+        style={{
+          fontSize: '20px', // 18-20 bold per style guide
+          fontWeight: '700', // Bold
+          lineHeight: '1.2',
+          color: 'var(--ink-900)', // Primary text
+          marginBottom: '12px',
+          fontFamily: 'Inter, sans-serif' // Body/UI font
+        }}
+      >
         {service.title}
       </h3>
       
-      <p className={descriptionStyles}>
+      <p 
+        className="group-hover:text-white/90 transition-colors duration-300"
+        style={{
+          fontSize: '14px',
+          lineHeight: '1.5',
+          color: 'var(--ink-500)', // Secondary text
+          marginBottom: '20px',
+          fontFamily: 'Inter, sans-serif'
+        }}
+      >
         {service.description}
       </p>
 
-      {/* MONOCODE Progressive Construction: Feature list with proper style guide tokens */}
-      <ul className="space-y-2 mb-6">
-        {service.features.map((feature, featureIndex) => (
+      {/* Style Guide Section 6.4: 2-3 bullets with line-clamp 3 */}
+      <ul className="space-y-3 mb-6">
+        {service.features.slice(0, 3).map((feature, featureIndex) => (
           <li 
             key={`feature-${index}-${featureIndex}`}
             className="flex items-center gap-3"
           >
             <div 
-              className="w-5 h-5 rounded-full flex items-center justify-center transition-all duration-200"
               style={{
+                width: '16px',
+                height: '16px',
+                borderRadius: '50%',
                 backgroundColor: 'var(--brand-400)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0
               }}
             >
               <svg 
-                className="w-3 h-3 text-brand-600 group-hover:text-white transition-colors duration-300"
+                className="w-3 h-3 group-hover:text-white transition-colors duration-300"
+                style={{ color: 'var(--brand-600)' }}
                 fill="none" 
                 stroke="currentColor" 
                 viewBox="0 0 24 24"
@@ -353,46 +405,70 @@ const ServiceCard: React.FC<{
                 />
               </svg>
             </div>
-            <span className="text-sm leading-relaxed text-ink-600 group-hover:text-white/90 transition-colors duration-300">
+            <span 
+              className="group-hover:text-white/90 transition-colors duration-300"
+              style={{
+                fontSize: '13px', // Micro text per style guide
+                lineHeight: '1.45',
+                color: 'var(--ink-500)'
+              }}
+            >
               {feature.text}
             </span>
           </li>
         ))}
       </ul>
 
-      {/* MONOCODE Progressive Construction: CTA button with style guide button specs - consistent orange */}
+      {/* Style Guide Section 6.4: "Angebot anfordern" inline link/pill */}
       <button
         onClick={handleServiceSelect}
-        className="w-full py-3 px-6 font-semibold text-base transition-all duration-200 text-white hover:shadow-md active:translate-y-px focus:outline-none focus:ring-2 focus:ring-brand-600 focus:ring-offset-2"
+        className="w-full transition-all duration-200 hover:shadow-md active:translate-y-px focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
         style={{
+          padding: '12px 20px', // px 20-24 / py 14-16 adapted for smaller button
           backgroundColor: 'var(--brand-600)',
-          borderRadius: '9999px', // pill shape as per style guide
+          color: '#ffffff',
+          borderRadius: '9999px', // pill radius per style guide
+          fontWeight: '600', // semibold
+          fontSize: '14px',
+          border: 'none',
+          cursor: 'pointer'
         }}
         onMouseEnter={(e) => {
+          // Style Guide Section 7: Hover bg --brand/500, add shadow
           e.currentTarget.style.backgroundColor = 'var(--brand-500)';
+          e.currentTarget.style.boxShadow = 'var(--shadow-md)';
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.backgroundColor = 'var(--brand-600)';
+          e.currentTarget.style.boxShadow = 'none';
+        }}
+        onMouseDown={(e) => {
+          // Style Guide Section 7: Active translate-y(1px), shadow/sm
+          e.currentTarget.style.transform = 'translateY(1px)';
+          e.currentTarget.style.boxShadow = 'var(--shadow-sm)';
+        }}
+        onMouseUp={(e) => {
+          e.currentTarget.style.transform = 'translateY(0)';
         }}
         data-analytics="service_card_cta_click"
         data-service-id={service.id}
       >
         {service.ctaText}
       </button>
-    </div>
+    </motion.div>
   );
 };
 
 // MONOCODE Progressive Construction: Style guide compliant section variants
 const getSectionStyles = (variant: string) => {
-  // Style guide section 4: 80-120px vertical spacing
-  const baseStyles = 'py-20 bg-white'; // 80px = py-20
+  // Style Guide Section 4: 80-120px vertical spacing with subtle background
+  const baseStyles = 'py-24 bg-white min-h-[calc(100vh-60px)] bg-gradient-to-b from-gray-50/30 to-white';
   
   switch (variant) {
     case 'compact':
-      return `${baseStyles} py-16`; // 64px for compact
+      return `py-16 bg-white`; // 64px for compact
     case 'expanded':
-      return `${baseStyles} py-30`; // 120px for expanded
+      return `py-32 bg-white min-h-screen bg-gradient-to-b from-gray-50/50 to-white`; // 128px for expanded
     default:
       return baseStyles;
   }
@@ -435,48 +511,58 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
 
   return (
     <section className={sectionStyles} id="services">
-      {/* Style guide section 4: Container max-width 1200-1280px with 24px gutter */}
+      {/* Style Guide Section 4: Container max-width 1280px, centered, 24px gutter */}
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* MONOCODE Progressive Construction: Section header with style guide typography */}
-        <div className="text-center mb-16">
-          {/* Style guide section 3: H2 ALL CAPS with Manrope font and -0.02em letter-spacing */}
-          <h2 
-            className="font-bold text-4xl lg:text-5xl mb-6 tracking-tight uppercase"
-            style={{ 
-              fontFamily: 'Manrope, sans-serif',
-              fontSize: 'var(--font-size-h2, 40px)',
-              lineHeight: 'var(--line-height-h2, 1.1)',
-              letterSpacing: 'var(--letter-spacing-h2, -0.02em)',
-              color: 'var(--ink-900)',
-            }}
-          >
-            {content.title}
-          </h2>
-          {/* Style guide section 3: Body large 18px with proper line height */}
-          <p 
-            className="max-w-3xl mx-auto leading-relaxed"
-            style={{
-              fontSize: '18px',
-              lineHeight: '1.6',
-              color: 'var(--ink-500)',
-            }}
-          >
-            {content.subtitle}
-          </p>
-        </div>
+        <motion.div
+          key={currentLanguage} // Force re-animation on language change
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, margin: "-50px" }}
+        >
+          {/* Style Guide Section 3: Typography with exact specifications */}
+          <motion.div variants={itemVariants} className="text-center mb-16">
+            {/* Style Guide Section 3: H2 ALL CAPS with Manrope font and -0.02em letter-spacing */}
+            <h2 
+              className="uppercase mb-6 tracking-tight"
+              style={{ 
+                fontFamily: 'Manrope, sans-serif',
+                fontSize: '40px', // H2 40px per style guide
+                lineHeight: '1.1', // H2 line height
+                letterSpacing: '-0.02em', // H2 letter spacing
+                fontWeight: '700', // Bold
+                color: 'var(--ink-900)', // Primary text
+              }}
+            >
+              {content.title}
+            </h2>
+            {/* Style Guide Section 3: Body large 18px with proper line height */}
+            <p 
+              className="max-w-3xl mx-auto"
+              style={{
+                fontSize: '18px', // Body 16-18px
+                lineHeight: '1.6', // Body line height
+                color: 'var(--ink-500)', // Secondary text
+                fontFamily: 'Inter, sans-serif' // Body/UI font
+              }}
+            >
+              {content.subtitle}
+            </p>
+          </motion.div>
 
-        {/* MONOCODE Progressive Construction: Services grid - Style guide section 4: 4→2→1 responsive */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {content.services.map((service, index) => (
-            <ServiceCard
-              key={`service-${service.id}`}
-              service={service}
-              index={index}
-              onServiceSelect={onServiceSelect}
-            />
-          ))}
-        </div>
+          {/* Style Guide Section 4: Services grid 4→2→1 responsive */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {content.services.map((service, index) => (
+              <ServiceCard
+                key={`service-${service.id}`}
+                service={service}
+                index={index}
+                onServiceSelect={onServiceSelect}
+              />
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

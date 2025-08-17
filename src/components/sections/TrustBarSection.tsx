@@ -75,36 +75,36 @@ const getTrustContent = (language: string): TrustContent => {
     de: {
       title: "Vertrauen Sie auf unsere Erfahrung",
       clientLogos: [
-        { name: "BMW", logoUrl: "/logos/bmw.svg", altText: "BMW Logo", fallbackText: "BMW" },
-        { name: "Mercedes", logoUrl: "/logos/mercedes.svg", altText: "Mercedes-Benz Logo", fallbackText: "Mercedes" },
-        { name: "Volkswagen", logoUrl: "/logos/vw.svg", altText: "Volkswagen Logo", fallbackText: "VW" },
-        { name: "Siemens", logoUrl: "/logos/siemens.svg", altText: "Siemens Logo", fallbackText: "Siemens" },
-        { name: "SAP", logoUrl: "/logos/sap.svg", altText: "SAP Logo", fallbackText: "SAP" },
-        { name: "Bosch", logoUrl: "/logos/bosch.svg", altText: "Bosch Logo", fallbackText: "Bosch" },
-        { name: "BASF", logoUrl: "/logos/basf.svg", altText: "BASF Logo", fallbackText: "BASF" },
-        { name: "Adidas", logoUrl: "/logos/adidas.svg", altText: "Adidas Logo", fallbackText: "Adidas" }
+        { name: "BMW", logoUrl: "/logos/bmw.svg", altText: "BMW Logo - Vertrauenspartner", fallbackText: "BMW" },
+        { name: "Mercedes", logoUrl: "/logos/mercedes.svg", altText: "Mercedes-Benz Logo - Vertrauenspartner", fallbackText: "Mercedes" },
+        { name: "Volkswagen", logoUrl: "/logos/vw.svg", altText: "Volkswagen Logo - Vertrauenspartner", fallbackText: "VW" },
+        { name: "Siemens", logoUrl: "/logos/siemens.svg", altText: "Siemens Logo - Vertrauenspartner", fallbackText: "Siemens" },
+        { name: "SAP", logoUrl: "/logos/sap.svg", altText: "SAP Logo - Vertrauenspartner", fallbackText: "SAP" },
+        { name: "Bosch", logoUrl: "/logos/bosch.svg", altText: "Bosch Logo - Vertrauenspartner", fallbackText: "Bosch" },
+        { name: "BASF", logoUrl: "/logos/basf.svg", altText: "BASF Logo - Vertrauenspartner", fallbackText: "BASF" },
+        { name: "Adidas", logoUrl: "/logos/adidas.svg", altText: "Adidas Logo - Vertrauenspartner", fallbackText: "Adidas" }
       ],
       stats: [
         { icon: Clock, value: "98%", label: "pünktlich" },
-        { icon: CheckCircle, value: "500+", label: "zufriedene Kunden" },
+        { icon: CheckCircle, value: "500+", label: "Kunden vertrauen uns" },
         { icon: Award, value: "25+", label: "Jahre Erfahrung" }
       ]
     },
     en: {
-      title: "Trust our experience",
+      title: "Trust our experience", 
       clientLogos: [
-        { name: "BMW", logoUrl: "/logos/bmw.svg", altText: "BMW Logo", fallbackText: "BMW" },
-        { name: "Mercedes", logoUrl: "/logos/mercedes.svg", altText: "Mercedes-Benz Logo", fallbackText: "Mercedes" },
-        { name: "Volkswagen", logoUrl: "/logos/vw.svg", altText: "Volkswagen Logo", fallbackText: "VW" },
-        { name: "Siemens", logoUrl: "/logos/siemens.svg", altText: "Siemens Logo", fallbackText: "Siemens" },
-        { name: "SAP", logoUrl: "/logos/sap.svg", altText: "SAP Logo", fallbackText: "SAP" },
-        { name: "Bosch", logoUrl: "/logos/bosch.svg", altText: "Bosch Logo", fallbackText: "Bosch" },
-        { name: "BASF", logoUrl: "/logos/basf.svg", altText: "BASF Logo", fallbackText: "BASF" },
-        { name: "Adidas", logoUrl: "/logos/adidas.svg", altText: "Adidas Logo", fallbackText: "Adidas" }
+        { name: "BMW", logoUrl: "/logos/bmw.svg", altText: "BMW Logo - Trusted Partner", fallbackText: "BMW" },
+        { name: "Mercedes", logoUrl: "/logos/mercedes.svg", altText: "Mercedes-Benz Logo - Trusted Partner", fallbackText: "Mercedes" },
+        { name: "Volkswagen", logoUrl: "/logos/vw.svg", altText: "Volkswagen Logo - Trusted Partner", fallbackText: "VW" },
+        { name: "Siemens", logoUrl: "/logos/siemens.svg", altText: "Siemens Logo - Trusted Partner", fallbackText: "Siemens" },
+        { name: "SAP", logoUrl: "/logos/sap.svg", altText: "SAP Logo - Trusted Partner", fallbackText: "SAP" },
+        { name: "Bosch", logoUrl: "/logos/bosch.svg", altText: "Bosch Logo - Trusted Partner", fallbackText: "Bosch" },
+        { name: "BASF", logoUrl: "/logos/basf.svg", altText: "BASF Logo - Trusted Partner", fallbackText: "BASF" },
+        { name: "Adidas", logoUrl: "/logos/adidas.svg", altText: "Adidas Logo - Trusted Partner", fallbackText: "Adidas" }
       ],
       stats: [
         { icon: Clock, value: "98%", label: "on time" },
-        { icon: CheckCircle, value: "500+", label: "satisfied customers" },
+        { icon: CheckCircle, value: "500+", label: "customers trust us" },
         { icon: Award, value: "25+", label: "years experience" }
       ]
     }
@@ -149,6 +149,9 @@ const ClientLogoComponent: React.FC<{
   const [imageError, setImageError] = useState(false);
   const [loadStartTime] = useState(Date.now());
 
+  // MONOCODE Boundary Verification: Prefer images but fallback gracefully
+  const shouldShowImage = logo.logoUrl && !imageError;
+
   const handleImageLoad = () => {
     const loadTime = Date.now() - loadStartTime;
     setImageLoaded(true);
@@ -164,29 +167,26 @@ const ClientLogoComponent: React.FC<{
     <motion.div
       variants={itemVariants}
       className="
-        flex items-center justify-center p-4 h-16
-        grayscale opacity-60 hover:opacity-100 hover:grayscale-0
-        transition-all duration-brand ease-brand
+        flex items-center justify-center p-6 h-20
+        grayscale opacity-50 hover:opacity-80 hover:grayscale-0
+        transition-all duration-300 ease-[cubic-bezier(0.2,0.8,0.2,1)]
+        cursor-default
       "
     >
-      {!imageError && logo.logoUrl ? (
+      {shouldShowImage ? (
         <img
           src={logo.logoUrl}
           alt={logo.altText}
           onLoad={handleImageLoad}
           onError={handleImageError}
-          className={`
-            max-h-8 max-w-full object-contain
-            transition-opacity duration-brand
-            ${imageLoaded ? 'opacity-100' : 'opacity-0'}
-          `}
+          className="max-h-12 max-w-full object-contain"
           loading="lazy"
         />
       ) : (
         // Style Guide: Fallback with brand typography
         <span className="
-          text-ink-600 font-medium text-sm tracking-wide
-          px-3 py-2 border border-ink-200 rounded-md
+          text-ink-700 font-medium text-base tracking-wide
+          px-4 py-2 border border-ink-300 rounded-sm bg-white
         ">
           {logo.fallbackText}
         </span>
@@ -214,19 +214,18 @@ export default function TrustBarSection({
   return (
     // Style Guide Section 6.3: Light section following specifications
     <section 
-      className={`
-        section bg-ink-50 
-        ${className}
-      `}
+      className="bg-ink-100 py-16 lg:py-20"
       aria-label="Client trust indicators"
     >
       {/* Style Guide Section 4: Container with proper spacing */}
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6 max-w-container">
+        
         <motion.div
+          key={currentLanguage} // Force re-animation on language change
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: false, margin: "-50px" }}
           className="text-center"
         >
           {/* Optional title for expanded variant */}
@@ -245,10 +244,10 @@ export default function TrustBarSection({
           {/* Style Guide Section 6.3: Client logos (6-8) in grayscale */}
           <motion.div
             variants={itemVariants}
-            className="mb-12"
+            className="mb-16"
           >
             <div className="
-              grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4
+              grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6
               max-w-6xl mx-auto
             ">
               {content.clientLogos.map((logo) => (
@@ -263,27 +262,27 @@ export default function TrustBarSection({
           {/* Style Guide Section 6.3: Small stat chips */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-wrap justify-center gap-6"
+            className="flex flex-wrap justify-center gap-8"
           >
             {content.stats.map((stat) => (
               <motion.div
                 key={stat.label}
                 variants={itemVariants}
                 className="
-                  stat-chip bg-surface-0 border border-ink-100
-                  hover:shadow-md hover:scale-105 
-                  transition-all duration-brand ease-brand
-                  cursor-default
+                  flex items-center gap-2 px-4 py-3
+                  bg-white border border-ink-300 rounded-sm
+                  shadow-sm hover:shadow-md
+                  transition-shadow duration-300 ease-[cubic-bezier(0.2,0.8,0.2,1)]
                 "
               >
                 <stat.icon 
-                  className="w-4 h-4 text-brand-600" 
+                  className="w-5 h-5 text-brand-600" 
                   aria-hidden="true" 
                 />
-                <span className="font-semibold text-ink-900">
+                <span className="font-semibold text-ink-900 text-base">
                   {stat.value}
                 </span>
-                <span className="text-ink-600">
+                <span className="text-ink-600 text-base">
                   {stat.label}
                 </span>
               </motion.div>

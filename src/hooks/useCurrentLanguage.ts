@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react';
 
 export type Language = 'en' | 'de';
 
-const DEFAULT_LANGUAGE: Language = 'en';
+const DEFAULT_LANGUAGE: Language = 'de'; // Style Guide: Default copy DE
 const STORAGE_KEY = 'preferred-language';
 
 // MONOCODE Observable Implementation: Language change logging

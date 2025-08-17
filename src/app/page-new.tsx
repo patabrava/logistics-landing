@@ -4,7 +4,6 @@ import React from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import HeroSection from '@/components/sections/HeroSection';
-import TrustBarSection from '@/components/sections/TrustBarSection';
 import ServicesSection from '@/components/sections/ServicesSection';
 import QuoteSection from '@/components/sections/QuoteSection';
 
@@ -19,7 +18,6 @@ export default function LandingPage() {
       <main id="main-content" className="flex-1">
         {/* Style Guide: Section composition following PRD specifications */}
         <HeroSection />
-        <TrustBarSection />
         <ServicesSection />
         <QuoteSection />
       </main>
