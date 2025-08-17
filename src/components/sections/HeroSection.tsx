@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { Truck, Shield, Clock, CheckCircle } from 'lucide-react';
 import { useCurrentLanguage } from '../../hooks/useCurrentLanguage';
 
@@ -290,33 +291,46 @@ export default function HeroSection({
             </motion.div>
           </div>
 
-          {/* Style Guide Section 6.2: Visual (right) - dashboard/mockup or image */}
+          {/* Style Guide Section 6.2: Visual (right) - European truck transport image */}
           <motion.div
             variants={itemVariants}
             className="relative lg:block"
           >
-            {/* MONOCODE Explicit Error Handling: Placeholder with proper aspect ratio */}
+            {/* MONOCODE Explicit Error Handling: Image with fallback and proper aspect ratio */}
             <div className="
               relative w-full aspect-square lg:aspect-[4/3] max-w-lg mx-auto
               bg-gradient-to-br from-brand-100 to-brand-200 
               rounded-3xl overflow-hidden shadow-lg
             ">
-              {/* Style Guide: Optional dotted flight path SVG */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <Truck className="w-16 h-16 text-brand-600 mx-auto mb-4" />
-                  <p className="text-brand-700 font-medium">
-                    EU Transport Network
-                  </p>
-                  <p className="text-brand-600 text-sm mt-2">
-                    Dashboard Preview
-                  </p>
-                </div>
-              </div>
+              {/* MONOCODE Observable Implementation: Structured logging for image loading */}
+              <Image
+                src="/freepik__hyperrealistic-picture-of-a-truck-in-europe-with-o__24289.png"
+                alt={currentLanguage === 'de' 
+                  ? "Hyperrealistisches Bild eines LKW in Europa - Zuverlässige Logistik" 
+                  : "Hyperrealistic picture of a truck in Europe - Reliable logistics"
+                }
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                priority={true}
+                quality={85}
+                onLoad={() => {
+                  logger.log('info', 'hero_image_loaded', { 
+                    image: 'truck_europe',
+                    language: currentLanguage 
+                  });
+                }}
+                onError={(e) => {
+                  logger.log('error', 'hero_image_failed', { 
+                    image: 'truck_europe',
+                    error: e.currentTarget.src,
+                    language: currentLanguage 
+                  });
+                }}
+              />
               
-              {/* Decorative elements */}
-              <div className="absolute top-4 right-4 w-3 h-3 bg-brand-500 rounded-full"></div>
-              <div className="absolute bottom-4 left-4 w-2 h-2 bg-brand-400 rounded-full"></div>
+              {/* MONOCODE Progressive Construction: Subtle overlay for visual enhancement */}
+              <div className="absolute inset-0 bg-gradient-to-t from-ink-900/10 to-transparent"></div>
             </div>
           </motion.div>
         </motion.div>
