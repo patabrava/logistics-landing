@@ -1,0 +1,347 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "coverage": "Coverage",
+    "about": "About",
+    "contact": "Contact",
+    "quote": "Get Quote",
+    "language": "Language"
+  },
+  "hero": {
+    "headline": "RELIABLE LOGISTICS ACROSS EUROPE",
+    "subheadline": "Fast, secure, predictable. Your partner for professional transport solutions from Germany throughout the EU.",
+    "primaryCta": "Get Quote",
+    "secondaryCta": "+49 30 12345678",
+    "trustBadges": {
+      "iso9001": "ISO 9001 Certified",
+      "aeo": "AEO Authorized Economic Operator"
+    }
+  },
+  "trustBar": {
+    "statistics": {
+      "ontime": "on time",
+      "clients": "satisfied customers",
+      "countries": "EU countries"
+    }
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Professional logistics solutions for every need",
+    "roadTransport": {
+      "title": "Road Transport",
+      "description": "Reliable road transport across Europe with state-of-the-art vehicle fleet",
+      "bullets": [
+        "Germany & EU · Express & Same-Day",
+        "Temperature-controlled transport",
+        "ADR dangerous goods transport (on request)"
+      ]
+    },
+    "airFreight": {
+      "title": "Air Freight",
+      "description": "Fast air freight solutions for time-critical shipments worldwide",
+      "bullets": [
+        "Express air freight worldwide",
+        "Pharma & Healthcare specialized transport",
+        "Consolidation service available"
+      ]
+    },
+    "seaFreight": {
+      "title": "Sea Freight",
+      "description": "Cost-effective sea freight solutions for volume shipments",
+      "bullets": [
+        "FCL & LCL container loading",
+        "Import/Export handling",
+        "Customs clearance service included"
+      ]
+    },
+    "warehousing": {
+      "title": "Warehousing",
+      "description": "Flexible warehouse solutions with modern logistics centers",
+      "bullets": [
+        "Short & long-term storage",
+        "Pick & Pack services",
+        "Inventory management & WMS"
+      ]
+    },
+    "lastMile": {
+      "title": "Last Mile",
+      "description": "Delivery service for final delivery to end customers",
+      "bullets": [
+        "Same-Day & Next-Day Delivery",
+        "Scheduled delivery",
+        "Returns management"
+      ]
+    },
+    "cta": "Get Quote"
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "subtitle": "Your logistics solution in 4 simple steps",
+    "steps": {
+      "request": {
+        "title": "Submit Request",
+        "description": "Send us your transport request"
+      },
+      "quote": {
+        "title": "Receive Quote",
+        "description": "Get our quote within hours"
+      },
+      "pickup": {
+        "title": "Pickup",
+        "description": "We collect your shipment on schedule"
+      },
+      "delivery": {
+        "title": "Delivery",
+        "description": "Safe delivery at the desired time"
+      }
+    }
+  },
+  "industries": {
+    "title": "Industries",
+    "subtitle": "Specialized solutions for various industries",
+    "automotive": {
+      "title": "Automotive",
+      "needs": [
+        "Just-in-Time deliveries",
+        "Spare parts logistics"
+      ]
+    },
+    "retail": {
+      "title": "Trade & Retail",
+      "needs": [
+        "Fast replenishment logistics",
+        "E-Commerce fulfillment"
+      ]
+    },
+    "pharma": {
+      "title": "Pharma & Healthcare",
+      "needs": [
+        "GDP-compliant cold chain transport",
+        "Validated supply chains"
+      ]
+    },
+    "manufacturing": {
+      "title": "Industry & Manufacturing",
+      "needs": [
+        "Raw material transport",
+        "Project logistics"
+      ]
+    }
+  },
+  "coverage": {
+    "title": "Our Network",
+    "subtitle": "Reliable across Europe for you",
+    "description": "From our locations in Germany, we serve all of Europe. Focus areas: DACH, Benelux, Poland and Northern Italy.",
+    "hubs": {
+      "berlin": "Berlin",
+      "hamburg": "Hamburg",
+      "munich": "Munich",
+      "cologne": "Cologne",
+      "leipzig": "Leipzig"
+    }
+  },
+  "fleet": {
+    "title": "Our Fleet",
+    "subtitle": "Modern vehicles for every transport need",
+    "trucks": {
+      "title": "Modern Truck Fleet",
+      "bullets": [
+        "7.5t to 40t payload",
+        "Euro 6 emission standard",
+        "GPS tracking standard"
+      ]
+    },
+    "trailers": {
+      "title": "Special Trailers",
+      "bullets": [
+        "Refrigerated transport (-25°C to +25°C)",
+        "Tarpaulin, box, flatbed",
+        "ADR for dangerous goods"
+      ]
+    },
+    "equipment": {
+      "title": "Additional Equipment",
+      "bullets": [
+        "Loading crane & pallet truck",
+        "Load securing",
+        "Temperature monitoring"
+      ]
+    }
+  },
+  "testimonials": {
+    "title": "What Our Customers Say",
+    "subtitle": "Trust through performance",
+    "clientsCount": "satisfied customers"
+  },
+  "certifications": {
+    "title": "Certifications",
+    "subtitle": "Quality and safety are our standards",
+    "iso9001": "Quality Management",
+    "aeo": "Authorized Economic Operator",
+    "tapa": "Security Standard",
+    "gdp": "Good Distribution Practice"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Answers to the most important questions",
+    "questions": {
+      "pricing": {
+        "question": "How are transport costs calculated?",
+        "answer": "Costs depend on distance, weight, volume and desired service level. Special transports and express shipments have individual rates. We're happy to provide you with a non-binding quote."
+      },
+      "coverage": {
+        "question": "Which countries do you transport to?",
+        "answer": "We serve all of Europe with focus on Germany, Austria, Switzerland, Benelux, Poland and Northern Italy. For worldwide transport, we work with reliable partners."
+      },
+      "insurance": {
+        "question": "How is my shipment insured?",
+        "answer": "All transports are insured by default. Coverage depends on declared goods value. Additional insurance can be arranged for valuable goods."
+      },
+      "tracking": {
+        "question": "Can I track my shipment?",
+        "answer": "Yes, you receive a tracking number for monitoring. For critical transports, we offer live tracking with GPS location."
+      },
+      "dangerousGoods": {
+        "question": "Do you also transport dangerous goods?",
+        "answer": "Yes, we are ADR-certified and transport dangerous goods of all classes. This requires special advance notifications and documentation."
+      },
+      "deliveryTime": {
+        "question": "How quickly does my shipment reach its destination?",
+        "answer": "Standard transport within Germany: 1-2 business days. Europe: 2-5 business days. Express services available same or next day."
+      }
+    }
+  },
+  "about": {
+    "title": "About LogisticsCo",
+    "subtitle": "Your reliable partner since 1995",
+    "stats": {
+      "founded": "Founded",
+      "employees": "Employees",
+      "locations": "Locations"
+    },
+    "usps": [
+      "Over 25 years of experience in logistics",
+      "Certified quality and safety standards",
+      "Personal contact person for every customer"
+    ]
+  },
+  "quote": {
+    "title": "Request Quote",
+    "subtitle": "Quote within hours – send us your data",
+    "form": {
+      "company": "Company",
+      "contactPerson": "Contact Person",
+      "email": "Email",
+      "phone": "Phone",
+      "serviceType": "Service Type",
+      "pickupPostalCode": "Pickup Postal Code",
+      "pickupCity": "Pickup City",
+      "pickupCountry": "Pickup Country",
+      "deliveryPostalCode": "Delivery Postal Code",
+      "deliveryCity": "Delivery City",
+      "deliveryCountry": "Delivery Country",
+      "goods": "Goods/Content",
+      "length": "Length (cm)",
+      "width": "Width (cm)",
+      "height": "Height (cm)",
+      "weight": "Weight (kg)",
+      "pallets": "Number of Pallets",
+      "timeFrame": "Time Frame",
+      "isRecurring": "Recurring",
+      "specialRequirements": "Special Requirements",
+      "submit": "Request Quote via Email",
+      "submitting": "Sending...",
+      "placeholder": {
+        "company": "Your Company",
+        "contactPerson": "Your Name",
+        "email": "your.email@example.com",
+        "phone": "+49 30 12345678",
+        "goods": "Description of goods",
+        "specialRequirements": "Cold chain, dangerous goods, etc."
+      },
+      "validation": {
+        "required": "This field is required",
+        "email": "Please enter a valid email address",
+        "phone": "Please enter a valid phone number",
+        "number": "Please enter a valid number",
+        "minValue": "Value must be greater than {{min}}",
+        "maxValue": "Value must not be greater than {{max}}"
+      }
+    },
+    "serviceTypes": {
+      "roadTransport": "Road Transport",
+      "airFreight": "Air Freight",
+      "seaFreight": "Sea Freight",
+      "warehousing": "Warehousing",
+      "lastMile": "Last Mile"
+    },
+    "timeFrames": {
+      "express": "Express (immediate)",
+      "nextDay": "Next Day",
+      "standard": "Standard (2-3 days)",
+      "economy": "Economy (4-7 days)",
+      "scheduled": "Scheduled"
+    },
+    "countries": {
+      "de": "Germany",
+      "at": "Austria",
+      "ch": "Switzerland",
+      "nl": "Netherlands",
+      "be": "Belgium",
+      "pl": "Poland",
+      "fr": "France",
+      "it": "Italy",
+      "es": "Spain"
+    },
+    "fallback": {
+      "title": "Email client could not be opened",
+      "instruction": "Please send an email to:",
+      "copy": "Copy content"
+    }
+  },
+  "footer": {
+    "company": {
+      "title": "Company",
+      "about": "About Us",
+      "services": "Services",
+      "careers": "Careers",
+      "news": "News"
+    },
+    "legal": {
+      "title": "Legal",
+      "imprint": "Imprint",
+      "privacy": "Privacy",
+      "terms": "Terms",
+      "cookies": "Cookie Settings"
+    },
+    "contact": {
+      "title": "Contact",
+      "address": "LogisticsCo GmbH\nMusterstraße 123\n10115 Berlin",
+      "phone": "+49 30 12345678",
+      "email": "info@logisticsco.de",
+      "hours": "Mon-Fri 8:00-18:00"
+    },
+    "copyright": "© {{year}} LogisticsCo GmbH. All rights reserved."
+  },
+  "common": {
+    "yes": "Yes",
+    "no": "No",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "close": "Close",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "more": "More",
+    "less": "Less",
+    "showMore": "Show More",
+    "showLess": "Show Less"
+  }
+}

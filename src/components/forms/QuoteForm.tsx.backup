@@ -1,0 +1,709 @@
+/**
+ * QuoteForm Component
+ * Main quote request form with validation and email generation
+ */
+
+'use client';
+
+import React, { useState, useCallback, useEffect } from 'react';
+import { Button } from '@/components/ui/Button';
+import { Card, CardHeader, CardContent, CardFooter } from '@/components/ui/Card';
+import { FormField, InputField, TextareaField, SelectField } from '@/components/ui/FormField';
+import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
+import { cn } from '@/lib/utils';
+import { useFormState } from '@/hooks/useFormState';
+import { useAnalytics, useFormAnalytics } from '@/hooks/useAnalytics';
+import { QuoteFormData } from '@/types/form';
+import { validateForm, getErrorMessages } from '@/components/forms/FormValidation';
+// Temporarily comment out email generator import to test compilation
+// import { generateMailtoURL, generateEmailPreview } from '@/components/forms/EmailGenerator';
+import { FORM } from '@/lib/constants';
+// Temporarily comment out COUNTRIES import
+// import { COUNTRIES, FORM } from '@/lib/constants';
+
+// Service type options
+const SERVICE_OPTIONS = [
+  { value: 'road_transport', label: 'Straßentransport' },
+  { value: 'air_freight', label: 'Luftfracht' },
+  { value: 'sea_freight', label: 'Seefracht' },
+  { value: 'rail_transport', label: 'Bahntransport' },
+  { value: 'logistics_solutions', label: 'Logistiklösungen' },
+];
+
+// Urgency options
+const URGENCY_OPTIONS = [
+  { value: 'standard', label: 'Standard (2-5 Tage)' },
+  { value: 'express', label: 'Express (1-2 Tage)' },
+  { value: 'same_day', label: 'Same Day (innerhalb 24h)' },
+  { value: 'scheduled', label: 'Terminiert (nach Vereinbarung)' },
+];
+
+// Insurance options
+const INSURANCE_OPTIONS = [
+  { value: 'none', label: 'Keine Versicherung' },
+  { value: 'basic', label: 'Basis-Versicherung' },
+  { value: 'comprehensive', label: 'Umfassende Versicherung' },
+];
+
+// Contact method options
+const CONTACT_METHOD_OPTIONS = [
+  { value: 'email', label: 'E-Mail' },
+  { value: 'phone', label: 'Telefon' },
+  { value: 'both', label: 'E-Mail & Telefon' },
+];
+
+// Country options (top countries first)
+const COUNTRY_OPTIONS = [
+  { value: 'Deutschland', label: 'Deutschland' },
+  { value: 'Österreich', label: 'Österreich' },
+  { value: 'Schweiz', label: 'Schweiz' },
+  { value: 'Niederlande', label: 'Niederlande' },
+  { value: 'Belgien', label: 'Belgien' },
+  { value: 'Frankreich', label: 'Frankreich' },
+  { value: 'Italien', label: 'Italien' },
+  { value: 'Spanien', label: 'Spanien' },
+  { value: 'Polen', label: 'Polen' },
+  { value: 'Tschechien', label: 'Tschechien' },
+  ...COUNTRIES.SUPPORTED.map(country => ({ value: country, label: country }))
+    .filter(country => !['Deutschland', 'Österreich', 'Schweiz', 'Niederlande', 'Belgien', 'Frankreich', 'Italien', 'Spanien', 'Polen', 'Tschechien'].includes(country.value))
+];
+
+export interface QuoteFormProps {
+  onSubmit?: (formData: QuoteFormData) => void;
+  onEmailGenerate?: (emailData: { subject: string; body: string; mailto: string }) => void;
+  initialData?: Partial<QuoteFormData>;
+  className?: string;
+}
+
+/**
+ * Main QuoteForm component
+ */
+export const QuoteForm: React.FC<QuoteFormProps> = ({
+  onSubmit,
+  onEmailGenerate,
+  initialData,
+  className,
+}) => {
+  const { formData, errors, updateField, markFieldTouched, getFieldError, validateForm: validateFormState, resetForm } = useFormState(initialData);
+  const { trackEvent } = useAnalytics();
+  const formAnalytics = useFormAnalytics('quote_form');
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showEmailPreview, setShowEmailPreview] = useState(false);
+  const [currentStep, setCurrentStep] = useState(1);
+  const [hasStartedForm, setHasStartedForm] = useState(false);
+
+  // Track form start
+  useEffect(() => {
+    if (!hasStartedForm) {
+      formAnalytics.trackFormStart();
+      setHasStartedForm(true);
+    }
+  }, [formAnalytics, hasStartedForm]);
+
+  // Get validation errors
+  const currentErrors = validateForm(formData);
+  const errorMessages = getErrorMessages(currentErrors);
+
+  // Get minimum pickup date (today)
+  const minPickupDate = new Date().toISOString().split('T')[0];
+
+  // Get minimum delivery date (pickup date + 1 day)
+  const minDeliveryDate = formData.pickupDate 
+    ? new Date(new Date(formData.pickupDate).getTime() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+    : minPickupDate;
+
+  /**
+   * Handle field changes with validation
+   */
+  const handleFieldChange = useCallback((fieldName: keyof QuoteFormData, value: string | number) => {
+    updateField(fieldName, value);
+    formAnalytics.trackFieldInteraction(fieldName, 'change');
+  }, [updateField, formAnalytics]);
+
+  /**
+   * Handle field blur events
+   */
+  const handleFieldBlur = useCallback((fieldName: keyof QuoteFormData) => {
+    markFieldTouched(fieldName);
+    formAnalytics.trackFieldInteraction(fieldName, 'blur');
+  }, [markFieldTouched, formAnalytics]);
+
+  /**
+   * Handle form submission
+   */
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!validationSummary.isValid) {
+      formAnalytics.trackFormSubmit(false, `${validationSummary.errorCount} validation errors`);
+      trackEvent('quote_form_validation_error', {
+        error_count: validationSummary.errorCount,
+        errors: Object.keys(validationSummary.errors),
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // Generate email
+      const emailPreview = getEmailPreview(formData);
+      
+      if (!emailPreview.isValid) {
+        throw new Error('Email generation failed');
+      }
+
+      // Track successful form submission
+      formAnalytics.trackFormSubmit(true);
+      trackEvent('quote_form_submitted', {
+        service_type: formData.serviceType,
+        urgency: formData.urgency,
+        origin_country: formData.originCountry,
+        destination_country: formData.destinationCountry,
+        weight: formData.weight,
+      });
+
+      // Call callbacks
+      onSubmit?.(formData);
+      onEmailGenerate?.(emailPreview);
+
+      // Open mailto link
+      window.location.href = emailPreview.mailto;
+
+      // Show success message
+      setShowEmailPreview(true);
+
+    } catch (error) {
+      console.error('Form submission error:', error);
+      formAnalytics.trackFormSubmit(false, error instanceof Error ? error.message : 'Unknown error');
+      trackEvent('quote_form_error', {
+        error: error instanceof Error ? error.message : 'Unknown error',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  }, [formData, validationSummary, onSubmit, onEmailGenerate, formAnalytics, trackEvent]);
+
+  /**
+   * Handle form reset
+   */
+  const handleReset = useCallback(() => {
+    resetForm();
+    setCurrentStep(1);
+    setShowEmailPreview(false);
+    trackEvent('quote_form_reset');
+  }, [resetForm, trackEvent]);
+
+  /**
+   * Navigate between form steps
+   */
+  const goToStep = useCallback((step: number) => {
+    setCurrentStep(step);
+    trackEvent('quote_form_step_change', { step });
+  }, [trackEvent]);
+
+  return (
+    <Card className={cn('max-w-4xl mx-auto', className)}>
+      <CardHeader
+        title="Angebot anfordern"
+        subtitle="Füllen Sie das Formular aus, um ein individuelles Angebot zu erhalten"
+      />
+
+      <CardContent>
+        {/* Progress Indicator */}
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-2">
+            {[1, 2, 3, 4].map((step) => (
+              <button
+                key={step}
+                onClick={() => goToStep(step)}
+                className={cn(
+                  'flex items-center justify-center w-8 h-8 rounded-full text-sm font-medium transition-colors',
+                  currentStep === step
+                    ? 'bg-brand-600 text-white'
+                    : currentStep > step
+                    ? 'bg-green-500 text-white'
+                    : 'bg-ink-200 text-ink-600'
+                )}
+              >
+                {currentStep > step ? '✓' : step}
+              </button>
+            ))}
+          </div>
+          <div className="w-full bg-ink-200 rounded-full h-1">
+            <div
+              className="bg-brand-600 h-1 rounded-full transition-all duration-300"
+              style={{ width: `${(currentStep - 1) * 33.33}%` }}
+            />
+          </div>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Step 1: Company Information */}
+          {currentStep === 1 && (
+            <div className="space-y-6">
+              <h3 className="text-lg font-semibold text-ink-900 mb-4">Firmeninformationen</h3>
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                <FormField
+                  label="Unternehmen"
+                  required
+                  error={getFieldError('company')}
+                >
+                  <InputField
+                    value={formData.company}
+                    onChange={(e) => handleFieldChange('company', e.target.value)}
+                    onBlur={() => handleFieldBlur('company')}
+                    placeholder="Ihr Firmenname"
+                    error={!!getFieldError('company')}
+                  />
+                </FormField>
+
+                <FormField
+                  label="Ansprechpartner"
+                  required
+                  error={getFieldError('contactPerson')}
+                >
+                  <InputField
+                    value={formData.contactPerson}
+                    onChange={(e) => handleFieldChange('contactPerson', e.target.value)}
+                    onBlur={() => handleFieldBlur('contactPerson')}
+                    placeholder="Vor- und Nachname"
+                    error={!!getFieldError('contactPerson')}
+                  />
+                </FormField>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <FormField
+                  label="E-Mail-Adresse"
+                  required
+                  error={getFieldError('email')}
+                >
+                  <InputField
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => handleFieldChange('email', e.target.value)}
+                    onBlur={() => handleFieldBlur('email')}
+                    placeholder="ihre@email.de"
+                    error={!!getFieldError('email')}
+                  />
+                </FormField>
+
+                <FormField
+                  label="Telefonnummer"
+                  required
+                  error={getFieldError('phone')}
+                >
+                  <InputField
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) => handleFieldChange('phone', e.target.value)}
+                    onBlur={() => handleFieldBlur('phone')}
+                    placeholder="+49 xxx xxxxxxx"
+                    error={!!getFieldError('phone')}
+                  />
+                </FormField>
+              </div>
+
+              <FormField
+                label="Bevorzugter Kontaktweg"
+                required
+                error={getFieldError('contactMethod')}
+              >
+                <SelectField
+                  value={formData.contactMethod}
+                  onChange={(e) => handleFieldChange('contactMethod', e.target.value)}
+                  onBlur={() => handleFieldBlur('contactMethod')}
+                  options={CONTACT_METHOD_OPTIONS}
+                  placeholder="Wie sollen wir Sie kontaktieren?"
+                  error={!!getFieldError('contactMethod')}
+                />
+              </FormField>
+            </div>
+          )}
+
+          {/* Step 2: Service & Route */}
+          {currentStep === 2 && (
+            <div className="space-y-6">
+              <h3 className="text-lg font-semibold text-ink-900 mb-4">Service & Route</h3>
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                <FormField
+                  label="Service-Typ"
+                  required
+                  error={getFieldError('serviceType')}
+                >
+                  <SelectField
+                    value={formData.serviceType}
+                    onChange={(e) => handleFieldChange('serviceType', e.target.value)}
+                    onBlur={() => handleFieldBlur('serviceType')}
+                    options={SERVICE_OPTIONS}
+                    placeholder="Wählen Sie einen Service"
+                    error={!!getFieldError('serviceType')}
+                  />
+                </FormField>
+
+                <FormField
+                  label="Dringlichkeit"
+                  required
+                  error={getFieldError('urgency')}
+                >
+                  <SelectField
+                    value={formData.urgency}
+                    onChange={(e) => handleFieldChange('urgency', e.target.value)}
+                    onBlur={() => handleFieldBlur('urgency')}
+                    options={URGENCY_OPTIONS}
+                    placeholder="Wie dringend ist der Transport?"
+                    error={!!getFieldError('urgency')}
+                  />
+                </FormField>
+              </div>
+
+              {/* Origin */}
+              <div className="space-y-4">
+                <h4 className="font-medium text-ink-800">Abholort</h4>
+                <div className="grid md:grid-cols-3 gap-4">
+                  <FormField
+                    label="Stadt"
+                    required
+                    error={getFieldError('originCity')}
+                  >
+                    <InputField
+                      value={formData.originCity}
+                      onChange={(e) => handleFieldChange('originCity', e.target.value)}
+                      onBlur={() => handleFieldBlur('originCity')}
+                      placeholder="Hamburg"
+                      error={!!getFieldError('originCity')}
+                    />
+                  </FormField>
+
+                  <FormField
+                    label="Land"
+                    required
+                    error={getFieldError('originCountry')}
+                  >
+                    <SelectField
+                      value={formData.originCountry}
+                      onChange={(e) => handleFieldChange('originCountry', e.target.value)}
+                      onBlur={() => handleFieldBlur('originCountry')}
+                      options={COUNTRY_OPTIONS}
+                      placeholder="Land wählen"
+                      error={!!getFieldError('originCountry')}
+                    />
+                  </FormField>
+
+                  <FormField
+                    label="PLZ (optional)"
+                    error={getFieldError('originPostalCode')}
+                  >
+                    <InputField
+                      value={formData.originPostalCode || ''}
+                      onChange={(e) => handleFieldChange('originPostalCode', e.target.value)}
+                      onBlur={() => handleFieldBlur('originPostalCode')}
+                      placeholder="20095"
+                      error={!!getFieldError('originPostalCode')}
+                    />
+                  </FormField>
+                </div>
+              </div>
+
+              {/* Destination */}
+              <div className="space-y-4">
+                <h4 className="font-medium text-ink-800">Zielort</h4>
+                <div className="grid md:grid-cols-3 gap-4">
+                  <FormField
+                    label="Stadt"
+                    required
+                    error={getFieldError('destinationCity')}
+                  >
+                    <InputField
+                      value={formData.destinationCity}
+                      onChange={(e) => handleFieldChange('destinationCity', e.target.value)}
+                      onBlur={() => handleFieldBlur('destinationCity')}
+                      placeholder="München"
+                      error={!!getFieldError('destinationCity')}
+                    />
+                  </FormField>
+
+                  <FormField
+                    label="Land"
+                    required
+                    error={getFieldError('destinationCountry')}
+                  >
+                    <SelectField
+                      value={formData.destinationCountry}
+                      onChange={(e) => handleFieldChange('destinationCountry', e.target.value)}
+                      onBlur={() => handleFieldBlur('destinationCountry')}
+                      options={COUNTRY_OPTIONS}
+                      placeholder="Land wählen"
+                      error={!!getFieldError('destinationCountry')}
+                    />
+                  </FormField>
+
+                  <FormField
+                    label="PLZ (optional)"
+                    error={getFieldError('destinationPostalCode')}
+                  >
+                    <InputField
+                      value={formData.destinationPostalCode || ''}
+                      onChange={(e) => handleFieldChange('destinationPostalCode', e.target.value)}
+                      onBlur={() => handleFieldBlur('destinationPostalCode')}
+                      placeholder="80331"
+                      error={!!getFieldError('destinationPostalCode')}
+                    />
+                  </FormField>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Step 3: Cargo Information */}
+          {currentStep === 3 && (
+            <div className="space-y-6">
+              <h3 className="text-lg font-semibold text-ink-900 mb-4">Fracht-Informationen</h3>
+              
+              <FormField
+                label="Fracht-Beschreibung"
+                required
+                error={getFieldError('cargoDescription')}
+                description="Beschreiben Sie die zu transportierenden Güter"
+              >
+                <TextareaField
+                  value={formData.cargoDescription}
+                  onChange={(e) => handleFieldChange('cargoDescription', e.target.value)}
+                  onBlur={() => handleFieldBlur('cargoDescription')}
+                  placeholder="z.B. Maschinenteile, Paletten mit Elektronik, temperaturempfindliche Ware..."
+                  rows={3}
+                  error={!!getFieldError('cargoDescription')}
+                />
+              </FormField>
+
+              <FormField
+                label="Gewicht (kg)"
+                required
+                error={getFieldError('weight')}
+              >
+                <InputField
+                  type="number"
+                  value={formData.weight || ''}
+                  onChange={(e) => handleFieldChange('weight', Number(e.target.value))}
+                  onBlur={() => handleFieldBlur('weight')}
+                  placeholder="1000"
+                  min="0.1"
+                  max="50000"
+                  step="0.1"
+                  error={!!getFieldError('weight')}
+                />
+              </FormField>
+
+              <div className="space-y-4">
+                <h4 className="font-medium text-ink-800">Abmessungen (optional)</h4>
+                <div className="grid md:grid-cols-3 gap-4">
+                  <FormField
+                    label="Länge (cm)"
+                    error={getFieldError('length')}
+                  >
+                    <InputField
+                      type="number"
+                      value={formData.length || ''}
+                      onChange={(e) => handleFieldChange('length', Number(e.target.value))}
+                      onBlur={() => handleFieldBlur('length')}
+                      placeholder="120"
+                      min="1"
+                      max="2000"
+                      error={!!getFieldError('length')}
+                    />
+                  </FormField>
+
+                  <FormField
+                    label="Breite (cm)"
+                    error={getFieldError('width')}
+                  >
+                    <InputField
+                      type="number"
+                      value={formData.width || ''}
+                      onChange={(e) => handleFieldChange('width', Number(e.target.value))}
+                      onBlur={() => handleFieldBlur('width')}
+                      placeholder="80"
+                      min="1"
+                      max="2000"
+                      error={!!getFieldError('width')}
+                    />
+                  </FormField>
+
+                  <FormField
+                    label="Höhe (cm)"
+                    error={getFieldError('height')}
+                  >
+                    <InputField
+                      type="number"
+                      value={formData.height || ''}
+                      onChange={(e) => handleFieldChange('height', Number(e.target.value))}
+                      onBlur={() => handleFieldBlur('height')}
+                      placeholder="100"
+                      min="1"
+                      max="2000"
+                      error={!!getFieldError('height')}
+                    />
+                  </FormField>
+                </div>
+              </div>
+
+              <FormField
+                label="Versicherung"
+                error={getFieldError('insurance')}
+              >
+                <SelectField
+                  value={formData.insurance || 'none'}
+                  onChange={(e) => handleFieldChange('insurance', e.target.value)}
+                  onBlur={() => handleFieldBlur('insurance')}
+                  options={INSURANCE_OPTIONS}
+                  error={!!getFieldError('insurance')}
+                />
+              </FormField>
+            </div>
+          )}
+
+          {/* Step 4: Timeline & Special Requirements */}
+          {currentStep === 4 && (
+            <div className="space-y-6">
+              <h3 className="text-lg font-semibold text-ink-900 mb-4">Zeitplan & Besonderheiten</h3>
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                <FormField
+                  label="Abholdatum"
+                  required
+                  error={getFieldError('pickupDate')}
+                >
+                  <InputField
+                    type="date"
+                    value={formData.pickupDate}
+                    onChange={(e) => handleFieldChange('pickupDate', e.target.value)}
+                    onBlur={() => handleFieldBlur('pickupDate')}
+                    min={minPickupDate}
+                    error={!!getFieldError('pickupDate')}
+                  />
+                </FormField>
+
+                <FormField
+                  label="Gewünschtes Lieferdatum (optional)"
+                  error={getFieldError('deliveryDate')}
+                >
+                  <InputField
+                    type="date"
+                    value={formData.deliveryDate || ''}
+                    onChange={(e) => handleFieldChange('deliveryDate', e.target.value)}
+                    onBlur={() => handleFieldBlur('deliveryDate')}
+                    min={minDeliveryDate}
+                    error={!!getFieldError('deliveryDate')}
+                  />
+                </FormField>
+              </div>
+
+              <FormField
+                label="Besondere Anforderungen (optional)"
+                error={getFieldError('specialRequirements')}
+                description="z.B. Kühlkette, Gefahrgut, besondere Handling-Anforderungen"
+              >
+                <TextareaField
+                  value={formData.specialRequirements || ''}
+                  onChange={(e) => handleFieldChange('specialRequirements', e.target.value)}
+                  onBlur={() => handleFieldBlur('specialRequirements')}
+                  placeholder="Spezielle Anforderungen an den Transport..."
+                  rows={4}
+                  error={!!getFieldError('specialRequirements')}
+                />
+              </FormField>
+
+              {/* Form Summary */}
+              <div className="mt-8 p-4 bg-ink-50 rounded-lg">
+                <h4 className="font-medium text-ink-800 mb-2">Zusammenfassung</h4>
+                <div className="grid md:grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <p><span className="font-medium">Service:</span> {SERVICE_OPTIONS.find(s => s.value === formData.serviceType)?.label}</p>
+                    <p><span className="font-medium">Route:</span> {formData.originCity} → {formData.destinationCity}</p>
+                    <p><span className="font-medium">Gewicht:</span> {formData.weight} kg</p>
+                  </div>
+                  <div>
+                    <p><span className="font-medium">Dringlichkeit:</span> {URGENCY_OPTIONS.find(u => u.value === formData.urgency)?.label}</p>
+                    <p><span className="font-medium">Abholdatum:</span> {formData.pickupDate ? new Date(formData.pickupDate).toLocaleDateString('de-DE') : '-'}</p>
+                    <p><span className="font-medium">Kontakt:</span> {formData.contactPerson} ({formData.email})</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Navigation Buttons */}
+          <div className="flex justify-between pt-6 border-t border-ink-200">
+            <div>
+              {currentStep > 1 && (
+                <Button
+                  type="button"
+                  variant="secondary"
+                  onClick={() => goToStep(currentStep - 1)}
+                >
+                  Zurück
+                </Button>
+              )}
+            </div>
+
+            <div className="flex space-x-3">
+              {currentStep < 4 ? (
+                <Button
+                  type="button"
+                  onClick={() => goToStep(currentStep + 1)}
+                >
+                  Weiter
+                </Button>
+              ) : (
+                <Button
+                  type="submit"
+                  disabled={!validationSummary.isValid || isSubmitting}
+                  isLoading={isSubmitting}
+                >
+                  Angebot anfordern
+                </Button>
+              )}
+            </div>
+          </div>
+        </form>
+
+        {/* Validation Summary */}
+        {validationSummary.errorCount > 0 && (
+          <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+            <h4 className="font-medium text-red-800 mb-2">
+              Bitte korrigieren Sie folgende Fehler ({validationSummary.errorCount}):
+            </h4>
+            <ul className="text-sm text-red-700 list-disc list-inside space-y-1">
+              {Object.entries(validationSummary.errors).map(([field, error]) => (
+                <li key={field}>{error}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </CardContent>
+
+      <CardFooter divider>
+        <div className="flex justify-between items-center w-full">
+          <p className="text-sm text-ink-600">
+            Alle Felder mit * sind Pflichtfelder
+          </p>
+          
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            onClick={handleReset}
+          >
+            Formular zurücksetzen
+          </Button>
+        </div>
+      </CardFooter>
+    </Card>
+  );
+};
+
+export default QuoteForm;

@@ -1,0 +1,347 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "services": "Leistungen",
+    "coverage": "Abdeckung",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "quote": "Angebot anfordern",
+    "language": "Sprache"
+  },
+  "hero": {
+    "headline": "ZUVERLÄSSIGE LOGISTIK IN GANZ EUROPA",
+    "subheadline": "Schnell, sicher, planbar. Ihr Partner für professionelle Transportlösungen von Deutschland bis in die EU.",
+    "primaryCta": "Angebot anfordern",
+    "secondaryCta": "+49 30 12345678",
+    "trustBadges": {
+      "iso9001": "ISO 9001 Zertifiziert",
+      "aeo": "AEO Zugelassener Wirtschaftsbeteiligter"
+    }
+  },
+  "trustBar": {
+    "statistics": {
+      "ontime": "pünktlich",
+      "clients": "zufriedene Kunden",
+      "countries": "EU-Länder"
+    }
+  },
+  "services": {
+    "title": "Unsere Leistungen",
+    "subtitle": "Professionelle Logistiklösungen für jeden Bedarf",
+    "roadTransport": {
+      "title": "Straßentransport",
+      "description": "Zuverlässige Straßentransporte in ganz Europa mit modernster Fahrzeugflotte",
+      "bullets": [
+        "Deutschland & EU · Express & Same-Day",
+        "Temperaturgeführte Transporte",
+        "ADR-Gefahrguttransporte (auf Anfrage)"
+      ]
+    },
+    "airFreight": {
+      "title": "Luftfracht",
+      "description": "Schnelle Luftfrachtlösungen für zeitkritische Sendungen weltweit",
+      "bullets": [
+        "Express-Luftfracht weltweit",
+        "Pharma & Healthcare Spezialtransporte",
+        "Konsolidierungsservice verfügbar"
+      ]
+    },
+    "seaFreight": {
+      "title": "Seefracht",
+      "description": "Kosteneffiziente Seefrachtlösungen für Volumenladungen",
+      "bullets": [
+        "FCL & LCL Containerverladung",
+        "Import/Export Abwicklung",
+        "Verzollungsservice inklusive"
+      ]
+    },
+    "warehousing": {
+      "title": "Lagerlösungen",
+      "description": "Flexible Lagerlösungen mit modernen Logistikzentren",
+      "bullets": [
+        "Kurz- & Langzeitlagerung",
+        "Pick & Pack Services",
+        "Bestandsmanagement & WMS"
+      ]
+    },
+    "lastMile": {
+      "title": "Letzte Meile",
+      "description": "Zustellservice für die finale Lieferung zum Endkunden",
+      "bullets": [
+        "Same-Day & Next-Day Delivery",
+        "Terminierte Zustellung",
+        "Retourenmanagement"
+      ]
+    },
+    "cta": "Angebot anfordern"
+  },
+  "howItWorks": {
+    "title": "So funktioniert's",
+    "subtitle": "In 4 einfachen Schritten zu Ihrer Logistiklösung",
+    "steps": {
+      "request": {
+        "title": "Anfrage stellen",
+        "description": "Senden Sie uns Ihre Transportanfrage"
+      },
+      "quote": {
+        "title": "Angebot erhalten",
+        "description": "Binnen weniger Stunden erhalten Sie unser Angebot"
+      },
+      "pickup": {
+        "title": "Abholung",
+        "description": "Wir holen Ihre Sendung termingerecht ab"
+      },
+      "delivery": {
+        "title": "Zustellung",
+        "description": "Sichere Lieferung zum gewünschten Termin"
+      }
+    }
+  },
+  "industries": {
+    "title": "Branchen",
+    "subtitle": "Spezialisierte Lösungen für verschiedene Industrien",
+    "automotive": {
+      "title": "Automotive",
+      "needs": [
+        "Just-in-Time Lieferungen",
+        "Ersatzteillogistik"
+      ]
+    },
+    "retail": {
+      "title": "Handel & Retail",
+      "needs": [
+        "Schnelle Nachschublogistik",
+        "E-Commerce Fulfillment"
+      ]
+    },
+    "pharma": {
+      "title": "Pharma & Healthcare",
+      "needs": [
+        "GDP-konforme Kühltransporte",
+        "Validierte Lieferketten"
+      ]
+    },
+    "manufacturing": {
+      "title": "Industrie & Fertigung",
+      "needs": [
+        "Rohstofftransporte",
+        "Projektlogistik"
+      ]
+    }
+  },
+  "coverage": {
+    "title": "Unser Netzwerk",
+    "subtitle": "Europaweit zuverlässig für Sie unterwegs",
+    "description": "Von unseren Standorten in Deutschland bedienen wir ganz Europa. Schwerpunkte: DACH, Benelux, Polen und Norditalien.",
+    "hubs": {
+      "berlin": "Berlin",
+      "hamburg": "Hamburg",
+      "munich": "München",
+      "cologne": "Köln",
+      "leipzig": "Leipzig"
+    }
+  },
+  "fleet": {
+    "title": "Unsere Flotte",
+    "subtitle": "Moderne Fahrzeuge für jeden Transportbedarf",
+    "trucks": {
+      "title": "Moderne Lkw-Flotte",
+      "bullets": [
+        "7,5t bis 40t Nutzlast",
+        "Euro 6 Abgasnorm",
+        "GPS-Tracking Standard"
+      ]
+    },
+    "trailers": {
+      "title": "Spezialanhänger",
+      "bullets": [
+        "Kühltransporter (-25°C bis +25°C)",
+        "Plane, Koffer, Pritsche",
+        "ADR für Gefahrgut"
+      ]
+    },
+    "equipment": {
+      "title": "Zusatzausrüstung",
+      "bullets": [
+        "Ladekran & Hubwagen",
+        "Ladungssicherung",
+        "Temperaturüberwachung"
+      ]
+    }
+  },
+  "testimonials": {
+    "title": "Was unsere Kunden sagen",
+    "subtitle": "Vertrauen durch Leistung",
+    "clientsCount": "zufriedene Kunden"
+  },
+  "certifications": {
+    "title": "Zertifizierungen",
+    "subtitle": "Qualität und Sicherheit sind unsere Standards",
+    "iso9001": "Qualitätsmanagement",
+    "aeo": "Zugelassener Wirtschaftsbeteiligter",
+    "tapa": "Sicherheitsstandard",
+    "gdp": "Good Distribution Practice"
+  },
+  "faq": {
+    "title": "Häufige Fragen",
+    "subtitle": "Antworten auf die wichtigsten Fragen",
+    "questions": {
+      "pricing": {
+        "question": "Wie werden die Transportkosten berechnet?",
+        "answer": "Die Kosten richten sich nach Entfernung, Gewicht, Volumen und gewünschtem Service-Level. Sondertransporte und Expresssendungen haben individuelle Tarife. Gerne erstellen wir Ihnen ein unverbindliches Angebot."
+      },
+      "coverage": {
+        "question": "In welche Länder transportieren Sie?",
+        "answer": "Wir bedienen ganz Europa mit Fokus auf Deutschland, Österreich, Schweiz, Benelux, Polen und Norditalien. Für weltweite Transporte arbeiten wir mit zuverlässigen Partnern zusammen."
+      },
+      "insurance": {
+        "question": "Wie ist meine Sendung versichert?",
+        "answer": "Alle Transporte sind standardmäßig versichert. Die Deckungssumme richtet sich nach dem deklarierten Warenwert. Zusätzliche Versicherungen können bei wertvollen Gütern abgeschlossen werden."
+      },
+      "tracking": {
+        "question": "Kann ich meine Sendung verfolgen?",
+        "answer": "Ja, Sie erhalten eine Sendungsnummer zur Verfolgung. Bei kritischen Transporten bieten wir Live-Tracking mit GPS-Ortung an."
+      },
+      "dangerousGoods": {
+        "question": "Transportieren Sie auch Gefahrgut?",
+        "answer": "Ja, wir sind ADR-zertifiziert und transportieren Gefahrgut aller Klassen. Hierfür benötigen wir spezielle Voranmeldungen und Dokumentationen."
+      },
+      "deliveryTime": {
+        "question": "Wie schnell erreicht meine Sendung das Ziel?",
+        "answer": "Standard-Transporte innerhalb Deutschlands: 1-2 Werktage. Europa: 2-5 Werktage. Express-Services am gleichen oder nächsten Tag verfügbar."
+      }
+    }
+  },
+  "about": {
+    "title": "Über LogisticsCo",
+    "subtitle": "Ihr zuverlässiger Partner seit 1995",
+    "stats": {
+      "founded": "Gegründet",
+      "employees": "Mitarbeiter",
+      "locations": "Standorte"
+    },
+    "usps": [
+      "Über 25 Jahre Erfahrung in der Logistik",
+      "Zertifizierte Qualitäts- und Sicherheitsstandards",
+      "Persönlicher Ansprechpartner für jeden Kunden"
+    ]
+  },
+  "quote": {
+    "title": "Angebot anfordern",
+    "subtitle": "Angebot innerhalb weniger Stunden – senden Sie uns die Daten",
+    "form": {
+      "company": "Firma",
+      "contactPerson": "Ansprechpartner",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "serviceType": "Service-Art",
+      "pickupPostalCode": "PLZ Abholung",
+      "pickupCity": "Ort Abholung",
+      "pickupCountry": "Land Abholung",
+      "deliveryPostalCode": "PLZ Zustellung",
+      "deliveryCity": "Ort Zustellung",
+      "deliveryCountry": "Land Zustellung",
+      "goods": "Ware/Inhalt",
+      "length": "Länge (cm)",
+      "width": "Breite (cm)",
+      "height": "Höhe (cm)",
+      "weight": "Gewicht (kg)",
+      "pallets": "Anzahl Paletten",
+      "timeFrame": "Zeitfenster",
+      "isRecurring": "Wiederkehrend",
+      "specialRequirements": "Besondere Anforderungen",
+      "submit": "Angebot per E-Mail anfordern",
+      "submitting": "Wird gesendet...",
+      "placeholder": {
+        "company": "Ihre Firma",
+        "contactPerson": "Ihr Name",
+        "email": "ihre.email@beispiel.de",
+        "phone": "+49 30 12345678",
+        "goods": "Beschreibung der Ware",
+        "specialRequirements": "Kühlkette, Gefahrgut, etc."
+      },
+      "validation": {
+        "required": "Dieses Feld ist erforderlich",
+        "email": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+        "phone": "Bitte geben Sie eine gültige Telefonnummer ein",
+        "number": "Bitte geben Sie eine gültige Zahl ein",
+        "minValue": "Wert muss größer als {{min}} sein",
+        "maxValue": "Wert darf nicht größer als {{max}} sein"
+      }
+    },
+    "serviceTypes": {
+      "roadTransport": "Straßentransport",
+      "airFreight": "Luftfracht",
+      "seaFreight": "Seefracht",
+      "warehousing": "Lagerlösungen",
+      "lastMile": "Letzte Meile"
+    },
+    "timeFrames": {
+      "express": "Express (sofort)",
+      "nextDay": "Nächster Tag",
+      "standard": "Standard (2-3 Tage)",
+      "economy": "Economy (4-7 Tage)",
+      "scheduled": "Terminiert"
+    },
+    "countries": {
+      "de": "Deutschland",
+      "at": "Österreich",
+      "ch": "Schweiz",
+      "nl": "Niederlande",
+      "be": "Belgien",
+      "pl": "Polen",
+      "fr": "Frankreich",
+      "it": "Italien",
+      "es": "Spanien"
+    },
+    "fallback": {
+      "title": "E-Mail-Client konnte nicht geöffnet werden",
+      "instruction": "Bitte senden Sie eine E-Mail an:",
+      "copy": "Inhalt kopieren"
+    }
+  },
+  "footer": {
+    "company": {
+      "title": "Unternehmen",
+      "about": "Über uns",
+      "services": "Leistungen",
+      "careers": "Karriere",
+      "news": "News"
+    },
+    "legal": {
+      "title": "Rechtliches",
+      "imprint": "Impressum",
+      "privacy": "Datenschutz",
+      "terms": "AGB",
+      "cookies": "Cookie-Einstellungen"
+    },
+    "contact": {
+      "title": "Kontakt",
+      "address": "LogisticsCo GmbH\nMusterstraße 123\n10115 Berlin",
+      "phone": "+49 30 12345678",
+      "email": "info@logisticsco.de",
+      "hours": "Mo-Fr 8:00-18:00"
+    },
+    "copyright": "© {{year}} LogisticsCo GmbH. Alle Rechte vorbehalten."
+  },
+  "common": {
+    "yes": "Ja",
+    "no": "Nein",
+    "loading": "Lädt...",
+    "error": "Fehler",
+    "success": "Erfolgreich",
+    "close": "Schließen",
+    "cancel": "Abbrechen",
+    "confirm": "Bestätigen",
+    "save": "Speichern",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "previous": "Vorherige",
+    "more": "Mehr",
+    "less": "Weniger",
+    "showMore": "Mehr anzeigen",
+    "showLess": "Weniger anzeigen"
+  }
+}
