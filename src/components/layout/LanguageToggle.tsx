@@ -53,7 +53,7 @@ const validateLanguage = (language: string): { isValid: boolean; error?: string 
     return { isValid: false, error: 'Language code must be a non-empty string' };
   }
   
-  const validLanguages = [LANGUAGES.DEFAULT, 'en'];
+  const validLanguages: ReadonlyArray<string> = LANGUAGES.SUPPORTED as ReadonlyArray<string>;
   if (!validLanguages.includes(language)) {
     return { isValid: false, error: `Invalid language code: ${language}. Valid codes: ${validLanguages.join(', ')}` };
   }
@@ -80,7 +80,7 @@ export default function LanguageToggle({
   // Observable Implementation: Load persisted language on mount
   React.useEffect(() => {
     try {
-      const savedLanguage = localStorage.getItem('logistics-language') || LANGUAGES.DEFAULT;
+      const savedLanguage = localStorage.getItem(LANGUAGES.STORAGE_KEY) || LANGUAGES.DEFAULT;
       const validation = validateLanguage(savedLanguage);
       
       if (validation.isValid) {
@@ -119,7 +119,7 @@ export default function LanguageToggle({
 
     try {
       // Dependency Transparency: Clear localStorage operation
-      localStorage.setItem('logistics-language', newLanguage);
+      localStorage.setItem(LANGUAGES.STORAGE_KEY, newLanguage);
       
       // Deterministic State: Update state atomically
       setState(prev => ({ 
@@ -268,7 +268,7 @@ export function useCurrentLanguage() {
   
   React.useEffect(() => {
     try {
-      const savedLanguage = localStorage.getItem('logistics-language') || LANGUAGES.DEFAULT;
+      const savedLanguage = localStorage.getItem(LANGUAGES.STORAGE_KEY) || LANGUAGES.DEFAULT;
       const validation = validateLanguage(savedLanguage);
       setLanguage(validation.isValid ? savedLanguage : LANGUAGES.DEFAULT);
     } catch {

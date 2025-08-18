@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import Image from 'next/image'
 import { useLanguage, getTranslation } from '@/hooks/useLanguage'
 import { useScrollToSection } from '@/hooks/useScrollToSection'
 import { useAnalytics } from '@/hooks/useAnalytics'
@@ -14,7 +15,10 @@ interface AboutSectionProps {
 
 export function AboutSection({ className }: AboutSectionProps) {
   const { translations } = useLanguage()
-  const t = (key: string, fallback: string) => getTranslation(key, translations) || fallback
+  const t = (key: string, fallback: string) => {
+    const val = getTranslation(key, translations)
+    return val === key ? fallback : val
+  }
   const { scrollToSection } = useScrollToSection()
   const { trackEvent } = useAnalytics()
   const about = aboutContent
@@ -77,17 +81,14 @@ export function AboutSection({ className }: AboutSectionProps) {
 
           {/* Company Image Placeholder */}
           <div className="relative">
-            <div className="bg-gradient-to-br from-brand-100 to-orange-100 rounded-2xl h-96 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-20 h-20 bg-brand-200 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-10 h-10 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                  </svg>
-                </div>
-                <p className="text-brand-600 font-medium">
-                  {t('about.image_placeholder', 'Unternehmenszentrale')}
-                </p>
-              </div>
+            <div className="relative rounded-2xl h-96 overflow-hidden">
+              <Image
+                src="/ChatGPT Image 18. Aug. 2025, 03_06_23.png"
+                alt={t('about.image_placeholder', 'Unternehmenszentrale')}
+                fill
+                className="object-cover"
+                priority
+              />
             </div>
 
             {/* Stats Overlay */}

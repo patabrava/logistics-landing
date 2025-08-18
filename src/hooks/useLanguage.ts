@@ -195,6 +195,26 @@ export function useLanguage(): UseLanguageReturn {
     };
   }, [currentLanguage, isLanguageSupported, setLanguage]);
 
+  /**
+   * Listen for same-tab custom languageChange events
+   * This ensures components using this hook update immediately when LanguageToggle dispatches the event
+   */
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const handleLanguageChange = (event: Event) => {
+      const newLanguage = (event as CustomEvent<string>).detail;
+      if (typeof newLanguage === 'string' && isLanguageSupported(newLanguage) && newLanguage !== currentLanguage) {
+        setLanguage(newLanguage as Language);
+      }
+    };
+
+    window.addEventListener('languageChange', handleLanguageChange as EventListener);
+    return () => {
+      window.removeEventListener('languageChange', handleLanguageChange as EventListener);
+    };
+  }, [currentLanguage, isLanguageSupported, setLanguage]);
+
   return {
     currentLanguage,
     setLanguage,
