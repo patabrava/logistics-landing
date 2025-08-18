@@ -41,7 +41,7 @@ export default function TestFooter() {
         
         <Footer variant="minimal" />
         
-        <Footer variant="expanded" />
+        <Footer variant="default" />
       </div>
     </div>
   );
