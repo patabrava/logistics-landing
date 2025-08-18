@@ -20,14 +20,14 @@ const manrope = Manrope({
 // MONOCODE: Explicit Error Handling - Comprehensive SEO metadata following style.md specifications
 export const metadata: Metadata = {
   title: {
-    default: "LogisticsCo - Zuverlässige Logistik in ganz Europa",
-    template: "%s | LogisticsCo"
+    default: "NavarroGroup - Zuverlässige Logistik in ganz Europa",
+    template: "%s | NavarroGroup"
   },
   description: "Professionelle Logistiklösungen für Deutschland und Europa. Schnell, sicher, planbar. Express-Transport, Same-Day-Delivery und ADR-Transporte.",
   keywords: ["Logistik", "Transport", "Europa", "Deutschland", "Express", "Same-Day", "ADR", "Spedition"],
-  authors: [{ name: "LogisticsCo" }],
-  creator: "LogisticsCo",
-  publisher: "LogisticsCo",
+  authors: [{ name: "NavarroGroup" }],
+  creator: "NavarroGroup",
+  publisher: "NavarroGroup",
   formatDetection: {
     email: false,
     address: false,
@@ -49,21 +49,21 @@ export const metadata: Metadata = {
     locale: "de_DE",
     alternateLocale: ["en_US"],
     url: "https://logisticsco.de",
-    siteName: "LogisticsCo",
-    title: "LogisticsCo - Zuverlässige Logistik in ganz Europa",
+    siteName: "NavarroGroup",
+    title: "NavarroGroup - Zuverlässige Logistik in ganz Europa",
     description: "Professionelle Logistiklösungen für Deutschland und Europa. Schnell, sicher, planbar.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "LogisticsCo - Europäische Logistiklösungen",
+        alt: "NavarroGroup - Europäische Logistiklösungen",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "LogisticsCo - Zuverlässige Logistik in ganz Europa",
+    title: "NavarroGroup - Zuverlässige Logistik in ganz Europa",
     description: "Professionelle Logistiklösungen für Deutschland und Europa. Schnell, sicher, planbar.",
     images: ["/og-image.jpg"],
   },

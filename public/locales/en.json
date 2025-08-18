@@ -303,15 +303,15 @@
     },
     "contact": {
       "title": "Contact",
-      "address": "LogisticsCo GmbH\nMusterstraße 123\n10115 Berlin",
+      "address": "NavarroGroup GmbH\nMusterstraße 123\n10115 Berlin",
       "phone": "+49 30 12345678",
       "email": "info@logisticsco.de",
       "hours": "Mon-Fri 8:00-18:00"
     },
-    "copyright": "© {{year}} LogisticsCo GmbH. All rights reserved."
+    "copyright": "© {{year}} NavarroGroup GmbH. All rights reserved."
   },
   "about": {
-    "headline": "About LogisticsCo",
+    "headline": "About NavarroGroup",
     "subheadline": "Your trusted partner for professional logistics solutions across Europe for over 25 years.",
     "story": {
       "title": "Our Story",
