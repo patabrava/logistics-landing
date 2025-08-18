@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, AlertCircle } from 'lucide-react';
+import { Button } from '../ui/Button';
 import { useCurrentLanguage } from '../../hooks/useCurrentLanguage';
 
 // MONOCODE Principles Applied:
@@ -934,37 +935,21 @@ export const QuoteSection: React.FC<QuoteSectionProps> = ({
 
               {/* Style Guide Section 6.12: CTA button - full-width mobile, right-aligned desktop */}
               <motion.div variants={itemVariants} className="pt-6 flex justify-end">
-                <button
+                <Button
                   type="submit"
                   disabled={isSubmitting}
                   data-analytics="mailto_initiated"
-                  className="
-                    w-full lg:w-auto px-8 py-4 
-                    bg-brand-600 hover:bg-brand-500 
-                    disabled:bg-ink-400 disabled:cursor-not-allowed
-                    text-white font-semibold rounded-full
-                    transition-all duration-200 ease-[cubic-bezier(0.2,0.8,0.2,1)]
-                    hover:shadow-md hover:scale-[1.01] 
-                    active:translate-y-px active:shadow-sm
-                    focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-brand-600
-                    flex items-center justify-center gap-2
-                    min-h-[48px]
-                  "
+                  variant="primary"
+                  size="lg"
+                  width="full"
+                  isLoading={isSubmitting}
+                  leftIcon={!isSubmitting ? <Mail className="w-4 h-4" /> : undefined}
+                  className="lg:w-auto"
                 >
-                  {isSubmitting ? (
-                    <>
-                      <svg className="animate-spin w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                      </svg>
-                      <span>{currentLanguage === 'de' ? 'Wird gesendet...' : 'Sending...'}</span>
-                    </>
-                  ) : (
-                    <>
-                      <Mail className="w-4 h-4" />
-                      <span>{content.submitButtonText}</span>
-                    </>
-                  )}
-                </button>
+                  {isSubmitting
+                    ? (currentLanguage === 'de' ? 'Wird gesendet...' : 'Sending...')
+                    : content.submitButtonText}
+                </Button>
               </motion.div>
             </form>
           </motion.div>

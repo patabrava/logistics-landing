@@ -11,7 +11,15 @@ import { cn } from '@/lib/utils';
 // Button variant styles
 const buttonVariants = {
   variant: {
-    primary: 'bg-brand-600 text-white hover:bg-brand-700 focus:ring-brand-500',
+    // Style Guide Primary CTA: bg-brand-600, white text, pill radius, hover brand-500 with shadow,
+    // active slight translate, focus white ring with brand offset ring
+    primary: [
+      'text-white',
+      'hover:shadow-md',
+      'rounded-full font-semibold',
+      'active:translate-y-px active:shadow-sm',
+      'focus:ring-white focus:ring-offset-2',
+    ].join(' '),
     secondary: 'bg-white text-brand-600 border border-brand-600 hover:bg-brand-50 focus:ring-brand-500',
     tertiary: 'bg-transparent text-brand-600 hover:bg-brand-50 focus:ring-brand-500',
     danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
@@ -24,7 +32,7 @@ const buttonVariants = {
     xs: 'px-2 py-1 text-xs',
     sm: 'px-3 py-1.5 text-sm',
     md: 'px-4 py-2 text-sm',
-    lg: 'px-6 py-3 text-base',
+    lg: 'px-8 py-4 text-base',
     xl: 'px-8 py-4 text-lg',
   },
   width: {
@@ -38,10 +46,9 @@ const buttonVariants = {
 const baseStyles = [
   'inline-flex items-center justify-center',
   'font-medium rounded-lg',
-  'transition-all duration-200 ease-in-out',
+  'transition-all duration-200 ease-[cubic-bezier(.2,.8,.2,1)]',
   'focus:outline-none focus:ring-2 focus:ring-offset-2',
-  'disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none',
-  'active:scale-95',
+  'disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none',
 ].join(' ');
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -75,6 +82,22 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const isDisabled = disabled || isLoading;
 
+    // Style Guide Section 7: Primary button styling with CSS custom properties
+    const getPrimaryButtonStyles = () => {
+      if (variant === 'primary') {
+        return {
+          backgroundColor: '#F37F3E', // --brand-600
+          '--hover-bg': '#F2935C', // --brand-500
+          '--shadow-md': '0 6px 16px rgba(15,23,42,.08), 0 2px 8px rgba(15,23,42,.05)',
+          '--shadow-sm': '0 2px 6px rgba(15,23,42,.06)',
+        } as React.CSSProperties;
+      }
+      return {};
+    };
+
+    const primaryHoverStyles = variant === 'primary' ? 
+      'hover:bg-[var(--hover-bg)] hover:shadow-[var(--shadow-md)] active:shadow-[var(--shadow-sm)]' : '';
+
     return (
       <button
         ref={ref}
@@ -83,8 +106,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           buttonVariants.variant[variant],
           buttonVariants.size[size],
           buttonVariants.width[width],
+          primaryHoverStyles,
           className
         )}
+        style={getPrimaryButtonStyles()}
         disabled={isDisabled}
         {...props}
       >

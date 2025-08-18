@@ -82,23 +82,8 @@ const getServicesContent = (language: string): ServicesContent => {
           icon: 'truck'
         },
         {
-          id: 'warehousing',
-          title: isGerman ? 'Lagerung & Kommissionierung' : 'Warehousing & Picking',
-          description: isGerman 
-            ? 'Sichere Lagerung und professionelle Kommissionierung'
-            : 'Secure storage and professional order picking',
-          features: [
-            { text: isGerman ? 'Hochregallager' : 'High-bay warehouse', available: true },
-            { text: isGerman ? 'Temperaturkontrolle' : 'Temperature control', available: true },
-            { text: isGerman ? 'WMS-Integration' : 'WMS Integration', available: true }
-          ],
-          ctaText: isGerman ? 'Angebot anfordern' : 'Request Quote',
-          icon: 'warehouse',
-          emphasized: true
-        },
-        {
           id: 'distribution',
-          title: isGerman ? 'Distribution & Letzte Meile' : 'Distribution & Last Mile',
+          title: isGerman ? 'Expresszustellung' : 'Express Delivery',
           description: isGerman 
             ? 'Effiziente Verteilung bis zur letzten Meile'
             : 'Efficient distribution to the last mile',
@@ -172,7 +157,13 @@ const getServiceIconSVG = (iconName: string): React.ReactElement => {
   const iconMap: Record<string, React.ReactElement> = {
     truck: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h8m-8 0V9a2 2 0 012-2h6a2 2 0 012 2v3m-8 0v3a2 2 0 002 2h6a2 2 0 002-2v-3M3 12h2m14 0h2" />
+        {/* Cargo box */}
+        <rect x="3.25" y="9.25" width="8.75" height="5.5" rx="1.4" ry="1.4" strokeWidth={1.5} />
+        {/* Cab */}
+        <path d="M12.5 9.25h3.1l2.65 2.75v2.75H12.5z" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
+        {/* Wheels */}
+        <circle cx="7.25" cy="17.25" r="1.35" strokeWidth={1.5} />
+        <circle cx="17.25" cy="17.25" r="1.35" strokeWidth={1.5} />
       </svg>
     ),
     warehouse: (

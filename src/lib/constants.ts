@@ -3,7 +3,7 @@
 
 // Company Information
 export const COMPANY = {
-  NAME: 'Navarro Group GmbH',
+  NAME: 'NavarroGroup',
   LEGAL_NAME: 'Navarro Group GmbH',
   FOUNDED_YEAR: 1995,
   ADDRESS: {
