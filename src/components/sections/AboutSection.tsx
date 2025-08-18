@@ -62,7 +62,7 @@ export function AboutSection({ className }: AboutSectionProps) {
                 {t('about.mission.title', about.mission.title)}
               </h4>
               <p className="text-ink-700 font-medium italic">
-                "{t('about.mission.statement', about.mission.content)}"
+                &ldquo;{t('about.mission.statement', about.mission.content)}&rdquo;
               </p>
             </div>
           </div>

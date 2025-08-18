@@ -39,7 +39,7 @@ const VALIDATION_MESSAGES = {
 /**
  * Validates an individual field
  */
-export function validateField(fieldName: keyof QuoteFormData, value: any): string | undefined {
+export function validateField(fieldName: keyof QuoteFormData, value: unknown): string | undefined {
   const stringValue = typeof value === 'string' ? value.trim() : String(value || '');
   const numericValue = typeof value === 'number' ? value : parseFloat(stringValue);
 
@@ -130,7 +130,7 @@ export function validateForm(formData: QuoteFormData): FormValidationErrors {
   (Object.keys(formData) as Array<keyof QuoteFormData>).forEach(fieldName => {
     if (fieldName === 'dimensions') {
       // Handle dimensions separately
-      const dimensionErrors: any = {};
+      const dimensionErrors: NonNullable<FormValidationErrors['dimensions']> = {};
       if (formData.dimensions.length < FORM.VALIDATION.MIN_DIMENSION) {
         dimensionErrors.length = VALIDATION_MESSAGES.DIMENSION_TOO_SMALL;
       }
@@ -146,7 +146,59 @@ export function validateForm(formData: QuoteFormData): FormValidationErrors {
     } else {
       const fieldError = validateField(fieldName, formData[fieldName]);
       if (fieldError) {
-        (errors as any)[fieldName] = fieldError;
+        switch (fieldName) {
+          case 'company':
+            errors.company = fieldError;
+            break;
+          case 'contactPerson':
+            errors.contactPerson = fieldError;
+            break;
+          case 'email':
+            errors.email = fieldError;
+            break;
+          case 'phone':
+            errors.phone = fieldError;
+            break;
+          case 'serviceType':
+            errors.serviceType = fieldError;
+            break;
+          case 'pickupPostalCode':
+            errors.pickupPostalCode = fieldError;
+            break;
+          case 'pickupCity':
+            errors.pickupCity = fieldError;
+            break;
+          case 'pickupCountry':
+            errors.pickupCountry = fieldError;
+            break;
+          case 'deliveryPostalCode':
+            errors.deliveryPostalCode = fieldError;
+            break;
+          case 'deliveryCity':
+            errors.deliveryCity = fieldError;
+            break;
+          case 'deliveryCountry':
+            errors.deliveryCountry = fieldError;
+            break;
+          case 'goods':
+            errors.goods = fieldError;
+            break;
+          case 'weight':
+            errors.weight = fieldError;
+            break;
+          case 'pallets':
+            errors.pallets = fieldError;
+            break;
+          case 'timeFrame':
+            errors.timeFrame = fieldError;
+            break;
+          case 'specialRequirements':
+            errors.specialRequirements = fieldError;
+            break;
+          // 'dimensions' handled above; 'isRecurring' has no error field
+          default:
+            break;
+        }
       }
     }
   });
@@ -160,7 +212,7 @@ export function validateForm(formData: QuoteFormData): FormValidationErrors {
 export function getErrorMessages(errors: FormValidationErrors): string[] {
   const messages: string[] = [];
 
-  Object.entries(errors).forEach(([field, error]) => {
+  Object.entries(errors).forEach(([, error]) => {
     if (typeof error === 'string') {
       messages.push(error);
     } else if (typeof error === 'object' && error !== null) {
