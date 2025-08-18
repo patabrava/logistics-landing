@@ -3,8 +3,8 @@
 
 // Company Information
 export const COMPANY = {
-  NAME: 'LogisticsCo GmbH',
-  LEGAL_NAME: 'LogisticsCo GmbH',
+  NAME: 'Navarro Group GmbH',
+  LEGAL_NAME: 'Navarro Group GmbH',
   FOUNDED_YEAR: 1995,
   ADDRESS: {
     STREET: 'Musterstraße 123',

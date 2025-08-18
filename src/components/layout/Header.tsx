@@ -8,6 +8,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { COMPANY } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import LanguageToggle, { useCurrentLanguage } from './LanguageToggle';
@@ -225,13 +226,13 @@ export default function Header({
   };
 
   const getLogoStyles = () => {
-    const baseStyles = 'font-bold text-xl transition-colors duration-300';
+    const baseStyles = 'flex items-center transition-all duration-300';
     
     if (variant === 'transparent' && !state.isScrolled) {
-      return `${baseStyles} text-white`;
+      return `${baseStyles} opacity-90 hover:opacity-100`;
     }
     
-    return `${baseStyles} text-gray-900`;
+    return `${baseStyles} opacity-100 hover:opacity-90`;
   };
 
   const getNavLinkStyles = (isActive: boolean = false) => {
@@ -272,8 +273,19 @@ export default function Header({
               href="/"
               className={getLogoStyles()}
               onClick={() => logNavigationEvent('logo_click', '/', true)}
+              aria-label={`${COMPANY.NAME} - Home`}
             >
-              {COMPANY.NAME}
+              <Image
+                src="/ChatGPT Image 18. Aug. 2025, 03_01_25.png"
+                alt={`${COMPANY.NAME} Logo`}
+                width={48}
+                height={48}
+                className="h-10 w-auto transition-all duration-300"
+                priority
+              />
+              <span className="ml-3 font-bold text-xl">
+                {COMPANY.NAME}
+              </span>
             </Link>
           </div>
 
