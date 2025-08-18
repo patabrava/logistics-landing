@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 
@@ -74,6 +74,14 @@ export const metadata: Metadata = {
     "msapplication-TileColor": "#F37F3E",
     "theme-color": "#F37F3E",
   },
+};
+
+// MONOCODE: Dependency Transparency - Ensure proper responsive scaling on mobile
+// This injects: <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 // MONOCODE: Progressive Construction - Root layout with proper font loading and accessibility
