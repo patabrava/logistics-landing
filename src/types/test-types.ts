@@ -1,7 +1,7 @@
 // Test file to verify all type imports work correctly
-import type { Service, Industry, Testimonial, FAQ } from '@/types/content';
-import type { QuoteFormData, FormValidationErrors, FormState } from '@/types/form';
-import type { AnalyticsEvent, AnyAnalyticsEvent, AnalyticsProvider } from '@/types/analytics';
+import type { Service } from '@/types/content';
+import type { QuoteFormData } from '@/types/form';
+import type { AnalyticsEvent } from '@/types/analytics';
 
 // This file verifies that all type definitions compile correctly
 // It will be removed after verification

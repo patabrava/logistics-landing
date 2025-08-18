@@ -7,6 +7,7 @@
 
 import React, { forwardRef, HTMLAttributes } from 'react';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 // Card variant styles
 const cardVariants = {
@@ -225,13 +226,16 @@ export const CardImage = forwardRef<HTMLDivElement, CardImageProps>(
         )}
         {...props}
       >
-        <img
+        <Image
           src={src}
           alt={alt}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className={cn(
             'h-full w-full',
             objectFitStyles[objectFit]
           )}
+          priority={false}
         />
       </div>
     );
@@ -357,10 +361,13 @@ export const TestimonialCard = forwardRef<HTMLDivElement, TestimonialCardProps>(
           
           <div className="flex items-center">
             {author.avatar && (
-              <img
+              <Image
                 src={author.avatar}
                 alt={author.name}
-                className="h-10 w-10 rounded-full mr-3"
+                width={40}
+                height={40}
+                className="h-10 w-10 rounded-full mr-3 object-cover"
+                priority={false}
               />
             )}
             <div>

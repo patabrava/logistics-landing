@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Clock, CheckCircle, Award } from 'lucide-react';
 import { useCurrentLanguage } from '../../hooks/useCurrentLanguage';
+import Image from 'next/image';
 
 // MONOCODE Principles Applied:
 // - Observable Implementation: Client logo loading with performance tracking and error handling
@@ -145,7 +146,7 @@ const itemVariants = {
 const ClientLogoComponent: React.FC<{ 
   logo: ClientLogo;
 }> = ({ logo }) => {
-  const [imageLoaded, setImageLoaded] = useState(false);
+  const [, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
   const [loadStartTime] = useState(Date.now());
 
@@ -174,13 +175,16 @@ const ClientLogoComponent: React.FC<{
       "
     >
       {shouldShowImage ? (
-        <img
-          src={logo.logoUrl}
+        <Image
+          src={logo.logoUrl!}
           alt={logo.altText}
+          width={160}
+          height={48}
           onLoad={handleImageLoad}
           onError={handleImageError}
           className="max-h-12 max-w-full object-contain"
           loading="lazy"
+          unoptimized
         />
       ) : (
         // Style Guide: Fallback with brand typography
@@ -214,7 +218,7 @@ export default function TrustBarSection({
   return (
     // Style Guide Section 6.3: Light section following specifications
     <section 
-      className="bg-ink-100 py-16 lg:py-20"
+      className={`bg-ink-100 py-16 lg:py-20 ${className}`}
       aria-label="Client trust indicators"
     >
       {/* Style Guide Section 4: Container with proper spacing */}

@@ -95,7 +95,7 @@ const getFooterContent = (language: string) => {
 
 // MONOCODE Progressive Construction: Link click handler with tracking
 const createLinkClickHandler = (href: string, label: string) => {
-  return (event: React.MouseEvent) => {
+  return () => {
     try {
       logger.log('info', 'linkClick', {
         href,
