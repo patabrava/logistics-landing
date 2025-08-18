@@ -13,7 +13,7 @@ import { useCurrentLanguage } from '../../hooks/useCurrentLanguage';
 // - next-intl for internationalization (via useCurrentLanguage)
 
 interface FooterProps {
-  variant?: 'default' | 'minimal';
+  variant?: 'default' | 'minimal' | 'expanded';
   className?: string;
 }
 
@@ -144,7 +144,8 @@ export const Footer: React.FC<FooterProps> = ({
   }, [currentLanguage]);
 
   // Style Guide v1.0: Footer styling with design tokens
-  const footerStyles = `bg-gray-900 text-white ${variant === 'minimal' ? 'py-6' : 'py-8'} ${className}`.trim();
+  const paddingY = variant === 'minimal' ? 'py-6' : variant === 'expanded' ? 'py-12' : 'py-8';
+  const footerStyles = `bg-gray-900 text-white ${paddingY} ${className}`.trim();
   const containerStyles = 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8';
 
   if (variant === 'minimal') {
