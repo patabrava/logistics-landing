@@ -62,7 +62,7 @@ const getServicesContent = (language: string): ServicesContent => {
     const isGerman = language === 'de';
     
     return {
-      title: isGerman ? 'UNSERE LEISTUNGEN' : 'OUR SERVICES',
+      title: isGerman ? 'Unsere Leistungen' : 'Our services',
       subtitle: isGerman 
         ? 'Maßgeschneiderte Logistiklösungen für Ihre individuellen Anforderungen'
         : 'Tailored logistics solutions for your individual requirements',
@@ -133,7 +133,7 @@ const getServicesContent = (language: string): ServicesContent => {
 
     // MONOCODE Graceful Fallbacks: Minimal fallback content
     return {
-      title: 'OUR SERVICES',
+      title: 'Our services',
       subtitle: 'Professional logistics solutions for your needs',
       services: [
         {

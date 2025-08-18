@@ -32,7 +32,17 @@ export function AboutSection({ className }: AboutSectionProps) {
         
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-ink-900 mb-4">
+          <h2
+            className="uppercase tracking-tight mb-4"
+            style={{
+              fontFamily: 'Manrope, sans-serif',
+              fontSize: '40px',
+              lineHeight: '1.1',
+              letterSpacing: '-0.02em',
+              fontWeight: 700,
+              color: 'var(--ink-900)'
+            }}
+          >
             {t('about.headline', about.headline)}
           </h2>
           <p className="text-xl text-ink-600 max-w-3xl mx-auto">

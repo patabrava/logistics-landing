@@ -208,7 +208,7 @@ const getQuoteContent = (language: string): QuoteContent => {
     const isGerman = language === 'de';
     
     return {
-      title: isGerman ? 'ANGEBOT ANFORDERN' : 'REQUEST QUOTE',
+      title: isGerman ? 'Angebot anfordern' : 'Request quote',
       subtitle: isGerman 
         ? 'Angebot innerhalb weniger Stunden – senden Sie uns die Daten.'
         : 'Quote within hours – send us your details.',
@@ -347,7 +347,7 @@ const getQuoteContent = (language: string): QuoteContent => {
 
     // MONOCODE Graceful Fallbacks: Minimal English fallback
     return {
-      title: 'REQUEST QUOTE',
+      title: 'Request quote',
       subtitle: 'Get your quote within hours.',
       submitButtonText: 'Request Quote via Email',
       fields: {} as QuoteContent['fields']
