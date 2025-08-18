@@ -212,20 +212,6 @@
       }
     }
   },
-  "about": {
-    "title": "Über LogisticsCo",
-    "subtitle": "Ihr zuverlässiger Partner seit 1995",
-    "stats": {
-      "founded": "Gegründet",
-      "employees": "Mitarbeiter",
-      "locations": "Standorte"
-    },
-    "usps": [
-      "Über 25 Jahre Erfahrung in der Logistik",
-      "Zertifizierte Qualitäts- und Sicherheitsstandards",
-      "Persönlicher Ansprechpartner für jeden Kunden"
-    ]
-  },
   "quote": {
     "title": "Angebot anfordern",
     "subtitle": "Angebot innerhalb weniger Stunden – senden Sie uns die Daten",
@@ -323,6 +309,68 @@
       "hours": "Mo-Fr 8:00-18:00"
     },
     "copyright": "© {{year}} LogisticsCo GmbH. Alle Rechte vorbehalten."
+  },
+  "about": {
+    "headline": "Über LogisticsCo",
+    "subheadline": "Ihr vertrauensvoller Partner für professionelle Logistiklösungen in ganz Europa seit über 25 Jahren.",
+    "story": {
+      "title": "Unsere Geschichte",
+      "paragraph_1": "Seit der Gründung 1995 haben wir uns zu einem der führenden Logistikdienstleister in Deutschland und Europa entwickelt. Was als kleines Familienunternehmen begann, ist heute ein modernes Logistikunternehmen mit über 150 Mitarbeitern.",
+      "paragraph_2": "Unser Erfolg basiert auf drei Säulen: erstklassiger Service, modernste Technologie und ein erfahrenes Team. Wir verstehen die Herausforderungen unserer Kunden und entwickeln maßgeschneiderte Lösungen für jeden Transportbedarf.",
+      "paragraph_3": "Mit unserem Hauptsitz in Deutschland und strategischen Partnerschaften in ganz Europa gewährleisten wir zuverlässige und termingerechte Lieferungen – von der Nordsee bis zum Mittelmeer."
+    },
+    "mission": {
+      "title": "Unsere Mission",
+      "statement": "Wir verbinden Unternehmen europaweit durch zuverlässige, sichere und nachhaltige Logistiklösungen. Dabei stehen Qualität, Pünktlichkeit und persönlicher Service im Mittelpunkt unseres Handelns."
+    },
+    "team": {
+      "title": "Erfahrenes Team",
+      "description": "Über 50 Logistikexperten mit jahrelanger Branchenerfahrung und kontinuierlicher Weiterbildung."
+    },
+    "innovation": {
+      "title": "Innovation",
+      "description": "Modernste Technologie und kontinuierliche Prozessoptimierung für maximale Effizienz."
+    },
+    "sustainability": {
+      "title": "Nachhaltigkeit",
+      "description": "Umweltbewusste Logistik mit effizienten Routen und modernen, umweltfreundlichen Fahrzeugen."
+    },
+    "timeline": {
+      "title": "Unser Weg zum Erfolg",
+      "0": {
+        "title": "Unternehmensgründung",
+        "description": "Start als kleines Familienunternehmen mit Fokus auf regionale Transporte."
+      },
+      "1": {
+        "title": "Erste EU-Expansion",
+        "description": "Aufbau von Partnerschaften in Österreich, Schweiz und den Benelux-Ländern."
+      },
+      "2": {
+        "title": "Modernisierung der Flotte",
+        "description": "Investition in umweltfreundliche Euro-5 und Euro-6 Fahrzeuge."
+      },
+      "3": {
+        "title": "Digitale Transformation",
+        "description": "Einführung von GPS-Tracking und digitalen Kundenportalen."
+      },
+      "4": {
+        "title": "Nachhaltigkeitsoffensive",
+        "description": "Start der CO₂-neutralen Transportoptionen und grünen Logistik."
+      }
+    },
+    "contactSection": {
+      "title": "Kontakt"
+    },
+    "hours": {
+      "title": "Geschäftszeiten"
+    },
+    "cta": {
+      "headline": "Bereit für eine Partnerschaft?",
+      "description": "Lernen Sie uns persönlich kennen und erfahren Sie, wie wir Ihre Logistikherausforderungen lösen können.",
+      "buttonText": "Persönliches Angebot anfordern",
+      "callText": "Jetzt anrufen"
+    },
+    "image_placeholder": "Unternehmenszentrale"
   },
   "common": {
     "yes": "Ja",

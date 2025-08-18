@@ -91,6 +91,56 @@ export interface HeroContent {
 }
 
 export interface AboutContent {
+  headline: string;
+  subheadline: string;
+  story: {
+    title: string;
+    content: string[];
+  };
+  mission: {
+    title: string;
+    content: string;
+  };
+  team: {
+    title: string;
+    description: string;
+    stat: string;
+  };
+  innovation: {
+    title: string;
+    description: string;
+    stat: string;
+  };
+  sustainability: {
+    title: string;
+    description: string;
+    stat: string;
+  };
+  timeline: Array<{
+    year: string;
+    title: string;
+    description: string;
+  }>;
+  contact: {
+    title: string;
+    address: {
+      street: string;
+      zip: string;
+      city: string;
+      country: string;
+    };
+    phone: string;
+    email: string;
+  };
+  hours: {
+    title: string;
+  };
+  cta: {
+    headline: string;
+    description: string;
+    buttonText: string;
+    callText: string;
+  };
   stats: {
     founded: string;
     employees: string;

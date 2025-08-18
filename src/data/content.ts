@@ -132,6 +132,82 @@ export const certifications: TrustBadge[] = [
 
 // About Content
 export const aboutContent: AboutContent = {
+  headline: 'Über LogisticsCo',
+  subheadline: 'Ihr vertrauensvoller Partner für professionelle Logistiklösungen in ganz Europa seit über 25 Jahren.',
+  story: {
+    title: 'Unsere Geschichte',
+    content: [
+      'Seit der Gründung 1995 haben wir uns zu einem der führenden Logistikdienstleister in Deutschland und Europa entwickelt. Was als kleines Familienunternehmen begann, ist heute ein modernes Logistikunternehmen mit über 150 Mitarbeitern.',
+      'Unser Erfolg basiert auf drei Säulen: erstklassiger Service, modernste Technologie und ein erfahrenes Team. Wir verstehen die Herausforderungen unserer Kunden und entwickeln maßgeschneiderte Lösungen für jeden Transportbedarf.',
+      'Mit unserem Hauptsitz in Deutschland und strategischen Partnerschaften in ganz Europa gewährleisten wir zuverlässige und termingerechte Lieferungen – von der Nordsee bis zum Mittelmeer.'
+    ]
+  },
+  mission: {
+    title: 'Unsere Mission',
+    content: 'Wir verbinden Unternehmen europaweit durch zuverlässige, sichere und nachhaltige Logistiklösungen. Dabei stehen Qualität, Pünktlichkeit und persönlicher Service im Mittelpunkt unseres Handelns.'
+  },
+  team: {
+    title: 'Erfahrenes Team',
+    description: 'Über 50 Logistikexperten mit jahrelanger Branchenerfahrung und kontinuierlicher Weiterbildung.',
+    stat: '50+ Experten'
+  },
+  innovation: {
+    title: 'Innovation',
+    description: 'Modernste Technologie und kontinuierliche Prozessoptimierung für maximale Effizienz.',
+    stat: 'Digitale Lösungen'
+  },
+  sustainability: {
+    title: 'Nachhaltigkeit',
+    description: 'Umweltbewusste Logistik mit effizienten Routen und modernen, umweltfreundlichen Fahrzeugen.',
+    stat: 'CO₂-optimiert'
+  },
+  timeline: [
+    {
+      year: '1995',
+      title: 'Unternehmensgründung',
+      description: 'Start als kleines Familienunternehmen mit Fokus auf regionale Transporte.'
+    },
+    {
+      year: '2000',
+      title: 'Erste EU-Expansion',
+      description: 'Aufbau von Partnerschaften in Österreich, Schweiz und den Benelux-Ländern.'
+    },
+    {
+      year: '2008',
+      title: 'Modernisierung der Flotte',
+      description: 'Investition in umweltfreundliche Euro-5 und Euro-6 Fahrzeuge.'
+    },
+    {
+      year: '2015',
+      title: 'Digitale Transformation',
+      description: 'Einführung von GPS-Tracking und digitalen Kundenportalen.'
+    },
+    {
+      year: '2020',
+      title: 'Nachhaltigkeitsoffensive',
+      description: 'Start der CO₂-neutralen Transportoptionen und grünen Logistik.'
+    }
+  ],
+  contact: {
+    title: 'Kontakt',
+    address: {
+      street: 'Logistikstraße 123',
+      zip: '10115',
+      city: 'Berlin',
+      country: 'Deutschland'
+    },
+    phone: '+49 30 12345678',
+    email: 'info@logisticsco.de'
+  },
+  hours: {
+    title: 'Geschäftszeiten'
+  },
+  cta: {
+    headline: 'Bereit für eine Partnerschaft?',
+    description: 'Lernen Sie uns persönlich kennen und erfahren Sie, wie wir Ihre Logistikherausforderungen lösen können.',
+    buttonText: 'Persönliches Angebot anfordern',
+    callText: 'Jetzt anrufen'
+  },
   stats: {
     founded: '1995',
     employees: '150+',

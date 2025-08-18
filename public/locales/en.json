@@ -212,20 +212,6 @@
       }
     }
   },
-  "about": {
-    "title": "About LogisticsCo",
-    "subtitle": "Your reliable partner since 1995",
-    "stats": {
-      "founded": "Founded",
-      "employees": "Employees",
-      "locations": "Locations"
-    },
-    "usps": [
-      "Over 25 years of experience in logistics",
-      "Certified quality and safety standards",
-      "Personal contact person for every customer"
-    ]
-  },
   "quote": {
     "title": "Request Quote",
     "subtitle": "Quote within hours – send us your data",
@@ -323,6 +309,68 @@
       "hours": "Mon-Fri 8:00-18:00"
     },
     "copyright": "© {{year}} LogisticsCo GmbH. All rights reserved."
+  },
+  "about": {
+    "headline": "About LogisticsCo",
+    "subheadline": "Your trusted partner for professional logistics solutions across Europe for over 25 years.",
+    "story": {
+      "title": "Our Story",
+      "paragraph_1": "Since our founding in 1995, we have evolved into one of the leading logistics service providers in Germany and Europe. What began as a small family business is today a modern logistics company with over 150 employees.",
+      "paragraph_2": "Our success is built on three pillars: outstanding service, cutting-edge technology, and an experienced team. We understand our customers' challenges and develop tailor-made solutions for every transport need.",
+      "paragraph_3": "With our headquarters in Germany and strategic partnerships across Europe, we ensure reliable and timely deliveries – from the North Sea to the Mediterranean."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "statement": "We connect companies across Europe through reliable, secure, and sustainable logistics solutions. Quality, punctuality, and personal service are at the heart of everything we do."
+    },
+    "team": {
+      "title": "Experienced Team",
+      "description": "Over 50 logistics experts with years of industry experience and continuous training."
+    },
+    "innovation": {
+      "title": "Innovation",
+      "description": "State-of-the-art technology and continuous process optimization for maximum efficiency."
+    },
+    "sustainability": {
+      "title": "Sustainability",
+      "description": "Environmentally conscious logistics with efficient routes and modern, eco-friendly vehicles."
+    },
+    "timeline": {
+      "title": "Our Path to Success",
+      "0": {
+        "title": "Company Foundation",
+        "description": "Started as a small family business focused on regional transport."
+      },
+      "1": {
+        "title": "First EU Expansion",
+        "description": "Building partnerships in Austria, Switzerland, and the Benelux countries."
+      },
+      "2": {
+        "title": "Fleet Modernization",
+        "description": "Investment in environmentally friendly Euro-5 and Euro-6 vehicles."
+      },
+      "3": {
+        "title": "Digital Transformation",
+        "description": "Introduction of GPS tracking and digital customer portals."
+      },
+      "4": {
+        "title": "Sustainability Initiative",
+        "description": "Launch of CO₂-neutral transport options and green logistics."
+      }
+    },
+    "contactSection": {
+      "title": "Contact"
+    },
+    "hours": {
+      "title": "Business Hours"
+    },
+    "cta": {
+      "headline": "Ready for a Partnership?",
+      "description": "Get to know us personally and discover how we can solve your logistics challenges.",
+      "buttonText": "Request Personal Quote",
+      "callText": "Call Now"
+    },
+    "image_placeholder": "Company Headquarters"
   },
   "common": {
     "yes": "Yes",

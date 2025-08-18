@@ -11,13 +11,14 @@ import { cn } from '@/lib/utils';
 // Card variant styles
 const cardVariants = {
   variant: {
-    default: 'bg-white border border-ink-200 shadow-sm',
-    elevated: 'bg-white border border-ink-200 shadow-md',
+    default: 'bg-white shadow-sm',
+    elevated: 'bg-white shadow-md',
     outlined: 'bg-white border-2 border-ink-200 shadow-none',
-    filled: 'bg-ink-50 border border-ink-200 shadow-none',
-    brand: 'bg-brand-50 border border-brand-200 shadow-sm',
-    gradient: 'bg-gradient-to-br from-brand-50 to-navy-50 border border-brand-200 shadow-sm',
+    filled: 'bg-ink-50 shadow-none',
+    brand: 'bg-brand-50 shadow-sm',
+    gradient: 'bg-gradient-to-br from-brand-50 to-navy-50 shadow-sm',
     glass: 'bg-white/80 backdrop-blur-sm border border-white/20 shadow-lg',
+    navy: 'bg-navy-900 text-white shadow-sm',
   },
   padding: {
     none: 'p-0',
@@ -39,7 +40,7 @@ const cardVariants = {
 // Base card styles
 const baseStyles = [
   'relative',
-  'transition-all duration-200 ease-in-out',
+  'transition-all duration-300 ease-out',
 ].join(' ');
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
