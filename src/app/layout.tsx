@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
     alternateLocale: ["en_US"],
-    url: "https://logisticsco.de",
+    url: "https://navarrogroup.de",
     siteName: "NavarroGroup",
     title: "NavarroGroup - Zuverlässige Logistik in ganz Europa",
     description: "Professionelle Logistiklösungen für Deutschland und Europa. Schnell, sicher, planbar.",
