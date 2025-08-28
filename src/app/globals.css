@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* 
  * MONOCODE: Observable Implementation - Global styles following style.md v1.0 specifications
