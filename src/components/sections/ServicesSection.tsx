@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useCurrentLanguage } from '../../hooks/useCurrentLanguage';
+import { ServiceDetailPage } from './ServiceDetailPage';
 
 // MONOCODE Principles Applied:
 // - Observable Implementation: Service interaction tracking and selection logging
@@ -13,7 +14,6 @@ import { useCurrentLanguage } from '../../hooks/useCurrentLanguage';
 interface ServicesSectionProps {
   variant?: 'default' | 'compact' | 'expanded';
   className?: string;
-  onServiceSelect?: (serviceId: string) => void;
 }
 
 interface ServiceFeature {
@@ -68,60 +68,74 @@ const getServicesContent = (language: string): ServicesContent => {
         : 'Tailored logistics solutions for your individual requirements',
       services: [
         {
-          id: 'transport',
-          title: isGerman ? 'Transport & Spedition' : 'Transport & Forwarding',
+          id: 'full-truckload',
+          title: isGerman ? 'Full Truckload Transport' : 'Full Truckload Transport',
           description: isGerman 
-            ? 'Zuverlässige Transporte in ganz Europa mit modernster Flotte'
-            : 'Reliable transportation across Europe with state-of-the-art fleet',
+            ? 'Komplette Fahrzeugladungen für Ihre Transporte'
+            : 'Complete vehicle loads for your transport needs',
           features: [
-            { text: isGerman ? 'Deutschland & EU-weit' : 'Germany & EU-wide', available: true },
-            { text: isGerman ? 'Express & Same-Day' : 'Express & Same-Day', available: true },
-            { text: isGerman ? 'ADR (auf Anfrage)' : 'ADR (on request)', available: true }
+            { text: isGerman ? 'Nationale und internationale Transporte' : 'Domestic and international transport', available: true },
+            { text: isGerman ? 'Transport von hochwertigen Gütern' : 'Transport of high value goods', available: true },
+            { text: isGerman ? 'Übergroßen Transport' : 'Oversized transport', available: true }
           ],
-          ctaText: isGerman ? 'Angebot anfordern' : 'Request Quote',
+          ctaText: isGerman ? 'Mehr erfahren' : 'Learn More',
           icon: 'truck'
         },
         {
-          id: 'distribution',
-          title: isGerman ? 'Expresszustellung' : 'Express Delivery',
+          id: 'less-than-truckload',
+          title: isGerman ? 'Less than Truckload Transport' : 'Less than Truckload Transport',
           description: isGerman 
-            ? 'Effiziente Verteilung bis zur letzten Meile'
-            : 'Efficient distribution to the last mile',
+            ? 'Kosteneffiziente Teilladungen und Sammelgut'
+            : 'Cost-effective partial loads and consolidated freight',
           features: [
-            { text: isGerman ? 'B2B & B2C' : 'B2B & B2C', available: true },
-            { text: isGerman ? 'Zeitfenster-Zustellung' : 'Time window delivery', available: true },
-            { text: isGerman ? 'Retouren-Management' : 'Returns management', available: true }
+            { text: isGerman ? 'Nationale und internationale Transporte' : 'Domestic and international transport', available: true },
+            { text: isGerman ? 'Transport von hochwertigen Gütern' : 'Transport of high-value goods', available: true },
+            { text: isGerman ? 'Kostenoptimierte Sammelladungen' : 'Cost-optimized consolidated shipments', available: true }
           ],
-          ctaText: isGerman ? 'Angebot anfordern' : 'Request Quote',
+          ctaText: isGerman ? 'Mehr erfahren' : 'Learn More',
+          icon: 'warehouse'
+        },
+        {
+          id: 'air-freight',
+          title: isGerman ? 'Luftfracht Import und Export' : 'Air Freight Import and Export',
+          description: isGerman 
+            ? 'Schnelle Luftfracht mit globalen Partnern'
+            : 'Fast air freight with global partners',
+          features: [
+            { text: isGerman ? 'Direkte Zusammenarbeit mit Fluggesellschaften' : 'Direct cooperation with airlines', available: true },
+            { text: isGerman ? 'Netzwerk zuverlässiger Agenten' : 'Network of reliable agents', available: true },
+            { text: isGerman ? 'Express und Standard Luftfracht' : 'Express and standard air freight', available: true }
+          ],
+          ctaText: isGerman ? 'Mehr erfahren' : 'Learn More',
+          icon: 'plane'
+        },
+        {
+          id: 'sea-freight',
+          title: isGerman ? 'Seefracht Import und Export' : 'Sea Freight Import and Export',
+          description: isGerman 
+            ? 'Zuverlässige Seefrachtlösungen weltweit'
+            : 'Reliable sea freight solutions worldwide',
+          features: [
+            { text: isGerman ? 'Full Container Seefracht FCL' : 'Full container sea freight FCL', available: true },
+            { text: isGerman ? 'LCL Sammelgut Seefracht' : 'LCL groupage sea freight', available: true },
+            { text: isGerman ? 'Schwergut- und Übergrößen Teile' : 'Heavy cargo and oversized parts', available: true }
+          ],
+          ctaText: isGerman ? 'Mehr erfahren' : 'Learn More',
+          icon: 'ship'
+        },
+        {
+          id: 'packaging',
+          title: isGerman ? 'Verpackung' : 'Packaging',
+          description: isGerman 
+            ? 'Professionelle Verpackungslösungen für jeden Transport'
+            : 'Professional packaging solutions for every transport',
+          features: [
+            { text: isGerman ? 'Kartonagen und Luftfrachtverpackungen' : 'Cardboard and air freight packaging', available: true },
+            { text: isGerman ? 'Schwergut- und Übergrößen-Verpackungen' : 'Heavy cargo and oversized packaging', available: true },
+            { text: isGerman ? 'Wiederverwendbare Verpackungslösungen' : 'Reusable packaging solutions', available: true }
+          ],
+          ctaText: isGerman ? 'Mehr erfahren' : 'Learn More',
           icon: 'package'
-        },
-        {
-          id: 'customs',
-          title: isGerman ? 'Zoll & Außenhandel' : 'Customs & Foreign Trade',
-          description: isGerman 
-            ? 'Professionelle Zollabwicklung und Außenhandelsberatung'
-            : 'Professional customs clearance and foreign trade consulting',
-          features: [
-            { text: isGerman ? 'AEO-zertifiziert' : 'AEO certified', available: true },
-            { text: isGerman ? 'Zollberatung' : 'Customs consulting', available: true },
-            { text: isGerman ? 'Ursprungszeugnis' : 'Certificate of origin', available: true }
-          ],
-          ctaText: isGerman ? 'Angebot anfordern' : 'Request Quote',
-          icon: 'shield'
-        },
-        {
-          id: 'consulting',
-          title: isGerman ? 'Logistik-Beratung' : 'Logistics Consulting',
-          description: isGerman 
-            ? 'Strategische Beratung zur Optimierung Ihrer Lieferkette'
-            : 'Strategic consulting to optimize your supply chain',
-          features: [
-            { text: isGerman ? 'Prozessoptimierung' : 'Process optimization', available: true },
-            { text: isGerman ? 'Kostenanalyse' : 'Cost analysis', available: true },
-            { text: isGerman ? 'Digitalisierung' : 'Digitalization', available: true }
-          ],
-          ctaText: isGerman ? 'Angebot anfordern' : 'Request Quote',
-          icon: 'chart'
         }
       ]
     };
@@ -185,6 +199,28 @@ const getServiceIconSVG = (iconName: string): React.ReactElement => {
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
       </svg>
+    ),
+    plane: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        {/* Plane body */}
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 2L2 7l10 5 10-5-10-5z" />
+        {/* Wings */}
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2 17l10-5 10 5-10 3-10-3z" />
+        {/* Tail */}
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 12v6" />
+      </svg>
+    ),
+    ship: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        {/* Ship hull */}
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 16.5L12 21l9-4.5" />
+        {/* Ship deck */}
+        <rect x="4" y="10" width="16" height="6.5" rx="2" ry="2" strokeWidth={1.5} />
+        {/* Containers */}
+        <rect x="6" y="6" width="3" height="4" strokeWidth={1.5} />
+        <rect x="10" y="6" width="4" height="4" strokeWidth={1.5} />
+        <rect x="15" y="6" width="3" height="4" strokeWidth={1.5} />
+      </svg>
     )
   };
 
@@ -223,50 +259,23 @@ const itemVariants = {
   }
 };
 
-// MONOCODE Progressive Construction: Service selection handler with analytics
+// MONOCODE Progressive Construction: Service selection handler for detail page
 const createServiceSelectHandler = (
   serviceId: string,
-  onServiceSelect?: (serviceId: string) => void
+  onServiceSelect: (serviceId: string) => void
 ) => {
   return (event: React.MouseEvent<HTMLButtonElement>) => {
     try {
       event.preventDefault();
       
-      logger.log('info', 'serviceSelected', {
+      logger.log('info', 'serviceDetailRequested', {
         serviceId,
         timestamp: new Date().toISOString()
       });
 
-      // MONOCODE Explicit Error Handling: Safe callback execution
-      if (onServiceSelect) {
-        try {
-          onServiceSelect(serviceId);
-        } catch (callbackError) {
-          logger.log('error', 'onServiceSelect', {
-            error: callbackError instanceof Error ? callbackError.message : 'Callback error',
-            serviceId
-          });
-        }
-      }
+      // Open service detail page
+      onServiceSelect(serviceId);
       
-      // MONOCODE Progressive Construction: Scroll to quote section with service preselection
-      const quoteSection = document.getElementById('quote');
-      if (quoteSection) {
-        quoteSection.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'start'
-        });
-        
-        // Set service in URL params for form preselection
-        const url = new URL(window.location.href);
-        url.searchParams.set('service', serviceId);
-        window.history.replaceState({}, '', url.toString());
-      } else {
-        logger.log('warn', 'scrollToQuote', { 
-          issue: 'Quote section not found',
-          serviceId
-        });
-      }
     } catch (error) {
       logger.log('error', 'serviceSelectHandler', {
         error: error instanceof Error ? error.message : 'Unknown error',
@@ -280,7 +289,7 @@ const createServiceSelectHandler = (
 const ServiceCard: React.FC<{
   service: Service;
   index: number;
-  onServiceSelect?: (serviceId: string) => void;
+  onServiceSelect: (serviceId: string) => void;
 }> = ({ service, index, onServiceSelect }) => {
   const handleServiceSelect = React.useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
     const handler = createServiceSelectHandler(service.id, onServiceSelect);
@@ -292,14 +301,15 @@ const ServiceCard: React.FC<{
   return (
     <motion.div
       variants={itemVariants}
-      className="group cursor-pointer"
+      className="group cursor-pointer h-full flex flex-col"
       style={{
-        padding: '24px', // 6 * 4px = 24px as per style guide
+        padding: '20px', // Reduced padding
         borderRadius: 'var(--radius-lg)', // 24px per style guide
         backgroundColor: 'var(--surface-0)', // White background
         border: '1px solid #f3f4f6', // gray-100 - subtle, non-black border
         boxShadow: 'var(--shadow-sm)', // Subtle depth
         transition: 'all 300ms cubic-bezier(0.2, 0.8, 0.2, 1)', // Style guide easing
+        minHeight: '280px', // Reduced minimum height
       }}
       whileHover={{
         // Style Guide Section 5: Hover - lift +2-4px, scale 1.01, shadow up one step
@@ -318,7 +328,7 @@ const ServiceCard: React.FC<{
     >
       {/* Style Guide Section 6.4: Icon circle (40px) */}
       <div 
-        className="mb-6 transition-all duration-300"
+        className="mb-4 transition-all duration-300"
         style={{
           width: '40px',
           height: '40px',
@@ -341,28 +351,16 @@ const ServiceCard: React.FC<{
           fontWeight: '700', // Bold
           lineHeight: '1.2',
           color: 'var(--ink-900)', // Primary text
-          marginBottom: '12px',
+          marginBottom: '16px',
           fontFamily: 'Inter, sans-serif' // Body/UI font
         }}
       >
         {service.title}
       </h3>
       
-      <p 
-        className="group-hover:text-white/90 transition-colors duration-300"
-        style={{
-          fontSize: '14px',
-          lineHeight: '1.5',
-          color: 'var(--ink-500)', // Secondary text
-          marginBottom: '20px',
-          fontFamily: 'Inter, sans-serif'
-        }}
-      >
-        {service.description}
-      </p>
 
       {/* Style Guide Section 6.4: 2-3 bullets with line-clamp 3 */}
-      <ul className="space-y-3 mb-6">
+      <ul className="space-y-2 mb-5 mt-auto">
         {service.features.slice(0, 3).map((feature, featureIndex) => (
           <li 
             key={`feature-${index}-${featureIndex}`}
@@ -468,20 +466,27 @@ const getSectionStyles = (variant: string) => {
 // MONOCODE Observable Implementation: Main ServicesSection component
 export const ServicesSection: React.FC<ServicesSectionProps> = ({ 
   variant = 'default',
-  className = '',
-  onServiceSelect
+  className = ''
 }) => {
   // MONOCODE Dependency Transparency: Hook dependencies
   const currentLanguage = useCurrentLanguage();
+  const [selectedServiceId, setSelectedServiceId] = React.useState<string | null>(null);
 
   // MONOCODE Progressive Construction: Component setup with logging
   React.useEffect(() => {
     logger.log('info', 'setup', { 
       variant, 
-      language: currentLanguage,
-      hasServiceSelectCallback: !!onServiceSelect
+      language: currentLanguage
     });
-  }, [variant, currentLanguage, onServiceSelect]);
+  }, [variant, currentLanguage]);
+
+  const handleServiceSelect = React.useCallback((serviceId: string) => {
+    setSelectedServiceId(serviceId);
+  }, []);
+
+  const handleCloseDetail = React.useCallback(() => {
+    setSelectedServiceId(null);
+  }, []);
 
   // MONOCODE Explicit Error Handling: Safe content retrieval
   const content = React.useMemo(() => {
@@ -542,19 +547,42 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
             </p>
           </motion.div>
 
-          {/* Style Guide Section 4: Services grid 4→2→1 responsive */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {content.services.map((service, index) => (
-              <ServiceCard
-                key={`service-${service.id}`}
-                service={service}
-                index={index}
-                onServiceSelect={onServiceSelect}
-              />
-            ))}
+          {/* Style Guide Section 4: Services grid - 3 top, 2 bottom layout */}
+          <div className="space-y-8">
+            {/* Top row - 3 services */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {content.services.slice(0, 3).map((service, index) => (
+                <ServiceCard
+                  key={`service-${service.id}`}
+                  service={service}
+                  index={index}
+                  onServiceSelect={handleServiceSelect}
+                />
+              ))}
+            </div>
+            
+            {/* Bottom row - 2 services centered */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {content.services.slice(3, 5).map((service, index) => (
+                <ServiceCard
+                  key={`service-${service.id}`}
+                  service={service}
+                  index={index + 3}
+                  onServiceSelect={handleServiceSelect}
+                />
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>
+
+      {/* Service Detail Modal */}
+      {selectedServiceId && (
+        <ServiceDetailPage 
+          serviceId={selectedServiceId} 
+          onClose={handleCloseDetail} 
+        />
+      )}
     </section>
   );
 };
