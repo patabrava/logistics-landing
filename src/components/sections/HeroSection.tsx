@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Shield, CheckCircle } from 'lucide-react';
@@ -110,6 +110,7 @@ export default function HeroSection({
   const currentLanguage = useCurrentLanguage();
   const content = getHeroContent(currentLanguage);
   const [isVisible, setIsVisible] = useState(false);
+  const headlineRef = useRef<HTMLHeadingElement>(null);
 
   // MONOCODE Progressive Construction: Component initialization with logging
   useEffect(() => {
@@ -120,6 +121,20 @@ export default function HeroSection({
       logger.log('info', 'unmounted');
     };
   }, [variant, currentLanguage]);
+
+  // Instrumentation: detect potential headline overflow on small screens
+  useEffect(() => {
+    const el = headlineRef.current;
+    if (!el) return;
+    const overflowing = el.scrollWidth > el.clientWidth;
+    if (overflowing) {
+      logger.log('warn', 'headline_overflow', {
+        clientWidth: el.clientWidth,
+        scrollWidth: el.scrollWidth,
+        language: currentLanguage,
+      });
+    }
+  }, [currentLanguage, variant]);
 
 
   return (
@@ -133,8 +148,8 @@ export default function HeroSection({
       role="banner"
       aria-labelledby="hero-headline"
     >
-      {/* Style Guide Section 4: Container with max-width 1280px, centered, 24px gutter */}
-      <div className="container mx-auto px-6 lg:px-24">
+      {/* Style Guide Section 4: Container with max-width 1280px, centered, mobile-friendly gutter */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-24">
         <motion.div
           variants={heroVariants}
           initial="hidden"
@@ -148,10 +163,12 @@ export default function HeroSection({
               id="hero-headline"
               variants={itemVariants}
               className="
-                font-manrope font-bold text-h1 text-ink-900 mb-6
-                tracking-tight leading-tight
-                md:text-5xl lg:text-6xl xl:text-h1
+                font-manrope font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-h1
+                text-ink-900 mb-6 tracking-tight leading-tight break-words text-pretty
               "
+              style={{ hyphens: 'auto' }}
+              lang={currentLanguage}
+              ref={headlineRef}
             >
               {content.headline}
             </motion.h1>

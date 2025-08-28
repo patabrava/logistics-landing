@@ -17,7 +17,8 @@ export default function LandingPage() {
       <Header />
       
       {/* MONOCODE: Dependency Transparency - Main content area with proper semantics */}
-      <main id="main-content" className="flex-1">
+      {/* Offset for fixed Header height to prevent overlap on first section */}
+      <main id="main-content" className="flex-1 pt-16 md:pt-20">
         {/* Style Guide: Section composition following PRD specifications */}
         <HeroSection />
         <ServicesSection />

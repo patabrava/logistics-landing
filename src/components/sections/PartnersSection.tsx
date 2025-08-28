@@ -49,13 +49,14 @@ export function PartnersSection({ className }: PartnersSectionProps) {
           
           {/* CODE_EXPANSION: Adding partner logo following style.md Trust Bar guidelines */}
           <div className="flex justify-center">
-            <div className="bg-white shadow-sm rounded-lg p-6">
+            <div className="bg-white shadow-sm rounded-lg p-4 sm:p-6 w-full max-w-xs sm:max-w-sm">
               <Image
                 src="/Kühne_+_Nagel_logo.png"
                 alt={t('partners.main.logo_alt', 'Kühne + Nagel Logo')}
                 width={300}
                 height={75}
-                className="h-auto grayscale opacity-70 hover:opacity-100 transition-opacity duration-300"
+                sizes="(max-width: 640px) 100vw, 300px"
+                className="w-full h-auto grayscale opacity-70 hover:opacity-100 transition-opacity duration-300"
                 priority
               />
             </div>

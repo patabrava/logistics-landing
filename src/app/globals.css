@@ -114,6 +114,11 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Global Safety: Prevent incidental horizontal scroll on small screens */
+html, body {
+  overflow-x: clip;
+}
+
 /* 
  * MONOCODE: Dependency Transparency - Typography system following style guide section 3
  */

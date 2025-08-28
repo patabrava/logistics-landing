@@ -90,7 +90,7 @@ export function AboutSection({ className }: AboutSectionProps) {
             </div>
 
             {/* Stats Overlay */}
-            <div className="absolute -bottom-6 -right-6 bg-white rounded-xl p-6 shadow-lg border-0">
+            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0 sm:-right-6 bg-white rounded-xl p-6 shadow-lg border-0">
               <div className="grid grid-cols-2 gap-4">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-brand-600">15+</div>
