@@ -179,7 +179,7 @@ export const Footer: React.FC<FooterProps> = ({
   }
 
   return (
-    <footer className={footerStyles}>
+    <footer id="contact" className={footerStyles}>
       <div className={containerStyles}>
         {/* Style Guide v1.0: 3-column layout (Unternehmen / Rechtliches / Kontakt) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">

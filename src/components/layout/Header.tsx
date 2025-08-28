@@ -91,11 +91,6 @@ const getNavigationItems = (language: string): NavigationItem[] => {
       id: 'contact',
       label: isGerman ? 'Kontakt' : 'Contact',
       href: '#contact'
-    },
-    {
-      id: 'quote',
-      label: isGerman ? 'Angebot' : 'Quote',
-      href: '#quote'
     }
   ];
 };
@@ -180,6 +175,11 @@ export default function Header({
           });
           setState(prev => ({ ...prev, activeSection: targetId }));
           logNavigationEvent('scroll_to_section', targetId, true);
+          
+          // Clear active state after scroll animation completes
+          setTimeout(() => {
+            setState(prev => ({ ...prev, activeSection: null }));
+          }, 800);
         } else {
           console.warn(`Target section not found: ${targetId}`);
           logNavigationEvent('scroll_to_section', targetId, false, 'Target not found');
@@ -311,7 +311,7 @@ export default function Header({
             
             {showCTA && (
               <button
-                onClick={(e) => handleNavigation({ id: 'cta', label: 'CTA', href: '#quote' }, e)}
+                onClick={(e) => handleNavigation({ id: 'cta', label: 'CTA', href: '#contact' }, e)}
                 className={cn(
                   'px-6 py-2 rounded-md font-medium transition-all duration-200',
                   variant === 'transparent' && !state.isScrolled
@@ -319,7 +319,7 @@ export default function Header({
                     : 'bg-emerald-600 text-white hover:bg-emerald-700'
                 )}
               >
-                {currentLanguage === 'de' ? 'Angebot erhalten' : 'Get Quote'}
+                {currentLanguage === 'de' ? 'Kontakt' : 'Contact'}
               </button>
             )}
           </div>
@@ -379,10 +379,10 @@ export default function Header({
             
             {showCTA && (
               <button
-                onClick={(e) => handleNavigation({ id: 'mobile-cta', label: 'Mobile CTA', href: '#quote' }, e)}
+                onClick={(e) => handleNavigation({ id: 'mobile-cta', label: 'Mobile CTA', href: '#contact' }, e)}
                 className="mt-4 px-4 py-3 bg-emerald-600 text-white rounded-md font-medium hover:bg-emerald-700 transition-colors duration-200"
               >
-                {currentLanguage === 'de' ? 'Angebot erhalten' : 'Get Quote'}
+                {currentLanguage === 'de' ? 'Kontakt' : 'Contact'}
               </button>
             )}
             

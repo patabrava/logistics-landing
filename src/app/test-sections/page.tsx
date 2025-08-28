@@ -6,16 +6,6 @@ import ServicesSection from '../../components/sections/ServicesSection';
 import QuoteSection from '../../components/sections/QuoteSection';
 
 export default function TestSections() {
-  // MONOCODE Progressive Construction: Service selection handler
-  const handleServiceSelect = React.useCallback((serviceId: string) => {
-    console.log('Service selected:', serviceId);
-  }, []);
-
-  // MONOCODE Progressive Construction: Quote CTA handler
-  const handleQuoteClick = React.useCallback(() => {
-    console.log('Quote button clicked');
-  }, []);
-
   return (
     <div className="min-h-screen">
       {/* Phase 10 Section Components Test */}
@@ -23,13 +13,11 @@ export default function TestSections() {
       {/* HeroSection */}
       <HeroSection 
         variant="default"
-        onQuoteClick={handleQuoteClick}
       />
       
       {/* ServicesSection */}
       <ServicesSection 
         variant="default"
-        onServiceSelect={handleServiceSelect}
       />
       
       {/* QuoteSection */}

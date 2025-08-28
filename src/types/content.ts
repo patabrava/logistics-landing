@@ -148,3 +148,31 @@ export interface AboutContent {
   };
   usps: string[];
 }
+
+export interface PartnerBenefit {
+  title: string;
+  description: string;
+}
+
+export interface PartnerStat {
+  value: string;
+  label: string;
+  description: string;
+}
+
+export interface PartnersContent {
+  headline: string;
+  subheadline: string;
+  main: {
+    title: string;
+    description: string;
+  };
+  benefits: PartnerBenefit[];
+  stats: PartnerStat[];
+  cta: {
+    title: string;
+    description: string;
+    buttonText: string;
+    callText: string;
+  };
+}

@@ -372,6 +372,49 @@
     },
     "image_placeholder": "Unternehmenszentrale"
   },
+  "partners": {
+    "headline": "Unsere Partner",
+    "subheadline": "Starke Partnerschaften für noch besseren Service. Gemeinsam mit führenden Logistikdienstleistern bieten wir Ihnen europaweit erstklassige Lösungen.",
+    "main": {
+      "title": "Hauptpartner",
+      "description": "Als strategischer Partner von Kühne + Nagel profitieren Sie von einem der größten Logistiknetzwerke der Welt. Diese Partnerschaft ermöglicht es uns, auch komplexeste Anforderungen zu erfüllen und Ihnen globale Reichweite mit lokalem Service zu bieten.",
+      "logo_alt": "Kühne + Nagel Logo"
+    },
+    "benefits": {
+      "0": {
+        "title": "Globales Netzwerk",
+        "description": "Zugang zu über 1.300 Standorten weltweit für nahtlose internationale Logistik."
+      },
+      "1": {
+        "title": "Expertise & Innovation",
+        "description": "Kombination unserer regionalen Stärken mit modernster Logistiktechnologie."
+      },
+      "2": {
+        "title": "Qualitätsstandards",
+        "description": "Einheitlich hohe Standards und zertifizierte Prozesse in allen Bereichen."
+      }
+    },
+    "stats": {
+      "0": {
+        "label": "Jahre Partnerschaft",
+        "description": "Bewährte Zusammenarbeit seit 1998"
+      },
+      "1": {
+        "label": "Standorte",
+        "description": "Weltweites Netzwerk verfügbar"
+      },
+      "2": {
+        "label": "Zuverlässigkeit",
+        "description": "Gemeinsame Servicequalität"
+      }
+    },
+    "cta": {
+      "title": "Interesse an einer Partnerschaft?",
+      "description": "Profitieren Sie von unserem starken Partnernetzwerk und erweitern Sie Ihre Logistikmöglichkeiten.",
+      "button": "Partnerschaft anfragen",
+      "call": "Jetzt beraten lassen"
+    }
+  },
   "common": {
     "yes": "Ja",
     "no": "Nein",

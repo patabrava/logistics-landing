@@ -372,6 +372,49 @@
     },
     "image_placeholder": "Company Headquarters"
   },
+  "partners": {
+    "headline": "Our Partners",
+    "subheadline": "Strong partnerships for even better service. Together with leading logistics service providers, we offer you first-class solutions across Europe.",
+    "main": {
+      "title": "Main Partner",
+      "description": "As a strategic partner of Kühne + Nagel, you benefit from one of the world's largest logistics networks. This partnership enables us to fulfill even the most complex requirements and provide you with global reach combined with local service.",
+      "logo_alt": "Kühne + Nagel Logo"
+    },
+    "benefits": {
+      "0": {
+        "title": "Global Network",
+        "description": "Access to over 1,300 locations worldwide for seamless international logistics."
+      },
+      "1": {
+        "title": "Expertise & Innovation",
+        "description": "Combination of our regional strengths with state-of-the-art logistics technology."
+      },
+      "2": {
+        "title": "Quality Standards",
+        "description": "Consistently high standards and certified processes in all areas."
+      }
+    },
+    "stats": {
+      "0": {
+        "label": "Years of Partnership",
+        "description": "Proven collaboration since 1998"
+      },
+      "1": {
+        "label": "Locations",
+        "description": "Global network available"
+      },
+      "2": {
+        "label": "Reliability",
+        "description": "Joint service quality"
+      }
+    },
+    "cta": {
+      "title": "Interested in a Partnership?",
+      "description": "Benefit from our strong partner network and expand your logistics capabilities.",
+      "button": "Request Partnership",
+      "call": "Get Consultation Now"
+    }
+  },
   "common": {
     "yes": "Yes",
     "no": "No",
