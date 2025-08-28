@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { Truck, Shield, Clock, CheckCircle } from 'lucide-react';
+import { Shield, CheckCircle } from 'lucide-react';
 import { useCurrentLanguage } from '../../hooks/useCurrentLanguage';
 
 // MONOCODE Principles Applied:
@@ -21,20 +21,11 @@ import { useCurrentLanguage } from '../../hooks/useCurrentLanguage';
 interface HeroSectionProps {
   variant?: 'default' | 'minimal' | 'image-background';
   className?: string;
-  onQuoteClick?: () => void;
 }
 
 interface HeroContent {
   headline: string;
   subheadline: string;
-  primaryCTA: string;
-  secondaryCTA: string;
-  phoneNumber: string;
-  trustBadges: Array<{
-    name: string;
-    label: string;
-    icon: React.ComponentType<{ className?: string }>;
-  }>;
 }
 
 // MONOCODE Observable Implementation: Structured logging with analytics tracking
@@ -72,28 +63,12 @@ const logger = {
 const getHeroContent = (language: string): HeroContent => {
   const content: Record<string, HeroContent> = {
     de: {
-      headline: "ZUVERLÄSSIGE LOGISTIK IN GANZ EUROPA",
-      subheadline: "Schnell, sicher, planbar – Ihre Transportlösung für Deutschland und Europa.",
-      primaryCTA: "Angebot anfordern",
-      secondaryCTA: "Jetzt anrufen",
-      phoneNumber: "+49 30 12345678",
-      trustBadges: [
-        { name: "ISO", label: "ISO 9001", icon: Shield },
-        { name: "AEO", label: "AEO Zertifiziert", icon: CheckCircle },
-        { name: "TAPA", label: "TAPA Sicher", icon: Shield }
-      ]
+      headline: "UMFASSENDE LOGISTIKBERATUNG & TRANSPORT",
+      subheadline: "Wir transportieren alle Arten von Waren, beraten beim Zoll, bei der Steuer und bei der Dokumentation. Unser Service ist Door-to-Door."
     },
     en: {
-      headline: "RELIABLE LOGISTICS ACROSS EUROPE", 
-      subheadline: "Fast, secure, predictable – Your transport solution for Germany and Europe.",
-      primaryCTA: "Request Quote",
-      secondaryCTA: "Call Now",
-      phoneNumber: "+49 30 12345678",
-      trustBadges: [
-        { name: "ISO", label: "ISO 9001", icon: Shield },
-        { name: "AEO", label: "AEO Certified", icon: CheckCircle },
-        { name: "TAPA", label: "TAPA Secure", icon: Shield }
-      ]
+      headline: "COMPREHENSIVE LOGISTICS CONSULTING & TRANSPORT", 
+      subheadline: "We transport all types of goods, provide customs, tax and documentation consulting. Our service is door-to-door."
     }
   };
   
@@ -130,8 +105,7 @@ const itemVariants = {
 
 export default function HeroSection({ 
   variant = 'default', 
-  className = '',
-  onQuoteClick 
+  className = ''
 }: HeroSectionProps) {
   const currentLanguage = useCurrentLanguage();
   const content = getHeroContent(currentLanguage);
@@ -147,44 +121,6 @@ export default function HeroSection({
     };
   }, [variant, currentLanguage]);
 
-  // MONOCODE Observable Implementation: CTA click tracking
-  const handleQuoteClick = () => {
-    logger.log('info', 'quote_cta_clicked', { 
-      variant, 
-      language: currentLanguage,
-      analytics_event: 'hero_quote_click'
-    });
-    
-    // Style Guide: Analytics tracking with data-analytics attribute
-    logger.trackEvent('hero_quote_click', {
-      section: 'hero',
-      cta_type: 'primary',
-      language: currentLanguage
-    });
-    
-    if (onQuoteClick) {
-      onQuoteClick();
-    } else {
-      // Style Guide: CTA behavior - anchors to #quote
-      const quoteSection = document.getElementById('quote');
-      if (quoteSection) {
-        quoteSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  };
-
-  const handlePhoneClick = () => {
-    logger.log('info', 'phone_cta_clicked', { 
-      phoneNumber: content.phoneNumber,
-      language: currentLanguage 
-    });
-    
-    logger.trackEvent('hero_phone_click', {
-      section: 'hero',
-      cta_type: 'secondary',
-      phone_number: content.phoneNumber
-    });
-  };
 
   return (
     // Style Guide Section 6.2: Hero with background gradient and proper spacing
@@ -231,64 +167,6 @@ export default function HeroSection({
               {content.subheadline}
             </motion.p>
 
-            {/* Style Guide Section 6.2: Primary and Secondary CTAs */}
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8"
-            >
-              {/* Style Guide Section 7: Primary button (solid) */}
-              <button
-                onClick={handleQuoteClick}
-                data-analytics="hero_quote_click"
-                className="
-                  btn-primary px-8 py-4 text-lg font-medium
-                  transform transition-all duration-brand ease-brand
-                  hover:scale-[1.02] active:scale-[0.98]
-                  focus-ring
-                "
-                aria-label={`${content.primaryCTA} - Scroll to quote form`}
-              >
-                <Truck className="w-5 h-5 mr-2" aria-hidden="true" />
-                {content.primaryCTA}
-              </button>
-
-              {/* Style Guide Section 7: Secondary button (ghost) */}
-              <a
-                href={`tel:${content.phoneNumber}`}
-                onClick={handlePhoneClick}
-                className="
-                  btn-secondary px-8 py-4 text-lg font-medium
-                  transform transition-all duration-brand ease-brand
-                  hover:scale-[1.02] active:scale-[0.98]
-                  focus-ring
-                "
-                aria-label={`${content.secondaryCTA} - ${content.phoneNumber}`}
-              >
-                <Clock className="w-5 h-5 mr-2" aria-hidden="true" />
-                {content.secondaryCTA}
-              </a>
-            </motion.div>
-
-            {/* Style Guide Section 6.2: Trust badges row below CTAs */}
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-wrap justify-center lg:justify-start gap-4"
-            >
-              {content.trustBadges.map((badge) => (
-                <div
-                  key={badge.name}
-                  className="
-                    stat-chip bg-surface-0 border border-ink-200
-                    hover:shadow-sm transition-all duration-brand
-                  "
-                >
-                  <badge.icon className="w-4 h-4 text-ink-600" aria-hidden="true" />
-                  <span className="text-micro font-medium text-ink-700">
-                    {badge.label}
-                  </span>
-                </div>
-              ))}
-            </motion.div>
           </div>
 
           {/* Style Guide Section 6.2: Visual (right) - European truck transport image */}
