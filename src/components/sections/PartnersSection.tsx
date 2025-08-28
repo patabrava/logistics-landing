@@ -51,7 +51,7 @@ export function PartnersSection({ className }: PartnersSectionProps) {
           <div className="flex justify-center">
             <div className="bg-white shadow-sm rounded-lg p-4 sm:p-6 w-full max-w-xs sm:max-w-sm">
               <Image
-                src="/Kühne_+_Nagel_logo.png"
+                src="/LOGO.png"
                 alt={t('partners.main.logo_alt', 'Kühne + Nagel Logo')}
                 width={300}
                 height={75}
