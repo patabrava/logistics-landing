@@ -62,9 +62,9 @@ const getFooterContent = (language: string) => {
       },
       contact: {
         title: isGerman ? 'Kontakt' : 'Contact',
-        address: 'LogisticsCo GmbH\nMusterstraße 123\n10115 Berlin',
-        phone: '+49 30 12345678',
-        email: 'info@logisticsco.de',
+        address: 'NavarroGroup\nMarienstraße 6\n61440 Oberursel',
+        phone: '+49 170 2846898',
+        email: 'info@navarrogroup.de',
         hours: isGerman ? 'Mo-Fr 8:00-18:00' : 'Mon-Fri 8:00-18:00'
       },
       copyright: isGerman 
@@ -83,9 +83,9 @@ const getFooterContent = (language: string) => {
       legal: { title: 'Legal', links: [] },
       contact: { 
         title: 'Contact', 
-        address: 'LogisticsCo GmbH', 
-        phone: '+49 30 12345678', 
-        email: 'info@logisticsco.de',
+        address: 'NavarroGroup\nMarienstraße 6\n61440 Oberursel', 
+        phone: '+49 170 2846898', 
+        email: 'info@navarrogroup.de',
         hours: 'Mon-Fri 8:00-18:00'
       },
       copyright: `© ${new Date().getFullYear()} LogisticsCo GmbH. All rights reserved.`
