@@ -7,8 +7,7 @@ import type {
   CoverageHub, 
   ClientLogo, 
   Statistic, 
-  AboutContent,
-  PartnersContent 
+  AboutContent 
 } from '@/types/content';
 
 import { services } from './services';
@@ -222,52 +221,6 @@ export const aboutContent: AboutContent = {
 };
 
 // Partners Content
-export const partnersContent: PartnersContent = {
-  headline: 'Unsere Partner',
-  subheadline: 'Starke Partnerschaften für noch besseren Service. Gemeinsam mit führenden Logistikdienstleistern bieten wir Ihnen europaweit erstklassige Lösungen.',
-  main: {
-    title: 'Hauptpartner',
-    description: 'Als strategischer Partner von Kühne + Nagel profitieren Sie von einem der größten Logistiknetzwerke der Welt. Diese Partnerschaft ermöglicht es uns, auch komplexeste Anforderungen zu erfüllen und Ihnen globale Reichweite mit lokalem Service zu bieten.'
-  },
-  benefits: [
-    {
-      title: 'Globales Netzwerk',
-      description: 'Zugang zu über 1.300 Standorten weltweit für nahtlose internationale Logistik.'
-    },
-    {
-      title: 'Expertise & Innovation',
-      description: 'Kombination unserer regionalen Stärken mit modernster Logistiktechnologie.'
-    },
-    {
-      title: 'Qualitätsstandards',
-      description: 'Einheitlich hohe Standards und zertifizierte Prozesse in allen Bereichen.'
-    }
-  ],
-  stats: [
-    {
-      value: '25+',
-      label: 'Jahre Partnerschaft',
-      description: 'Bewährte Zusammenarbeit seit 1998'
-    },
-    {
-      value: '1.300+',
-      label: 'Standorte',
-      description: 'Weltweites Netzwerk verfügbar'
-    },
-    {
-      value: '99.5%',
-      label: 'Zuverlässigkeit',
-      description: 'Gemeinsame Servicequalität'
-    }
-  ],
-  cta: {
-    title: 'Interesse an einer Partnerschaft?',
-    description: 'Profitieren Sie von unserem starken Partnernetzwerk und erweitern Sie Ihre Logistikmöglichkeiten.',
-    buttonText: 'Partnerschaft anfragen',
-    callText: 'Jetzt beraten lassen'
-  }
-};
-
 // Aggregate all content for easy import
 export const allContent = {
   hero: heroContent,
@@ -280,7 +233,6 @@ export const allContent = {
   certifications,
   faq: faqs,
   about: aboutContent,
-  partners: partnersContent,
   trustBar: {
     logos: clientLogos,
     statistics: trustStatistics
