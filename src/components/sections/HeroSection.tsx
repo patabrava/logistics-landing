@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { Shield, CheckCircle } from 'lucide-react';
+import { CheckCircle, Phone, MoveRight } from 'lucide-react';
 import { useCurrentLanguage } from '../../hooks/useCurrentLanguage';
 
 // MONOCODE Principles Applied:
@@ -111,6 +111,21 @@ export default function HeroSection({
   const content = getHeroContent(currentLanguage);
   const [isVisible, setIsVisible] = useState(false);
   const headlineRef = useRef<HTMLHeadingElement>(null);
+  const phoneDisplay = '+49 170 2846898';
+  const phoneHref = '+491702846898';
+  const primaryCta = currentLanguage === 'de' ? 'Unverbindliche Beratung' : 'Request a consultation';
+  const secondaryCta = currentLanguage === 'de' ? 'Jetzt anrufen' : 'Call us now';
+  const featureCopy = currentLanguage === 'de'
+    ? [
+        'Tür-zu-Tür-Transporte in ganz Europa',
+        'Persönliche Ansprechpartner & Echtzeit-Tracking',
+        'Zoll- und Dokumentationsservice inklusive'
+      ]
+    : [
+        'Door-to-door transports across Europe',
+        'Personal advisors & real-time tracking',
+        'Customs and documentation handled for you'
+      ];
 
   // MONOCODE Progressive Construction: Component initialization with logging
   useEffect(() => {
@@ -138,33 +153,57 @@ export default function HeroSection({
 
 
   return (
-    // Style Guide Section 6.2: Hero with background gradient and proper spacing
-    <section 
+    <section
       className={`
-        relative min-h-screen flex items-center 
-        bg-gradient-to-br from-surface-0 via-ink-50 to-surface-alt
+        relative flex items-center min-h-[720px] sm:min-h-screen py-24
+        overflow-hidden
         ${className}
       `}
       role="banner"
       aria-labelledby="hero-headline"
     >
-      {/* Style Guide Section 4: Container with max-width 1280px, centered, mobile-friendly gutter */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-24">
-        <motion.div
-          variants={heroVariants}
-          initial="hidden"
-          animate={isVisible ? "visible" : "hidden"}
-          className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center"
-        >
-          {/* Style Guide Section 6.2: Content (left) - H1, subheadline, CTAs */}
-          <div className="text-center lg:text-left">
-            {/* Style Guide Section 3: H1 with Manrope font, 60px/1.05, -0.02em letter-spacing */}
+      <div className="absolute inset-0">
+        <Image
+          src="/freepik__hyperrealistic-picture-of-a-truck-in-europe-with-o__24289.png"
+          alt=""
+          fill
+          priority
+          quality={90}
+          sizes="100vw"
+          className="object-cover object-center"
+          onLoad={() => {
+            logger.log('info', 'hero_image_loaded', {
+              image: 'truck_europe_background',
+              language: currentLanguage
+            });
+          }}
+          onError={(e) => {
+            logger.log('error', 'hero_image_failed', {
+              image: 'truck_europe_background',
+              error: e.currentTarget.src,
+              language: currentLanguage
+            });
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink-900/85 via-ink-900/70 to-ink-900/40" />
+        <div className="absolute inset-0 bg-ink-900/20 mix-blend-multiply" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ink-950/60 to-transparent" />
+      </div>
+
+      <div className="relative z-10 w-full">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-16">
+          <motion.div
+            variants={heroVariants}
+            initial="hidden"
+            animate={isVisible ? 'visible' : 'hidden'}
+            className="max-w-4xl space-y-10 text-left"
+          >
             <motion.h1
               id="hero-headline"
               variants={itemVariants}
               className="
-                font-manrope font-bold text-[34px] sm:text-[40px] md:text-[48px] lg:text-[60px]
-                text-ink-900 mb-6 tracking-[-0.02em] leading-[1.05] break-keep text-pretty
+                font-manrope font-bold text-[36px] sm:text-[44px] md:text-[56px] lg:text-[64px]
+                text-white drop-shadow-2xl mb-6 tracking-[-0.02em] leading-[1.05] break-keep text-pretty
               "
               style={{ hyphens: 'none' }}
               lang={currentLanguage}
@@ -173,68 +212,64 @@ export default function HeroSection({
               {content.headline}
             </motion.h1>
 
-            {/* Style Guide Section 3: Subheadline with body text styling */}
             <motion.p
               variants={itemVariants}
-              className="
-                text-body-lg text-ink-600 mb-8 max-w-2xl mx-auto lg:mx-0
-                leading-relaxed
-              "
+              className="text-lg sm:text-xl text-white/80 leading-relaxed max-w-2xl"
             >
               {content.subheadline}
             </motion.p>
 
-          </div>
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-col sm:flex-row gap-4"
+            >
+              <a
+                href="#contact"
+                className="
+                  inline-flex items-center justify-center gap-3 px-8 py-3 rounded-full
+                  bg-emerald-500 text-white font-semibold shadow-lg shadow-emerald-500/30
+                  hover:bg-emerald-400 transition-colors duration-200
+                "
+                data-analytics="hero_primary_cta"
+                onClick={() => logger.trackEvent('hero_primary_cta')}
+              >
+                {primaryCta}
+                <MoveRight className="w-5 h-5" aria-hidden="true" />
+              </a>
 
-          {/* Style Guide Section 6.2: Visual (right) - European truck transport image */}
-          <motion.div
-            variants={itemVariants}
-            className="relative lg:block"
-          >
-            {/* MONOCODE Explicit Error Handling: Image with fallback and proper aspect ratio */}
-            <div className="
-              relative w-full aspect-square lg:aspect-[4/3] max-w-lg mx-auto
-              bg-gradient-to-br from-brand-100 to-brand-200 
-              rounded-3xl overflow-hidden shadow-lg
-            ">
-              {/* MONOCODE Observable Implementation: Structured logging for image loading */}
-              <Image
-                src="/freepik__hyperrealistic-picture-of-a-truck-in-europe-with-o__24289.png"
-                alt={currentLanguage === 'de' 
-                  ? "Hyperrealistisches Bild eines LKW in Europa - Zuverlässige Logistik" 
-                  : "Hyperrealistic picture of a truck in Europe - Reliable logistics"
-                }
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                priority={true}
-                quality={85}
-                onLoad={() => {
-                  logger.log('info', 'hero_image_loaded', { 
-                    image: 'truck_europe',
-                    language: currentLanguage 
-                  });
-                }}
-                onError={(e) => {
-                  logger.log('error', 'hero_image_failed', { 
-                    image: 'truck_europe',
-                    error: e.currentTarget.src,
-                    language: currentLanguage 
-                  });
-                }}
-              />
-              
-              {/* MONOCODE Progressive Construction: Subtle overlay for visual enhancement */}
-              <div className="absolute inset-0 bg-gradient-to-t from-ink-900/10 to-transparent"></div>
-            </div>
+              <a
+                href={`tel:${phoneHref}`}
+                className="
+                  inline-flex items-center justify-center gap-3 px-8 py-3 rounded-full
+                  bg-white/10 text-white font-semibold border border-white/30
+                  backdrop-blur-sm hover:bg-white/20 transition-colors duration-200
+                "
+                data-analytics="hero_secondary_cta"
+                onClick={() => logger.trackEvent('hero_secondary_cta')}
+              >
+                <Phone className="w-5 h-5" aria-hidden="true" />
+                {secondaryCta}
+                <span className="hidden sm:inline text-white/70">{phoneDisplay}</span>
+              </a>
+            </motion.div>
+
+            <motion.ul
+              variants={itemVariants}
+              className="grid sm:grid-cols-2 gap-4 pt-4"
+            >
+              {featureCopy.map((feature, index) => (
+                <motion.li
+                  key={`${feature}-${index}`}
+                  variants={itemVariants}
+                  className="flex items-start gap-3 text-white/85"
+                >
+                  <CheckCircle className="w-5 h-5 text-emerald-300 mt-1" aria-hidden="true" />
+                  <span>{feature}</span>
+                </motion.li>
+              ))}
+            </motion.ul>
           </motion.div>
-        </motion.div>
-      </div>
-
-      {/* Style Guide: Background decoration with subtle patterns */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-brand-100 rounded-full opacity-20 blur-3xl"></div>
-        <div className="absolute bottom-1/4 left-1/4 w-48 h-48 bg-ink-100 rounded-full opacity-30 blur-2xl"></div>
+        </div>
       </div>
     </section>
   );
