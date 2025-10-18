@@ -1,319 +1,140 @@
-'use client';
+"use client";
 
 import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useCurrentLanguage } from '../../hooks/useCurrentLanguage';
 
+import { getServiceDetails } from '@/data/serviceDetails';
+
 interface ServiceDetailPageProps {
   serviceId: string;
-  onClose: () => void;
 }
 
-interface ServiceDetail {
-  id: string;
-  title: string;
-  description: string;
-  longDescription: string;
-  features: string[];
-  images: string[];
-  ctaText: string;
-}
-
-const getServiceDetails = (language: string, serviceId: string): ServiceDetail | null => {
-  const isGerman = language === 'de';
-  
-  const services: Record<string, ServiceDetail> = {
-    'full-truckload': {
-      id: 'full-truckload',
-      title: isGerman ? 'Full Truckload Transport' : 'Full Truckload Transport',
-      description: isGerman 
-        ? 'Komplette Fahrzeugladungen für Ihre Transporte'
-        : 'Complete vehicle loads for your transport needs',
-      longDescription: isGerman
-        ? 'Internationaler und nationaler Full Truckload Transport mit modernster Flotte. Wir bieten zuverlässige Transporte in ganz Europa mit kompletten Fahrzeugladungen für Ihre individuellen Anforderungen.'
-        : 'International and national Full Truckload Transport with state-of-the-art fleet. We offer reliable transportation across Europe with complete vehicle loads for your individual requirements.',
-      features: isGerman 
-        ? ['Nationale und internationale Transporte', 'Transport von hochwertigen Gütern', 'Übergroßen Transport', 'Express & Same-Day', 'ADR auf Anfrage']
-        : ['Domestic and international transport', 'Transport of high value goods', 'Oversized transport', 'Express & Same-Day', 'ADR on request'],
-      images: ['/IMG_3091.jpeg', '/IMG_3089.jpeg', '/IMG_3090.jpeg', '/IMG_1713.jpeg'],
-      ctaText: isGerman ? 'Angebot anfordern' : 'Request Quote'
-    },
-    'less-than-truckload': {
-      id: 'less-than-truckload',
-      title: isGerman ? 'Less than Truckload Transport' : 'Less than Truckload Transport',
-      description: isGerman 
-        ? 'Kosteneffiziente Teilladungen und Sammelgut'
-        : 'Cost-effective partial loads and consolidated freight',
-      longDescription: isGerman
-        ? 'Internationaler und nationaler Less than Truckload Transport für kostenoptimierte Lösungen. Effiziente Teilladungen mit unserem europäischen Netzwerk für optimale Transportkosten.'
-        : 'International and national Less than Truckload Transport for cost-optimized solutions. Efficient partial loads with our European network for optimal transportation costs.',
-      features: isGerman 
-        ? ['Nationale und internationale Transporte', 'Transport von hochwertigen Gütern', 'Kostenoptimierte Sammelladungen', 'Flexible Abholzeiten', 'Sendungsverfolgung']
-        : ['Domestic and international transport', 'Transport of high-value goods', 'Cost-optimized consolidated shipments', 'Flexible pickup times', 'Shipment tracking'],
-      images: ['/images/ltl-transport.jpg'],
-      ctaText: isGerman ? 'Angebot anfordern' : 'Request Quote'
-    },
-    'air-freight': {
-      id: 'air-freight',
-      title: isGerman ? 'Luftfracht Import und Export' : 'Air Freight Import and Export',
-      description: isGerman 
-        ? 'Schnelle Luftfracht mit globalen Partnern'
-        : 'Fast air freight with global partners',
-      longDescription: isGerman
-        ? 'Wir bieten unseren Kunden Lufttransportdienstleistungen auf Basis der direkten Zusammenarbeit mit renommierten Fluggesellschaften und in Zusammenarbeit mit einem Netzwerk zuverlässiger Agenten weltweit.'
-        : 'We offer our customers air transport services based on direct cooperation with renowned airlines and in collaboration with a network of reliable agents worldwide.',
-      features: isGerman 
-        ? ['Direkte Zusammenarbeit mit Fluggesellschaften', 'Netzwerk zuverlässiger Agenten', 'Express und Standard Luftfracht', 'Zollabwicklung', 'Temperaturkontrollierte Transporte']
-        : ['Direct cooperation with airlines', 'Network of reliable agents', 'Express and standard air freight', 'Customs clearance', 'Temperature-controlled transport'],
-      images: ['/images/air-freight.jpg'],
-      ctaText: isGerman ? 'Angebot anfordern' : 'Request Quote'
-    },
-    'sea-freight': {
-      id: 'sea-freight',
-      title: isGerman ? 'Seefracht Import und Export' : 'Sea Freight Import and Export',
-      description: isGerman 
-        ? 'Zuverlässige Seefrachtlösungen weltweit'
-        : 'Reliable sea freight solutions worldwide',
-      longDescription: isGerman
-        ? 'Umfassende Seefrachtlösungen für alle Containergrößen und Schwergut. Von Full Container Load (FCL) bis Less Container Load (LCL) - wir bieten maßgeschneiderte Lösungen für Ihre globalen Transportbedürfnisse.'
-        : 'Comprehensive sea freight solutions for all container sizes and heavy cargo. From Full Container Load (FCL) to Less Container Load (LCL) - we offer tailored solutions for your global transport needs.',
-      features: isGerman 
-        ? ['Full Container Seefracht FCL', 'LCL Sammelgut Seefracht', 'Schwergut- und Übergrößen Teile', 'Hafenabwicklung', 'Dokumentenservice']
-        : ['Full container sea freight FCL', 'LCL groupage sea freight', 'Heavy cargo and oversized parts', 'Port handling', 'Documentation service'],
-      images: ['/IMG_3093.jpeg'],
-      ctaText: isGerman ? 'Angebot anfordern' : 'Request Quote'
-    },
-    'packaging': {
-      id: 'packaging',
-      title: isGerman ? 'Verpackung' : 'Packaging',
-      description: isGerman 
-        ? 'Professionelle Verpackungslösungen für jeden Transport'
-        : 'Professional packaging solutions for every transport',
-      longDescription: isGerman
-        ? 'Professionelle Verpackungen für nationale und internationale Transporte. Wir verpacken normale und überdimensionierte Teile im Bereich Kartonagen, Luftfrachtverpackungen, Seefrachtverpackungen, Schwergut- und Übergrößen-Verpackungen sowie wiederverwendbare Verpackungslösungen.'
-        : 'Professional packaging for national and international transport. We package normal and oversized parts in cardboard packaging, air freight packaging, sea freight packaging, heavy cargo and oversized packaging, and reusable packaging solutions.',
-      features: isGerman 
-        ? ['Kartonagen und Luftfrachtverpackungen', 'Schwergut- und Übergrößen-Verpackungen', 'Wiederverwendbare Verpackungslösungen', 'Spezialverpackungen', 'Lagerung und Kommissionierung']
-        : ['Cardboard and air freight packaging', 'Heavy cargo and oversized packaging', 'Reusable packaging solutions', 'Special packaging', 'Storage and order fulfillment'],
-      images: ['/IMG_1629.jpeg', '/IMG_1641.jpeg'],
-      ctaText: isGerman ? 'Angebot anfordern' : 'Request Quote'
-    }
-  };
-
-  return services[serviceId] || null;
-};
-
-export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ serviceId, onClose }) => {
+export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ serviceId }) => {
   const currentLanguage = useCurrentLanguage();
   const service = getServiceDetails(currentLanguage, serviceId);
 
   if (!service) {
-    return null;
+    return (
+      <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <h1 className="text-3xl font-bold text-ink-900 mb-4">
+            {currentLanguage === 'de' ? 'Service nicht gefunden' : 'Service Not Found'}
+          </h1>
+          <p className="text-ink-600 mb-8">
+            {currentLanguage === 'de'
+              ? 'Der angeforderte Service ist nicht verfügbar. Bitte kehren Sie zur Übersicht zurück.'
+              : 'The requested service is not available. Please head back to the services overview.'}
+          </p>
+          <Link
+            href="/"
+            className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-brand-600 text-white font-semibold transition hover:bg-brand-500"
+          >
+            {currentLanguage === 'de' ? 'Zurück zur Startseite' : 'Back to Home'}
+          </Link>
+        </div>
+      </section>
+    );
   }
 
-  const handleQuoteRequest = () => {
-    // Navigate to quote section with service preselected
-    const quoteSection = document.getElementById('quote');
-    if (quoteSection) {
-      onClose();
-      setTimeout(() => {
-        quoteSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        const url = new URL(window.location.href);
-        url.searchParams.set('service', serviceId);
-        window.history.replaceState({}, '', url.toString());
-      }, 100);
-    }
-  };
-
   return (
-    <motion.div 
-      className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      onClick={onClose}
-    >
-      <motion.div 
-        className="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.9, opacity: 0 }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Header */}
-        <div className="relative p-8 pb-0">
-          <button 
-            onClick={onClose}
-            className="absolute top-4 right-4 w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-
-        {/* Content */}
-        <div className="p-8">
-          {/* Service Images Gallery */}
-          <div className="mb-8">
-            {service.images.length > 1 ? (
-              /* Multiple images - Grid layout */
-              <div className="grid grid-cols-2 gap-4">
-                {service.images.map((image, index) => (
-                  <div
-                    key={index}
-                    className="rounded-2xl bg-gray-100 p-4 flex items-center justify-center min-h-[220px]"
-                  >
-                    <img 
-                      src={image} 
-                      alt={`${service.title} - Image ${index + 1}`}
-                      className="w-full h-auto max-h-72 object-contain"
-                      onError={(e) => {
-                        // Fallback to placeholder if image fails to load
-                        e.currentTarget.style.display = 'none';
-                        e.currentTarget.nextElementSibling?.classList.remove('hidden');
-                      }}
-                    />
-                    <div className="text-gray-500 text-center hidden">
-                      <svg className="w-12 h-12 mx-auto text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      <p className="text-xs">{image}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              /* Single image */
-              <div className="rounded-2xl bg-gray-100 p-4 flex items-center justify-center min-h-[260px]">
-                <img 
-                  src={service.images[0]} 
-                  alt={service.title}
-                  className="w-full h-auto max-h-[70vh] object-contain"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                    e.currentTarget.nextElementSibling?.classList.remove('hidden');
-                  }}
-                />
-                <div className="text-gray-500 text-center hidden">
-                  <svg className="w-16 h-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  <p className="text-sm">Service Image</p>
-                  <p className="text-xs text-gray-400 mt-1">{service.images[0]}</p>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Service Title */}
-          <h1 
-            className="mb-4"
-            style={{ 
-              fontFamily: 'Manrope, sans-serif',
-              fontSize: '36px',
-              lineHeight: '1.1',
-              fontWeight: '700',
-              color: 'var(--ink-900)',
-            }}
-          >
-            {service.title}
-          </h1>
-
-          {/* Service Description */}
-          <p 
-            className="mb-8"
-            style={{
-              fontSize: '18px',
-              lineHeight: '1.6',
-              color: 'var(--ink-700)',
-              fontFamily: 'Inter, sans-serif'
-            }}
-          >
-            {service.longDescription}
-          </p>
-
-          {/* Features */}
-          <div className="mb-8">
-            <h2 
-              className="mb-4"
-              style={{
-                fontSize: '24px',
-                fontWeight: '600',
-                color: 'var(--ink-900)',
-                fontFamily: 'Manrope, sans-serif'
-              }}
+    <section className="py-20 bg-gradient-to-b from-gray-50/60 via-white to-white">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="flex flex-col gap-12">
+          <div className="flex flex-col gap-6">
+            <Link
+              href="/"
+              className="inline-flex items-center text-sm font-medium text-brand-600 hover:text-brand-500"
             >
-              {currentLanguage === 'de' ? 'Leistungen im Detail' : 'Service Features'}
-            </h2>
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {service.features.map((feature, index) => (
-                <li key={index} className="flex items-center gap-3">
-                  <div 
-                    style={{
-                      width: '20px',
-                      height: '20px',
-                      borderRadius: '50%',
-                      backgroundColor: 'var(--brand-400)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0
-                    }}
-                  >
-                    <svg 
-                      className="w-3 h-3"
-                      style={{ color: 'var(--brand-600)' }}
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <span 
-                    style={{
-                      fontSize: '16px',
-                      lineHeight: '1.5',
-                      color: 'var(--ink-700)',
-                      fontFamily: 'Inter, sans-serif'
-                    }}
-                  >
-                    {feature}
-                  </span>
-                </li>
-              ))}
-            </ul>
+              ← {currentLanguage === 'de' ? 'Zurück zur Übersicht' : 'Back to Overview'}
+            </Link>
+
+            <div className="flex flex-col gap-4">
+              <span className="text-sm uppercase tracking-[0.28em] text-brand-600/80 font-semibold">
+                {currentLanguage === 'de' ? 'Leistung' : 'Service'}
+              </span>
+              <h1
+                className="text-4xl md:text-5xl font-bold text-ink-900 tracking-tight"
+                style={{ fontFamily: 'var(--font-geist-sans), Geist, sans-serif' }}
+              >
+                {service.title}
+              </h1>
+              <p className="text-lg md:text-xl text-ink-600 leading-relaxed max-w-3xl">
+                {service.longDescription}
+              </p>
+            </div>
           </div>
 
-          {/* CTA Button */}
-          <button
-            onClick={handleQuoteRequest}
-            className="w-full md:w-auto transition-all duration-200 hover:shadow-md active:translate-y-px focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-            style={{
-              padding: '16px 32px',
-              backgroundColor: 'var(--brand-600)',
-              color: '#ffffff',
-              borderRadius: '9999px',
-              fontWeight: '600',
-              fontSize: '16px',
-              border: 'none',
-              cursor: 'pointer',
-              fontFamily: 'Inter, sans-serif'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = 'var(--brand-500)';
-              e.currentTarget.style.boxShadow = 'var(--shadow-md)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'var(--brand-600)';
-              e.currentTarget.style.boxShadow = 'none';
-            }}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: [0.2, 0.8, 0.2, 1] }}
+            className="grid grid-cols-1 lg:grid-cols-2 gap-6"
           >
-            {service.ctaText}
-          </button>
+            {service.images.map((image, index) => (
+              <figure
+                key={`${service.id}-image-${index}`}
+                className="relative overflow-hidden rounded-3xl bg-gray-100 border border-gray-100 shadow-sm h-[420px]"
+              >
+                <Image
+                  src={image}
+                  alt={`${service.title} – ${index + 1}`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </figure>
+            ))}
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            <div className="lg:col-span-2">
+              <h2 className="text-2xl font-semibold text-ink-900 mb-4" style={{ fontFamily: 'var(--font-geist-sans)' }}>
+                {currentLanguage === 'de' ? 'Unsere Leistungen im Überblick' : 'What This Service Covers'}
+              </h2>
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {service.features.map((feature, index) => (
+                  <li key={`${service.id}-feature-${index}`} className="flex items-start gap-3">
+                    <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-brand-500/20 text-brand-600">
+                      <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
+                    <span className="text-base text-ink-700 leading-relaxed">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="flex flex-col gap-5 p-8 rounded-3xl border border-gray-100 bg-white shadow-sm">
+              <h3 className="text-xl font-semibold text-ink-900">
+                {currentLanguage === 'de' ? 'Nächste Schritte' : 'Next Steps'}
+              </h3>
+              <p className="text-ink-600 leading-relaxed">
+                {currentLanguage === 'de'
+                  ? 'Teilen Sie uns die Details Ihrer Transportanforderung mit. Wir erstellen innerhalb weniger Stunden ein maßgeschneidertes Angebot.'
+                  : 'Share your transport requirements with us and we will send a tailored quote within a few hours.'}
+              </p>
+              <div className="flex flex-col gap-3">
+                <Link
+                  href={`/?service=${service.id}#quote`}
+                  className="inline-flex items-center justify-center rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-brand-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+                >
+                  {service.ctaText}
+                </Link>
+                <Link
+                  href="/#contact"
+                  className="inline-flex items-center justify-center rounded-full border border-brand-200 px-6 py-3 text-sm font-semibold text-brand-600 transition-all duration-200 hover:border-brand-300 hover:text-brand-500"
+                >
+                  {currentLanguage === 'de' ? 'Direkt Kontakt aufnehmen' : 'Contact Us Directly'}
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </section>
   );
 };

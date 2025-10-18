@@ -30,8 +30,8 @@ export default function AgbPage() {
                   1. Geltungsbereich
                 </h2>
                 <p>
-                  Diese Allgemeinen Geschäftsbedingungen ("AGB") regeln sämtliche Verträge, Leistungen und Angebote der{' '}
-                  <strong className="text-ink-900">{COMPANY.NAME}</strong> (nachfolgend "Auftragnehmer"). Abweichende, entgegenstehende oder ergänzende Bedingungen
+                  Diese Allgemeinen Geschäftsbedingungen (&quot;AGB&quot;) regeln sämtliche Verträge, Leistungen und Angebote der{' '}
+                  <strong className="text-ink-900">{COMPANY.NAME}</strong> (nachfolgend &quot;Auftragnehmer&quot;). Abweichende, entgegenstehende oder ergänzende Bedingungen
                   des Auftraggebers werden – selbst bei Kenntnis – nicht Vertragsbestandteil, es sei denn, ihrer Geltung wird ausdrücklich in Textform zugestimmt.
                 </p>
               </section>

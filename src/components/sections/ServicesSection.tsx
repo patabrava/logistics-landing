@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useCurrentLanguage } from '../../hooks/useCurrentLanguage';
-import { ServiceDetailPage } from './ServiceDetailPage';
 
 // MONOCODE Principles Applied:
 // - Observable Implementation: Service interaction tracking and selection logging
@@ -259,42 +259,17 @@ const itemVariants = {
   }
 };
 
-// MONOCODE Progressive Construction: Service selection handler for detail page
-const createServiceSelectHandler = (
-  serviceId: string,
-  onServiceSelect: (serviceId: string) => void
-) => {
-  return (event: React.MouseEvent<HTMLButtonElement>) => {
-    try {
-      event.preventDefault();
-      
-      logger.log('info', 'serviceDetailRequested', {
-        serviceId,
-        timestamp: new Date().toISOString()
-      });
-
-      // Open service detail page
-      onServiceSelect(serviceId);
-      
-    } catch (error) {
-      logger.log('error', 'serviceSelectHandler', {
-        error: error instanceof Error ? error.message : 'Unknown error',
-        serviceId
-      });
-    }
-  };
-};
-
 // MONOCODE Progressive Construction: Service card component with style guide compliance
 const ServiceCard: React.FC<{
   service: Service;
   index: number;
-  onServiceSelect: (serviceId: string) => void;
-}> = ({ service, index, onServiceSelect }) => {
-  const handleServiceSelect = React.useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
-    const handler = createServiceSelectHandler(service.id, onServiceSelect);
-    handler(event);
-  }, [service.id, onServiceSelect]);
+}> = ({ service, index }) => {
+  const handleServiceCTA = React.useCallback(() => {
+    logger.log('info', 'serviceDetailRequested', {
+      serviceId: service.id,
+      timestamp: new Date().toISOString()
+    });
+  }, [service.id]);
 
   // Style Guide Section 6.4: Service card styling with exact specifications
   // Section 1: Clean B2B SaaS vibe with soft rounded panels and subtle depth
@@ -409,41 +384,47 @@ const ServiceCard: React.FC<{
       </ul>
 
       {/* Style Guide Section 6.4: "Angebot anfordern" inline link/pill */}
-      <button
-        onClick={handleServiceSelect}
-        className="w-full transition-all duration-200 hover:shadow-md active:translate-y-px focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+      <Link
+        href={`/services/${service.id}`}
+        onClick={handleServiceCTA}
+        className="w-full transition-all duration-200 hover:shadow-md active:translate-y-px focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
         style={{
-          padding: '12px 20px', // px 20-24 / py 14-16 adapted for smaller button
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '12px 20px',
           backgroundColor: 'var(--brand-600)',
           color: '#ffffff',
-          borderRadius: '9999px', // pill radius per style guide
-          fontWeight: '600', // semibold
+          borderRadius: '9999px',
+          fontWeight: '600',
           fontSize: '14px',
-          border: 'none',
-          cursor: 'pointer'
+          textDecoration: 'none'
         }}
-        onMouseEnter={(e) => {
-          // Style Guide Section 7: Hover bg --brand/500, add shadow
-          e.currentTarget.style.backgroundColor = 'var(--brand-500)';
-          e.currentTarget.style.boxShadow = 'var(--shadow-md)';
+        onMouseEnter={(event) => {
+          const target = event.currentTarget as HTMLAnchorElement;
+          target.style.backgroundColor = 'var(--brand-500)';
+          target.style.boxShadow = 'var(--shadow-md)';
         }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = 'var(--brand-600)';
-          e.currentTarget.style.boxShadow = 'none';
+        onMouseLeave={(event) => {
+          const target = event.currentTarget as HTMLAnchorElement;
+          target.style.backgroundColor = 'var(--brand-600)';
+          target.style.boxShadow = 'none';
+          target.style.transform = 'translateY(0)';
         }}
-        onMouseDown={(e) => {
-          // Style Guide Section 7: Active translate-y(1px), shadow/sm
-          e.currentTarget.style.transform = 'translateY(1px)';
-          e.currentTarget.style.boxShadow = 'var(--shadow-sm)';
+        onMouseDown={(event) => {
+          const target = event.currentTarget as HTMLAnchorElement;
+          target.style.transform = 'translateY(1px)';
+          target.style.boxShadow = 'var(--shadow-sm)';
         }}
-        onMouseUp={(e) => {
-          e.currentTarget.style.transform = 'translateY(0)';
+        onMouseUp={(event) => {
+          const target = event.currentTarget as HTMLAnchorElement;
+          target.style.transform = 'translateY(0)';
         }}
         data-analytics="service_card_cta_click"
         data-service-id={service.id}
       >
         {service.ctaText}
-      </button>
+      </Link>
     </motion.div>
   );
 };
@@ -470,7 +451,6 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
 }) => {
   // MONOCODE Dependency Transparency: Hook dependencies
   const currentLanguage = useCurrentLanguage();
-  const [selectedServiceId, setSelectedServiceId] = React.useState<string | null>(null);
 
   // MONOCODE Progressive Construction: Component setup with logging
   React.useEffect(() => {
@@ -479,14 +459,6 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
       language: currentLanguage
     });
   }, [variant, currentLanguage]);
-
-  const handleServiceSelect = React.useCallback((serviceId: string) => {
-    setSelectedServiceId(serviceId);
-  }, []);
-
-  const handleCloseDetail = React.useCallback(() => {
-    setSelectedServiceId(null);
-  }, []);
 
   // MONOCODE Explicit Error Handling: Safe content retrieval
   const content = React.useMemo(() => {
@@ -556,7 +528,6 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                   key={`service-${service.id}`}
                   service={service}
                   index={index}
-                  onServiceSelect={handleServiceSelect}
                 />
               ))}
             </div>
@@ -568,7 +539,6 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                   key={`service-${service.id}`}
                   service={service}
                   index={index + 3}
-                  onServiceSelect={handleServiceSelect}
                 />
               ))}
             </div>
@@ -576,13 +546,6 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
         </motion.div>
       </div>
 
-      {/* Service Detail Modal */}
-      {selectedServiceId && (
-        <ServiceDetailPage 
-          serviceId={selectedServiceId} 
-          onClose={handleCloseDetail} 
-        />
-      )}
     </section>
   );
 };

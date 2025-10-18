@@ -1,10 +1,6 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Mail, AlertCircle } from 'lucide-react';
-import { Button } from '../ui/Button';
-import { useCurrentLanguage } from '../../hooks/useCurrentLanguage';
 
 // MONOCODE Principles Applied:
 // - Observable Implementation: Form interaction tracking and submission analytics
