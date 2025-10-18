@@ -119,12 +119,14 @@ export default function HeroSection({
     ? [
         'Tür-zu-Tür-Transporte in ganz Europa',
         'Persönliche Ansprechpartner & Echtzeit-Tracking',
-        'Zoll- und Dokumentationsservice inklusive'
+        'Zoll- und Dokumentationsservice inklusive',
+        'Europaweites Partnernetzwerk mit lokalen Experten'
       ]
     : [
         'Door-to-door transports across Europe',
         'Personal advisors & real-time tracking',
-        'Customs and documentation handled for you'
+        'Customs and documentation handled for you',
+        'Pan-European partner network with local experts'
       ];
 
   // MONOCODE Progressive Construction: Component initialization with logging
@@ -155,7 +157,9 @@ export default function HeroSection({
   return (
     <section
       className={`
-        relative flex items-center min-h-[720px] sm:min-h-screen py-24
+        relative flex flex-col justify-center
+        min-h-[calc(100vh-4rem)] md:min-h-[calc(100vh-4.5rem)] lg:min-h-[calc(100vh-5rem)]
+        pt-6 sm:pt-10 lg:pt-14 pb-16 sm:pb-20 lg:pb-24
         overflow-hidden
         ${className}
       `}
