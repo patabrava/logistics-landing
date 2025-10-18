@@ -237,7 +237,7 @@ export default function TrustBarSection({
             <motion.h2
               variants={itemVariants}
               className="
-                font-manrope font-bold text-h3 text-ink-900 mb-12
+                font-geist font-bold text-h3 text-ink-900 mb-12
                 tracking-tight
               "
             >

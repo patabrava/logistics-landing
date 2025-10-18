@@ -35,7 +35,7 @@ export function AboutSection({ className }: AboutSectionProps) {
           <h2
             className="uppercase tracking-tight mb-4"
             style={{
-              fontFamily: 'Manrope, sans-serif',
+              fontFamily: 'var(--font-geist-sans), Geist, sans-serif',
               fontSize: '40px',
               lineHeight: '1.1',
               letterSpacing: '-0.02em',
@@ -93,12 +93,20 @@ export function AboutSection({ className }: AboutSectionProps) {
             <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0 sm:-right-6 bg-white rounded-xl p-6 shadow-lg border-0">
               <div className="grid grid-cols-2 gap-4">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-brand-600">15+</div>
-                  <div className="text-sm text-ink-600">Jahre Erfahrung</div>
+                  <div className="text-2xl font-bold text-brand-600">
+                    {t('about.stats.experience.value', '15+')}
+                  </div>
+                  <div className="text-sm text-ink-600">
+                    {t('about.stats.experience.label', 'Jahre Erfahrung')}
+                  </div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-brand-600">24/7</div>
-                  <div className="text-sm text-ink-600">Service</div>
+                  <div className="text-2xl font-bold text-brand-600">
+                    {t('about.stats.support.value', '24/7')}
+                  </div>
+                  <div className="text-sm text-ink-600">
+                    {t('about.stats.support.label', 'Service')}
+                  </div>
                 </div>
               </div>
             </div>
@@ -122,7 +130,7 @@ export function AboutSection({ className }: AboutSectionProps) {
               {t('about.team.description', about.team.description)}
             </p>
             <div className="text-sm text-brand-600 font-medium">
-              {about.team.stat}
+              {t('about.team.stat', about.team.stat)}
             </div>
           </Card>
 
@@ -140,7 +148,7 @@ export function AboutSection({ className }: AboutSectionProps) {
               {t('about.innovation.description', about.innovation.description)}
             </p>
             <div className="text-sm text-brand-600 font-medium">
-              {about.innovation.stat}
+              {t('about.innovation.stat', about.innovation.stat)}
             </div>
           </Card>
 
@@ -158,7 +166,7 @@ export function AboutSection({ className }: AboutSectionProps) {
               {t('about.sustainability.description', about.sustainability.description)}
             </p>
             <div className="text-sm text-brand-600 font-medium">
-              {about.sustainability.stat}
+              {t('about.sustainability.stat', about.sustainability.stat)}
             </div>
           </Card>
         </div>

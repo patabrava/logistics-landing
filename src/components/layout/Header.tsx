@@ -9,6 +9,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname, useRouter } from 'next/navigation';
 import { COMPANY } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import LanguageToggle, { useCurrentLanguage } from './LanguageToggle';
@@ -104,6 +105,8 @@ export default function Header({
   showCTA = true
 }: HeaderProps) {
   const currentLanguage = useCurrentLanguage();
+  const router = useRouter();
+  const pathname = usePathname();
   
   // Deterministic State: Local state with clear initialization
   const [state, setState] = React.useState<HeaderState>({
@@ -165,6 +168,14 @@ export default function Header({
       // Handle anchor links with smooth scrolling
       if (item.href.startsWith('#')) {
         event?.preventDefault();
+
+        if (pathname !== '/') {
+          const destination = `/${item.href}`;
+          router.push(destination);
+          logNavigationEvent('route_to_section', destination, true);
+          return;
+        }
+
         const targetId = item.href.substring(1);
         const targetElement = document.getElementById(targetId);
         
@@ -193,7 +204,7 @@ export default function Header({
       setState(prev => ({ ...prev, error: errorMessage }));
       logNavigationEvent('click', item.href, false, errorMessage);
     }
-  }, []);
+  }, [pathname, router]);
 
   // Progressive Construction: Mobile menu toggle
   const toggleMobileMenu = React.useCallback(() => {

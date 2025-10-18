@@ -523,7 +523,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
             <h2 
               className="uppercase mb-6 tracking-tight"
               style={{ 
-                fontFamily: 'Manrope, sans-serif',
+                fontFamily: 'var(--font-geist-sans), Geist, sans-serif',
                 fontSize: '40px', // H2 40px per style guide
                 lineHeight: '1.1', // H2 line height
                 letterSpacing: '-0.02em', // H2 letter spacing

@@ -23,18 +23,18 @@ export default function DatenschutzPage() {
         <div className="max-w-container mx-auto px-6 py-24">
           {/* Style Guide: Typography and spacing following style.md */}
           <div className="max-w-4xl">
-            <h1 className="font-manrope font-bold text-5xl lg:text-6xl text-ink-900 mb-8 tracking-tight">
+            <h1 className="font-geist font-bold text-5xl lg:text-6xl text-ink-900 mb-8 tracking-tight">
               DATENSCHUTZ
             </h1>
             
             <div className="prose prose-lg prose-ink max-w-none">
               {/* MONOCODE: Dependency Transparency - Privacy content with clear structure */}
               <section className="mb-12">
-                <h2 className="font-manrope font-bold text-3xl text-ink-900 mb-6">
+                <h2 className="font-geist font-bold text-3xl text-ink-900 mb-6">
                   1. Datenschutz auf einen Blick
                 </h2>
                 
-                <h3 className="font-manrope font-bold text-2xl text-ink-900 mb-4">
+                <h3 className="font-geist font-bold text-2xl text-ink-900 mb-4">
                   Allgemeine Hinweise
                 </h3>
                 <div className="space-y-4 text-ink-700 leading-relaxed">
@@ -46,7 +46,7 @@ export default function DatenschutzPage() {
                   </p>
                 </div>
 
-                <h3 className="font-manrope font-bold text-2xl text-ink-900 mb-4 mt-8">
+                <h3 className="font-geist font-bold text-2xl text-ink-900 mb-4 mt-8">
                   Datenerfassung auf dieser Website
                 </h3>
                 <div className="space-y-4 text-ink-700 leading-relaxed">
@@ -73,7 +73,7 @@ export default function DatenschutzPage() {
               </section>
 
               <section className="mb-12">
-                <h2 className="font-manrope font-bold text-3xl text-ink-900 mb-6">
+                <h2 className="font-geist font-bold text-3xl text-ink-900 mb-6">
                   2. Hinweis zur verantwortlichen Stelle
                 </h2>
                 <div className="space-y-4 text-ink-700 leading-relaxed">
@@ -98,11 +98,11 @@ export default function DatenschutzPage() {
               </section>
 
               <section className="mb-12">
-                <h2 className="font-manrope font-bold text-3xl text-ink-900 mb-6">
+                <h2 className="font-geist font-bold text-3xl text-ink-900 mb-6">
                   3. Allgemeine Hinweise und Pflichtinformationen
                 </h2>
                 
-                <h3 className="font-manrope font-bold text-2xl text-ink-900 mb-4">
+                <h3 className="font-geist font-bold text-2xl text-ink-900 mb-4">
                   Datenschutz
                 </h3>
                 <div className="space-y-4 text-ink-700 leading-relaxed">
@@ -118,7 +118,7 @@ export default function DatenschutzPage() {
                   </p>
                 </div>
 
-                <h3 className="font-manrope font-bold text-2xl text-ink-900 mb-4 mt-8">
+                <h3 className="font-geist font-bold text-2xl text-ink-900 mb-4 mt-8">
                   Hinweis zur Datenweitergabe in die USA
                 </h3>
                 <div className="space-y-4 text-ink-700 leading-relaxed">
@@ -130,7 +130,7 @@ export default function DatenschutzPage() {
                   </p>
                 </div>
 
-                <h3 className="font-manrope font-bold text-2xl text-ink-900 mb-4 mt-8">
+                <h3 className="font-geist font-bold text-2xl text-ink-900 mb-4 mt-8">
                   Widerruf Ihrer Einwilligung zur Datenverarbeitung
                 </h3>
                 <div className="space-y-4 text-ink-700 leading-relaxed">
@@ -143,11 +143,11 @@ export default function DatenschutzPage() {
               </section>
 
               <section className="mb-12">
-                <h2 className="font-manrope font-bold text-3xl text-ink-900 mb-6">
+                <h2 className="font-geist font-bold text-3xl text-ink-900 mb-6">
                   4. Datenerfassung auf dieser Website
                 </h2>
                 
-                <h3 className="font-manrope font-bold text-2xl text-ink-900 mb-4">
+                <h3 className="font-geist font-bold text-2xl text-ink-900 mb-4">
                   Server-Log-Dateien
                 </h3>
                 <div className="space-y-4 text-ink-700 leading-relaxed">
@@ -173,7 +173,7 @@ export default function DatenschutzPage() {
                   </p>
                 </div>
 
-                <h3 className="font-manrope font-bold text-2xl text-ink-900 mb-4 mt-8">
+                <h3 className="font-geist font-bold text-2xl text-ink-900 mb-4 mt-8">
                   Anfrage per E-Mail, Telefon oder Telefax
                 </h3>
                 <div className="space-y-4 text-ink-700 leading-relaxed">
@@ -199,7 +199,7 @@ export default function DatenschutzPage() {
               </section>
 
               <section className="mb-12">
-                <h2 className="font-manrope font-bold text-3xl text-ink-900 mb-6">
+                <h2 className="font-geist font-bold text-3xl text-ink-900 mb-6">
                   5. Ihre Rechte
                 </h2>
                 <div className="space-y-4 text-ink-700 leading-relaxed">
@@ -224,7 +224,7 @@ export default function DatenschutzPage() {
               </section>
 
               <section className="mb-12">
-                <h2 className="font-manrope font-bold text-3xl text-ink-900 mb-6">
+                <h2 className="font-geist font-bold text-3xl text-ink-900 mb-6">
                   6. Beschwerderecht bei der zuständigen Aufsichtsbehörde
                 </h2>
                 <div className="space-y-4 text-ink-700 leading-relaxed">
@@ -238,7 +238,7 @@ export default function DatenschutzPage() {
               </section>
 
               <section className="mb-12">
-                <h2 className="font-manrope font-bold text-3xl text-ink-900 mb-6">
+                <h2 className="font-geist font-bold text-3xl text-ink-900 mb-6">
                   7. SSL- bzw. TLS-Verschlüsselung
                 </h2>
                 <div className="space-y-4 text-ink-700 leading-relaxed">

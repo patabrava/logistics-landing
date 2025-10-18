@@ -14,10 +14,10 @@ export default function NotFoundPage() {
           <div className="max-w-2xl mx-auto text-center">
             {/* Style Guide: Typography and spacing following style.md */}
             <div className="mb-8">
-              <div className="text-8xl lg:text-9xl font-manrope font-bold text-brand-600 mb-4">
+              <div className="text-8xl lg:text-9xl font-geist font-bold text-brand-600 mb-4">
                 404
               </div>
-              <h1 className="font-manrope font-bold text-4xl lg:text-5xl text-ink-900 mb-6 tracking-tight">
+              <h1 className="font-geist font-bold text-4xl lg:text-5xl text-ink-900 mb-6 tracking-tight">
                 SEITE NICHT GEFUNDEN
               </h1>
               <p className="text-lg text-ink-600 leading-relaxed mb-8">
@@ -51,7 +51,7 @@ export default function NotFoundPage() {
               
               {/* MONOCODE: Explicit Error Handling - Helpful navigation suggestions */}
               <div className="pt-8 border-t border-ink-200">
-                <h2 className="font-manrope font-bold text-xl text-ink-900 mb-4">
+                <h2 className="font-geist font-bold text-xl text-ink-900 mb-4">
                   Beliebte Seiten
                 </h2>
                 <div className="flex flex-wrap justify-center gap-4 text-sm">

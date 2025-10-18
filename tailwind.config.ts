@@ -50,8 +50,9 @@ const config: Config = {
         container: '1280px'
       },
       fontFamily: {
+        'sans': ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
         'inter': ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
-        'manrope': ['var(--font-manrope)', 'Manrope', 'system-ui', 'sans-serif']
+        'geist': ['var(--font-geist-sans)', 'Geist', 'system-ui', 'sans-serif']
       },
       fontSize: {
         'h1': ['60px', { lineHeight: '1.05', letterSpacing: '-0.02em' }],

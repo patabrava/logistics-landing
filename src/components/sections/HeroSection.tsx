@@ -206,7 +206,7 @@ export default function HeroSection({
               id="hero-headline"
               variants={itemVariants}
               className="
-                font-manrope font-bold text-[36px] sm:text-[44px] md:text-[56px] lg:text-[64px]
+                font-geist font-bold text-[36px] sm:text-[44px] md:text-[56px] lg:text-[64px]
                 text-white drop-shadow-2xl mb-6 tracking-[-0.02em] leading-[1.05] break-keep text-pretty
               "
               style={{ hyphens: 'none' }}

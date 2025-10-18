@@ -23,14 +23,14 @@ export default function ImpressumPage() {
         <div className="max-w-container mx-auto px-6 py-24">
           {/* Style Guide: Typography and spacing following style.md */}
           <div className="max-w-4xl">
-            <h1 className="font-manrope font-bold text-5xl lg:text-6xl text-ink-900 mb-8 tracking-tight">
+            <h1 className="font-geist font-bold text-5xl lg:text-6xl text-ink-900 mb-8 tracking-tight">
               IMPRESSUM
             </h1>
             
             <div className="prose prose-lg prose-ink max-w-none">
               {/* MONOCODE: Dependency Transparency - Legal content using constants */}
               <section className="mb-12">
-                <h2 className="font-manrope font-bold text-3xl text-ink-900 mb-6">
+                <h2 className="font-geist font-bold text-3xl text-ink-900 mb-6">
                   Angaben gemäß § 5 TMG
                 </h2>
                 <div className="space-y-4 text-ink-700 leading-relaxed">
@@ -49,7 +49,7 @@ export default function ImpressumPage() {
               </section>
 
               <section className="mb-12">
-                <h2 className="font-manrope font-bold text-3xl text-ink-900 mb-6">
+                <h2 className="font-geist font-bold text-3xl text-ink-900 mb-6">
                   Kontakt
                 </h2>
                 <div className="space-y-4 text-ink-700 leading-relaxed">
@@ -61,7 +61,7 @@ export default function ImpressumPage() {
               </section>
 
               <section className="mb-12">
-                <h2 className="font-manrope font-bold text-3xl text-ink-900 mb-6">
+                <h2 className="font-geist font-bold text-3xl text-ink-900 mb-6">
                   Registereintrag
                 </h2>
                 <div className="space-y-4 text-ink-700 leading-relaxed">
@@ -74,7 +74,7 @@ export default function ImpressumPage() {
               </section>
 
               <section className="mb-12">
-                <h2 className="font-manrope font-bold text-3xl text-ink-900 mb-6">
+                <h2 className="font-geist font-bold text-3xl text-ink-900 mb-6">
                   Umsatzsteuer-ID
                 </h2>
                 <div className="space-y-4 text-ink-700 leading-relaxed">
@@ -86,7 +86,7 @@ export default function ImpressumPage() {
               </section>
 
               <section className="mb-12">
-                <h2 className="font-manrope font-bold text-3xl text-ink-900 mb-6">
+                <h2 className="font-geist font-bold text-3xl text-ink-900 mb-6">
                   EU-Streitschlichtung
                 </h2>
                 <div className="space-y-4 text-ink-700 leading-relaxed">
@@ -102,7 +102,7 @@ export default function ImpressumPage() {
               </section>
 
               <section className="mb-12">
-                <h2 className="font-manrope font-bold text-3xl text-ink-900 mb-6">
+                <h2 className="font-geist font-bold text-3xl text-ink-900 mb-6">
                   Verbraucherstreitbeilegung/Universalschlichtungsstelle
                 </h2>
                 <div className="space-y-4 text-ink-700 leading-relaxed">
@@ -114,7 +114,7 @@ export default function ImpressumPage() {
               </section>
 
               <section className="mb-12">
-                <h2 className="font-manrope font-bold text-3xl text-ink-900 mb-6">
+                <h2 className="font-geist font-bold text-3xl text-ink-900 mb-6">
                   Haftung für Inhalte
                 </h2>
                 <div className="space-y-4 text-ink-700 leading-relaxed">
@@ -134,7 +134,7 @@ export default function ImpressumPage() {
               </section>
 
               <section className="mb-12">
-                <h2 className="font-manrope font-bold text-3xl text-ink-900 mb-6">
+                <h2 className="font-geist font-bold text-3xl text-ink-900 mb-6">
                   Haftung für Links
                 </h2>
                 <div className="space-y-4 text-ink-700 leading-relaxed">
@@ -154,7 +154,7 @@ export default function ImpressumPage() {
               </section>
 
               <section className="mb-12">
-                <h2 className="font-manrope font-bold text-3xl text-ink-900 mb-6">
+                <h2 className="font-geist font-bold text-3xl text-ink-900 mb-6">
                   Urheberrecht
                 </h2>
                 <div className="space-y-4 text-ink-700 leading-relaxed">

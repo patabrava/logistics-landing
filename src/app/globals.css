@@ -101,7 +101,7 @@ html {
 }
 
 body {
-  /* Style Guide: Typography - Inter for body text, Manrope for headings */
+  /* Style Guide: Typography - Inter for body text, Geist for headings and UI */
   font-family: var(--font-inter), 'Inter', system-ui, -apple-system, sans-serif;
   font-size: var(--font-size-body);
   line-height: var(--line-height-body);
@@ -123,9 +123,9 @@ html, body {
  * MONOCODE: Dependency Transparency - Typography system following style guide section 3
  */
 
-/* Style Guide: Display/Headlines - Manrope 700/800 */
+/* Style Guide: Display/Headlines - Geist for headings and UI elements */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-manrope), 'Manrope', system-ui, sans-serif;
+  font-family: var(--font-geist-sans), 'Geist', system-ui, sans-serif;
   font-weight: 700;
   color: var(--ink-900);
   margin: 0;

@@ -17,7 +17,7 @@ export const COMPANY = {
     PHONE: '+49 30 12345678',
     EMAIL: 'info@logisticsco.de',
     QUOTES_EMAIL: 'quotes@logisticsco.de',
-    BUSINESS_HOURS: 'Mo-Fr 8:00-18:00'
+    BUSINESS_HOURS: ''
   },
   WEBSITE: {
     DOMAIN: 'logisticsco.de',

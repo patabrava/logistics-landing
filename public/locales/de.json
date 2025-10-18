@@ -305,17 +305,16 @@
       "title": "Kontakt",
       "address": "NavarroGroup GmbH\nMusterstraße 123\n10115 Berlin",
       "phone": "+49 30 12345678",
-      "email": "info@logisticsco.de",
-      "hours": "Mo-Fr 8:00-18:00"
+      "email": "info@logisticsco.de"
     },
     "copyright": "© {{year}} NavarroGroup GmbH. Alle Rechte vorbehalten."
   },
   "about": {
     "headline": "Über NavarroGroup",
-    "subheadline": "Ihr vertrauensvoller Partner für professionelle Logistiklösungen in ganz Europa seit über 25 Jahren.",
+    "subheadline": "Ihr vertrauensvoller Partner für professionelle Logistiklösungen in ganz Europa seit über15 Jahren.",
     "story": {
-      "title": "Unsere Geschichte",
-      "paragraph_1": "Seit der Gründung 1995 haben wir uns zu einem der führenden Logistikdienstleister in Deutschland und Europa entwickelt. Was als kleines Familienunternehmen begann, ist heute ein modernes Logistikunternehmen mit über 150 Mitarbeitern.",
+      "title": "Unsere DNA",
+      "paragraph_1": "",
       "paragraph_2": "Unser Erfolg basiert auf drei Säulen: erstklassiger Service, modernste Technologie und ein erfahrenes Team. Wir verstehen die Herausforderungen unserer Kunden und entwickeln maßgeschneiderte Lösungen für jeden Transportbedarf.",
       "paragraph_3": "Mit unserem Hauptsitz in Deutschland und strategischen Partnerschaften in ganz Europa gewährleisten wir zuverlässige und termingerechte Lieferungen – von der Nordsee bis zum Mittelmeer."
     },
@@ -325,15 +324,28 @@
     },
     "team": {
       "title": "Erfahrenes Team",
-      "description": "Über 50 Logistikexperten mit jahrelanger Branchenerfahrung und kontinuierlicher Weiterbildung."
+      "description": "Über 50 Logistikexperten mit jahrelanger Branchenerfahrung und kontinuierlicher Weiterbildung.",
+      "stat": "50+ Experten"
     },
     "innovation": {
       "title": "Innovation",
-      "description": "Modernste Technologie und kontinuierliche Prozessoptimierung für maximale Effizienz."
+      "description": "Modernste Technologie und kontinuierliche Prozessoptimierung für maximale Effizienz.",
+      "stat": "Digitale Lösungen"
     },
     "sustainability": {
       "title": "Nachhaltigkeit",
-      "description": "Umweltbewusste Logistik mit effizienten Routen und modernen, umweltfreundlichen Fahrzeugen."
+      "description": "Umweltbewusste Logistik mit effizienten Routen und modernen, umweltfreundlichen Fahrzeugen.",
+      "stat": "CO₂-optimiert"
+    },
+    "stats": {
+      "experience": {
+        "value": "15+",
+        "label": "Jahre Erfahrung"
+      },
+      "support": {
+        "value": "24/7",
+        "label": "Service"
+      }
     },
     "timeline": {
       "title": "Unser Weg zum Erfolg",
@@ -371,6 +383,75 @@
       "callText": "Jetzt anrufen"
     },
     "image_placeholder": "Unternehmenszentrale"
+  },
+  "terms": {
+    "title": "Allgemeine Geschäftsbedingungen (AGB)",
+    "intro": "Die nachfolgenden Bestimmungen regeln sämtliche Transport- und Logistikleistungen der NavarroGroup.",
+    "updated": "Stand: Januar 2024",
+    "sections": {
+      "scope": {
+        "title": "1. Geltungsbereich",
+        "paragraph_1": "Diese Allgemeinen Geschäftsbedingungen (\u201eAGB\u201c) gelten für sämtliche Verträge, Angebote und Leistungen der NavarroGroup im Bereich Transport und Logistik.",
+        "paragraph_2": "Abweichende oder ergänzende Bedingungen des Auftraggebers werden nur Vertragsbestandteil, wenn NavarroGroup ihrer Geltung ausdrücklich in Textform zugestimmt hat."
+      },
+      "parties": {
+        "title": "2. Vertragspartner & Kontaktdaten",
+        "paragraph_1": "Vertragspartner und Dienstleister ist die Navarro Group GmbH.",
+        "paragraph_2": "Anfragen sind ausschließlich über die in diesen AGB genannten Kommunikationswege einzureichen."
+      },
+      "services": {
+        "title": "3. Leistungen & Vertragsschluss",
+        "paragraph_1": "Von NavarroGroup abgegebene Angebote sind freibleibend und beziehen sich ausschließlich auf die jeweils beschriebenen Leistungen.",
+        "bullet_1": "Ein Vertrag kommt erst durch schriftliche Auftragsbestätigung (z.\u202fB. per E-Mail) oder durch Ausführung der Leistung zustande.",
+        "bullet_2": "Änderungen oder Erweiterungen des Leistungsumfangs bedürfen der Textform und können zu angepassten Vergütungen führen.",
+        "bullet_3": "Zeit- und Mengenzusagen stehen unter dem Vorbehalt ausreichender Kapazitäten sowie erforderlicher behördlicher Genehmigungen."
+      },
+      "customer": {
+        "title": "4. Mitwirkungspflichten des Auftraggebers",
+        "paragraph_1": "Der Auftraggeber stellt alle zur ordnungsgemäßen Leistungserbringung notwendigen Informationen, Dokumente und Zugänge rechtzeitig bereit.",
+        "paragraph_2": "Er gewährleistet, dass sämtliche übergebenen Güter ordnungsgemäß verpackt, gekennzeichnet und frei von Rechten Dritter sind; erforderliche behördliche Genehmigungen sind zu beschaffen, sofern nichts anderes vereinbart ist."
+      },
+      "pricing": {
+        "title": "5. Preise & Zahlungsbedingungen",
+        "paragraph_1": "Alle Preise verstehen sich netto in Euro zuzüglich der jeweils geltenden gesetzlichen Umsatzsteuer, sofern nicht anders angegeben.",
+        "bullet_1": "Zusätzliche Kosten (z.\u202fB. Zölle, Gebühren, Wartezeiten, Zusatzleistungen) werden gesondert berechnet und vom Auftraggeber getragen.",
+        "bullet_2": "Rechnungen sind innerhalb von 14 Tagen ab Rechnungsdatum ohne Abzug zahlbar.",
+        "bullet_3": "Bei Zahlungsverzug gelten die gesetzlichen Verzugszinsen gemäß § 288 BGB."
+      },
+      "delivery": {
+        "title": "6. Liefer- & Leistungsfristen",
+        "paragraph_1": "Angegebene Liefer- und Leistungsfristen sind unverbindlich, sofern sie nicht ausdrücklich als verbindlich bestätigt werden.",
+        "paragraph_2": "Ereignisse höherer Gewalt, Transport- oder Betriebsstörungen sowie behördliche Maßnahmen verlängern vereinbarte Fristen um die Dauer der Störung zuzüglich einer angemessenen Wiederanlaufzeit."
+      },
+      "liability": {
+        "title": "7. Haftung & Versicherung",
+        "bullet_1": "NavarroGroup haftet für Schäden nur bei Vorsatz, grober Fahrlässigkeit oder Verletzung wesentlicher Vertragspflichten.",
+        "bullet_2": "Bei leicht fahrlässiger Verletzung einer Kardinalpflicht ist die Haftung auf den vorhersehbaren, typischerweise eintretenden Schaden begrenzt.",
+        "bullet_3": "Für Güterschäden gelten die gesetzlichen Haftungshöchstbeträge des Handelsgesetzbuchs (HGB) sowie einschlägiger internationaler Übereinkommen.",
+        "bullet_4": "Der Auftraggeber hat den Warenwert anzugeben und bei Bedarf eine weitergehende Transportversicherung zu beauftragen."
+      },
+      "complaints": {
+        "title": "8. Reklamationen & Rügepflicht",
+        "paragraph_1": "Offensichtliche Mängel sind unverzüglich, spätestens jedoch innerhalb von 7 Kalendertagen nach Ablieferung schriftlich anzuzeigen; verdeckte Mängel sind innerhalb von 7 Kalendertagen nach Entdeckung mitzuteilen."
+      },
+      "withdrawal": {
+        "title": "9. Widerrufs- & Kündigungsrechte",
+        "bullet_1": "Verbrauchern im Sinne des § 13 BGB steht ein gesetzliches Widerrufsrecht nach den einschlägigen Vorschriften zu.",
+        "bullet_2": "Unternehmer im Sinne des § 14 BGB haben kein Widerrufsrecht; individuelle Kündigungs- oder Rücktrittsrechte sind ausdrücklich zu vereinbaren."
+      },
+      "dataProtection": {
+        "title": "10. Datenschutz",
+        "paragraph_1": "NavarroGroup verarbeitet personenbezogene Daten ausschließlich gemäß den gesetzlichen Vorgaben der DSGVO.",
+        "paragraph_2": "Weitere Informationen entnehmen Sie bitte unserer",
+        "link_label": "Datenschutzerklärung"
+      },
+      "final": {
+        "title": "11. Schlussbestimmungen",
+        "bullet_1": "Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts (CISG).",
+        "bullet_2": "Erfüllungsort und Gerichtsstand für Kaufleute ist der Sitz der NavarroGroup.",
+        "bullet_3": "Sollten einzelne Bestimmungen unwirksam sein oder werden, bleibt die Wirksamkeit der übrigen Regelungen unberührt; die Parteien vereinbaren eine Regelung, die dem wirtschaftlichen Zweck am nächsten kommt."
+      }
+    }
   },
   "partners": {
     "headline": "Unsere Partner",

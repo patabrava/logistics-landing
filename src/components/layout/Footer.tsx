@@ -1,9 +1,10 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import LanguageToggle from './LanguageToggle';
 import { useCurrentLanguage } from '../../hooks/useCurrentLanguage';
+import CookieSettingsModal from '../ui/CookieSettingsModal';
 
 // MONOCODE Dependency Transparency: Clear external dependencies documented
 // External Dependencies:
@@ -64,12 +65,11 @@ const getFooterContent = (language: string) => {
         title: isGerman ? 'Kontakt' : 'Contact',
         address: 'NavarroGroup\nMarienstraße 6\n61440 Oberursel',
         phone: '+49 170 2846898',
-        email: 'info@navarrogroup.de',
-        hours: isGerman ? 'Mo-Fr 8:00-18:00' : 'Mon-Fri 8:00-18:00'
+        email: 'info@navarrogroup.de'
       },
       copyright: isGerman 
-        ? `© ${new Date().getFullYear()} LogisticsCo GmbH. Alle Rechte vorbehalten.`
-        : `© ${new Date().getFullYear()} LogisticsCo GmbH. All rights reserved.`
+        ? `© ${new Date().getFullYear()} NavarroGroup. Alle Rechte vorbehalten.`
+        : `© ${new Date().getFullYear()} NavarroGroup. All rights reserved.`
     };
   } catch (error) {
     logger.log('error', 'getFooterContent', {
@@ -85,10 +85,9 @@ const getFooterContent = (language: string) => {
         title: 'Contact', 
         address: 'NavarroGroup\nMarienstraße 6\n61440 Oberursel', 
         phone: '+49 170 2846898', 
-        email: 'info@navarrogroup.de',
-        hours: 'Mon-Fri 8:00-18:00'
+        email: 'info@navarrogroup.de'
       },
-      copyright: `© ${new Date().getFullYear()} LogisticsCo GmbH. All rights reserved.`
+      copyright: `© ${new Date().getFullYear()} NavarroGroup. All rights reserved.`
     };
   }
 };
@@ -119,6 +118,7 @@ export const Footer: React.FC<FooterProps> = ({
 }) => {
   // MONOCODE Dependency Transparency: Hook dependencies
   const currentLanguage = useCurrentLanguage();
+  const [isCookieModalOpen, setIsCookieModalOpen] = useState(false);
 
   // MONOCODE Progressive Construction: Component setup with logging
   React.useEffect(() => {
@@ -210,17 +210,36 @@ export const Footer: React.FC<FooterProps> = ({
               {content.legal.title}
             </h3>
             <ul className="space-y-2">
-              {content.legal.links.map((link, index) => (
-                <li key={`legal-${index}`}>
-                  <Link
-                    href={link.href}
-                    onClick={createLinkClickHandler(link.href, link.label)}
-                    className="text-gray-400 hover:text-white transition-colors duration-200"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+              {content.legal.links.map((link, index) => {
+                // Special handling for cookie settings link
+                if (link.href === '/cookies') {
+                  return (
+                    <li key={`legal-${index}`}>
+                      <button
+                        onClick={() => {
+                          setIsCookieModalOpen(true);
+                          logger.log('info', 'cookieSettingsOpened', { source: 'footer' });
+                        }}
+                        className="text-gray-400 hover:text-white transition-colors duration-200 text-left"
+                      >
+                        {link.label}
+                      </button>
+                    </li>
+                  );
+                }
+                
+                return (
+                  <li key={`legal-${index}`}>
+                    <Link
+                      href={link.href}
+                      onClick={createLinkClickHandler(link.href, link.label)}
+                      className="text-gray-400 hover:text-white transition-colors duration-200"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -259,10 +278,6 @@ export const Footer: React.FC<FooterProps> = ({
                 </a>
               </div>
               
-              {/* Business hours */}
-              <div>
-                {content.contact.hours}
-              </div>
             </div>
           </div>
         </div>
@@ -277,6 +292,12 @@ export const Footer: React.FC<FooterProps> = ({
           <LanguageToggle variant="footer" />
         </div>
       </div>
+      
+      {/* MONOCODE Progressive Construction: Cookie settings modal */}
+      <CookieSettingsModal 
+        isOpen={isCookieModalOpen}
+        onClose={() => setIsCookieModalOpen(false)}
+      />
     </footer>
   );
 };

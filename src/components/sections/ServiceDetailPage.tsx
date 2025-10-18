@@ -160,11 +160,14 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ serviceId,
               /* Multiple images - Grid layout */
               <div className="grid grid-cols-2 gap-4">
                 {service.images.map((image, index) => (
-                  <div key={index} className="rounded-2xl overflow-hidden bg-gray-100 h-48 flex items-center justify-center">
+                  <div
+                    key={index}
+                    className="rounded-2xl bg-gray-100 p-4 flex items-center justify-center min-h-[220px]"
+                  >
                     <img 
                       src={image} 
                       alt={`${service.title} - Image ${index + 1}`}
-                      className="w-full h-full object-cover"
+                      className="w-full h-auto max-h-72 object-contain"
                       onError={(e) => {
                         // Fallback to placeholder if image fails to load
                         e.currentTarget.style.display = 'none';
@@ -182,11 +185,11 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ serviceId,
               </div>
             ) : (
               /* Single image */
-              <div className="rounded-2xl overflow-hidden bg-gray-100 h-64 flex items-center justify-center">
+              <div className="rounded-2xl bg-gray-100 p-4 flex items-center justify-center min-h-[260px]">
                 <img 
                   src={service.images[0]} 
                   alt={service.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-auto max-h-[70vh] object-contain"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
                     e.currentTarget.nextElementSibling?.classList.remove('hidden');

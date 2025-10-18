@@ -1,21 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Manrope } from "next/font/google";
+import { Inter } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 
 // MONOCODE: Observable Implementation - Structured font loading with clear naming
+// Geist for UI elements, headings, and interactive components
+// Inter for body text and paragraphs
+
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
-const manrope = Manrope({
-  variable: "--font-manrope", 
-  subsets: ["latin"],
-  weight: ["700", "800"],
-  display: "swap",
-});
+// Geist is imported directly from the geist package with optimized variable font
+// It provides --font-geist-sans CSS variable automatically
 
 // MONOCODE: Explicit Error Handling - Comprehensive SEO metadata following style.md specifications
 export const metadata: Metadata = {
@@ -93,13 +93,13 @@ export default function RootLayout({
   return (
     <html 
       lang="de" 
-      className={`${inter.variable} ${manrope.variable}`}
+      className={`${inter.variable} ${GeistSans.variable}`}
       suppressHydrationWarning
     >
       <head>
         {/* MONOCODE: Dependency Transparency - Preload critical fonts */}
         <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/manrope-var.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/geist-sans-var.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         
         {/* Style Guide: Brand colors and favicon */}
         <link rel="icon" href="/favicon.ico" sizes="32x32" />

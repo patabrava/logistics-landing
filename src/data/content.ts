@@ -135,7 +135,7 @@ export const aboutContent: AboutContent = {
   headline: 'Über LogisticsCo',
   subheadline: 'Ihr vertrauensvoller Partner für professionelle Logistiklösungen in ganz Europa seit über 25 Jahren.',
   story: {
-    title: 'Unsere Geschichte',
+    title: 'Unsere DNA',
     content: [
       'Seit der Gründung 1995 haben wir uns zu einem der führenden Logistikdienstleister in Deutschland und Europa entwickelt. Was als kleines Familienunternehmen begann, ist heute ein modernes Logistikunternehmen mit über 150 Mitarbeitern.',
       'Unser Erfolg basiert auf drei Säulen: erstklassiger Service, modernste Technologie und ein erfahrenes Team. Wir verstehen die Herausforderungen unserer Kunden und entwickeln maßgeschneiderte Lösungen für jeden Transportbedarf.',
