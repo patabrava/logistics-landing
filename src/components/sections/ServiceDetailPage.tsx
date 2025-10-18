@@ -117,20 +117,12 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ serviceId 
                   ? 'Teilen Sie uns die Details Ihrer Transportanforderung mit. Wir erstellen innerhalb weniger Stunden ein maßgeschneidertes Angebot.'
                   : 'Share your transport requirements with us and we will send a tailored quote within a few hours.'}
               </p>
-              <div className="flex flex-col gap-3">
-                <Link
-                  href={`/?service=${service.id}#quote`}
-                  className="inline-flex items-center justify-center rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-brand-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
-                >
-                  {service.ctaText}
-                </Link>
-                <Link
-                  href="/#contact"
-                  className="inline-flex items-center justify-center rounded-full border border-brand-200 px-6 py-3 text-sm font-semibold text-brand-600 transition-all duration-200 hover:border-brand-300 hover:text-brand-500"
-                >
-                  {currentLanguage === 'de' ? 'Direkt Kontakt aufnehmen' : 'Contact Us Directly'}
-                </Link>
-              </div>
+              <Link
+                href={`/?service=${service.id}#quote`}
+                className="inline-flex items-center justify-center rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-brand-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+              >
+                {service.ctaText}
+              </Link>
             </div>
           </div>
         </div>
