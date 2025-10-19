@@ -4,6 +4,7 @@
  */
 
 import { Metadata } from 'next';
+import { SERVICE_DETAIL_IDS } from '@/data/serviceDetails';
 import { COMPANY, SEO } from './constants';
 
 /**
@@ -368,7 +369,7 @@ export function generateSitemapUrls(): SitemapUrl[] {
   const baseUrl = COMPANY.WEBSITE.URL;
   const now = new Date();
 
-  return [
+  const staticUrls: SitemapUrl[] = [
     {
       url: baseUrl,
       lastModified: now,
@@ -406,4 +407,13 @@ export function generateSitemapUrls(): SitemapUrl[] {
       priority: 0.9,
     },
   ];
+
+  const serviceUrls: SitemapUrl[] = SERVICE_DETAIL_IDS.map((serviceId) => ({
+    url: `${baseUrl}/services/${serviceId}`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  }));
+
+  return [...staticUrls, ...serviceUrls];
 }
