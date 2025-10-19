@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
+import ChatWidget from "@/components/ui/ChatWidget";
 
 // MONOCODE: Observable Implementation - Structured font loading with clear naming
 // Geist for UI elements, headings, and interactive components
@@ -127,6 +128,9 @@ export default function RootLayout({
         >
           Zum Hauptinhalt springen
         </a>
+        
+        {/* Chat Widget */}
+        <ChatWidget />
       </body>
     </html>
   );
