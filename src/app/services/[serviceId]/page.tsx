@@ -32,8 +32,8 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   const details = getServiceDetails('de', serviceId) ?? getServiceDetails('en', serviceId);
 
   return {
-    title: details ? `${details.title} | NavarroGroup` : 'NavarroGroup Logistik',
-    description: details?.description ?? 'Professionelle Logistiklösungen von NavarroGroup.',
+    title: details ? `${details.title} | NavaTransport` : 'NavaTransport Logistik',
+    description: details?.description ?? 'Professionelle Logistiklösungen von NavaTransport.',
   };
 }
 

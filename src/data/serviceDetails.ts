@@ -1,8 +1,7 @@
 export type SupportedLanguage = 'de' | 'en';
 
 export const SERVICE_DETAIL_IDS = [
-  'full-truckload',
-  'less-than-truckload',
+  'integrated-truckload',
   'air-freight',
   'sea-freight',
   'packaging',
@@ -26,58 +25,39 @@ const buildServicesForLanguage = (
   const isGerman = language === 'de';
 
   return {
-    'full-truckload': {
-      id: 'full-truckload',
-      title: isGerman ? 'Full Truckload Transport' : 'Full Truckload Transport',
+    'integrated-truckload': {
+      id: 'integrated-truckload',
+      title: isGerman
+        ? 'Integrierte Truckload Services'
+        : 'Integrated Truckload Services',
       description: isGerman
-        ? 'Komplette Fahrzeugladungen für Ihre Transporte'
-        : 'Complete vehicle loads for your transport needs',
+        ? 'FTL- und LTL-Transporte aus einer Hand'
+        : 'FTL and LTL transport from a single source',
       longDescription: isGerman
-        ? 'Internationaler und nationaler Full Truckload Transport mit modernster Flotte. Wir bieten zuverlässige Transporte in ganz Europa mit kompletten Fahrzeugladungen für Ihre individuellen Anforderungen.'
-        : 'International and national Full Truckload Transport with state-of-the-art fleet. We offer reliable transportation across Europe with complete vehicle loads for your individual requirements.',
+        ? 'Ganzheitliche Truckload-Lösungen für Komplett- und Teilladungen. Unser europäisches Netzwerk kombiniert flexible Kapazitäten, Expressoptionen und Premium-Service für Ihren Straßentransport.'
+        : 'Comprehensive truckload solutions for full and partial loads. Our European network combines flexible capacity, express options, and premium service for your road transport needs.',
       features: isGerman
         ? [
             'Nationale und internationale Transporte',
-            'Transport von hochwertigen Gütern',
-            'Übergroßen Transport',
-            'Express & Same-Day',
-            'ADR auf Anfrage',
+            'Integrierte FTL & LTL Lösungen',
+            'Flexible Zeitplanung und Expressoptionen',
+            'ADR und hochwertige Güter auf Anfrage',
+            'Sendungsverfolgung in Echtzeit',
           ]
         : [
             'Domestic and international transport',
-            'Transport of high value goods',
-            'Oversized transport',
-            'Express & Same-Day',
-            'ADR on request',
+            'Integrated FTL & LTL solutions',
+            'Flexible scheduling and express options',
+            'ADR and high-value goods on request',
+            'Real-time shipment tracking',
           ],
-      images: ['/IMG_3091.jpeg', '/IMG_3089.jpeg', '/IMG_3090.jpeg', '/IMG_1713.jpeg'],
-      ctaText: isGerman ? 'Angebot anfordern' : 'Request Quote',
-    },
-    'less-than-truckload': {
-      id: 'less-than-truckload',
-      title: isGerman ? 'Less than Truckload Transport' : 'Less than Truckload Transport',
-      description: isGerman
-        ? 'Kosteneffiziente Teilladungen und Sammelgut'
-        : 'Cost-effective partial loads and consolidated freight',
-      longDescription: isGerman
-        ? 'Internationaler und nationaler Less than Truckload Transport für kostenoptimierte Lösungen. Effiziente Teilladungen mit unserem europäischen Netzwerk für optimale Transportkosten.'
-        : 'International and national Less than Truckload Transport for cost-optimized solutions. Efficient partial loads with our European network for optimal transportation costs.',
-      features: isGerman
-        ? [
-            'Nationale und internationale Transporte',
-            'Transport von hochwertigen Gütern',
-            'Kostenoptimierte Sammelladungen',
-            'Flexible Abholzeiten',
-            'Sendungsverfolgung',
-          ]
-        : [
-            'Domestic and international transport',
-            'Transport of high-value goods',
-            'Cost-optimized consolidated shipments',
-            'Flexible pickup times',
-            'Shipment tracking',
-          ],
-      images: ['/images/ltl-transport.jpg'],
+      images: [
+        '/IMG_3091.jpeg',
+        '/IMG_3089.jpeg',
+        '/IMG_3090.jpeg',
+        '/IMG_1713.jpeg',
+        '/images/ltl-transport.jpg',
+      ],
       ctaText: isGerman ? 'Angebot anfordern' : 'Request Quote',
     },
     'air-freight': {
@@ -184,8 +164,8 @@ export const getServiceMetadataDefaults = (
   serviceId: string,
 ): { title: string; description: string } => {
   const fallback = {
-    title: 'NavarroGroup Logistik Service',
-    description: 'Professionelle Logistiklösungen von NavarroGroup.',
+    title: 'NavaTransport Logistik Service',
+    description: 'Professionelle Logistiklösungen von NavaTransport.',
   };
 
   if (!isValidServiceId(serviceId)) {

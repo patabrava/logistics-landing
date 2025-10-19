@@ -63,13 +63,13 @@ const getFooterContent = (language: string) => {
       },
       contact: {
         title: isGerman ? 'Kontakt' : 'Contact',
-        address: 'NavarroGroup\nMarienstraße 6\n61440 Oberursel',
+        address: 'NavaTransport\nMarienstraße 6\n61440 Oberursel',
         phone: '+49 170 2846898',
         email: 'info@navarrogroup.de'
       },
       copyright: isGerman 
-        ? `© ${new Date().getFullYear()} NavarroGroup. Alle Rechte vorbehalten.`
-        : `© ${new Date().getFullYear()} NavarroGroup. All rights reserved.`
+        ? `© ${new Date().getFullYear()} NavaTransport. Alle Rechte vorbehalten.`
+        : `© ${new Date().getFullYear()} NavaTransport. All rights reserved.`
     };
   } catch (error) {
     logger.log('error', 'getFooterContent', {
@@ -83,11 +83,11 @@ const getFooterContent = (language: string) => {
       legal: { title: 'Legal', links: [] },
       contact: { 
         title: 'Contact', 
-        address: 'NavarroGroup\nMarienstraße 6\n61440 Oberursel', 
+        address: 'NavaTransport\nMarienstraße 6\n61440 Oberursel', 
         phone: '+49 170 2846898', 
         email: 'info@navarrogroup.de'
       },
-      copyright: `© ${new Date().getFullYear()} NavarroGroup. All rights reserved.`
+      copyright: `© ${new Date().getFullYear()} NavaTransport. All rights reserved.`
     };
   }
 };

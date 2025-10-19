@@ -303,15 +303,15 @@
     },
     "contact": {
       "title": "Kontakt",
-      "address": "NavarroGroup GmbH\nMusterstraße 123\n10115 Berlin",
+      "address": "NavaTransport GmbH\nMusterstraße 123\n10115 Berlin",
       "phone": "+49 30 12345678",
       "email": "info@logisticsco.de"
     },
-    "copyright": "© {{year}} NavarroGroup GmbH. Alle Rechte vorbehalten."
+    "copyright": "© {{year}} NavaTransport GmbH. Alle Rechte vorbehalten."
   },
   "about": {
-    "headline": "Über NavarroGroup",
-    "subheadline": "Ihr vertrauensvoller Partner für professionelle Logistiklösungen in ganz Europa seit über15 Jahren.",
+    "headline": "Über NavaTransport",
+    "subheadline": "Ihr vertrauensvoller Partner für professionelle Logistiklösungen in ganz Europa seit über 15 Jahren.",
     "story": {
       "title": "Unsere DNA",
       "paragraph_1": "",
@@ -386,22 +386,22 @@
   },
   "terms": {
     "title": "Allgemeine Geschäftsbedingungen (AGB)",
-    "intro": "Die nachfolgenden Bestimmungen regeln sämtliche Transport- und Logistikleistungen der NavarroGroup.",
+    "intro": "Die nachfolgenden Bestimmungen regeln sämtliche Transport- und Logistikleistungen der NavaTransport.",
     "updated": "Stand: Januar 2024",
     "sections": {
       "scope": {
         "title": "1. Geltungsbereich",
-        "paragraph_1": "Diese Allgemeinen Geschäftsbedingungen (\u201eAGB\u201c) gelten für sämtliche Verträge, Angebote und Leistungen der NavarroGroup im Bereich Transport und Logistik.",
-        "paragraph_2": "Abweichende oder ergänzende Bedingungen des Auftraggebers werden nur Vertragsbestandteil, wenn NavarroGroup ihrer Geltung ausdrücklich in Textform zugestimmt hat."
+        "paragraph_1": "Diese Allgemeinen Geschäftsbedingungen (\u201eAGB\u201c) gelten für sämtliche Verträge, Angebote und Leistungen der NavaTransport im Bereich Transport und Logistik.",
+        "paragraph_2": "Abweichende oder ergänzende Bedingungen des Auftraggebers werden nur Vertragsbestandteil, wenn NavaTransport ihrer Geltung ausdrücklich in Textform zugestimmt hat."
       },
       "parties": {
         "title": "2. Vertragspartner & Kontaktdaten",
-        "paragraph_1": "Vertragspartner und Dienstleister ist die Navarro Group GmbH.",
+        "paragraph_1": "Vertragspartner und Dienstleister ist die NavaTransport GmbH.",
         "paragraph_2": "Anfragen sind ausschließlich über die in diesen AGB genannten Kommunikationswege einzureichen."
       },
       "services": {
         "title": "3. Leistungen & Vertragsschluss",
-        "paragraph_1": "Von NavarroGroup abgegebene Angebote sind freibleibend und beziehen sich ausschließlich auf die jeweils beschriebenen Leistungen.",
+        "paragraph_1": "Von NavaTransport abgegebene Angebote sind freibleibend und beziehen sich ausschließlich auf die jeweils beschriebenen Leistungen.",
         "bullet_1": "Ein Vertrag kommt erst durch schriftliche Auftragsbestätigung (z.\u202fB. per E-Mail) oder durch Ausführung der Leistung zustande.",
         "bullet_2": "Änderungen oder Erweiterungen des Leistungsumfangs bedürfen der Textform und können zu angepassten Vergütungen führen.",
         "bullet_3": "Zeit- und Mengenzusagen stehen unter dem Vorbehalt ausreichender Kapazitäten sowie erforderlicher behördlicher Genehmigungen."
@@ -425,7 +425,7 @@
       },
       "liability": {
         "title": "7. Haftung & Versicherung",
-        "bullet_1": "NavarroGroup haftet für Schäden nur bei Vorsatz, grober Fahrlässigkeit oder Verletzung wesentlicher Vertragspflichten.",
+        "bullet_1": "NavaTransport haftet für Schäden nur bei Vorsatz, grober Fahrlässigkeit oder Verletzung wesentlicher Vertragspflichten.",
         "bullet_2": "Bei leicht fahrlässiger Verletzung einer Kardinalpflicht ist die Haftung auf den vorhersehbaren, typischerweise eintretenden Schaden begrenzt.",
         "bullet_3": "Für Güterschäden gelten die gesetzlichen Haftungshöchstbeträge des Handelsgesetzbuchs (HGB) sowie einschlägiger internationaler Übereinkommen.",
         "bullet_4": "Der Auftraggeber hat den Warenwert anzugeben und bei Bedarf eine weitergehende Transportversicherung zu beauftragen."
@@ -441,14 +441,14 @@
       },
       "dataProtection": {
         "title": "10. Datenschutz",
-        "paragraph_1": "NavarroGroup verarbeitet personenbezogene Daten ausschließlich gemäß den gesetzlichen Vorgaben der DSGVO.",
+        "paragraph_1": "NavaTransport verarbeitet personenbezogene Daten ausschließlich gemäß den gesetzlichen Vorgaben der DSGVO.",
         "paragraph_2": "Weitere Informationen entnehmen Sie bitte unserer",
         "link_label": "Datenschutzerklärung"
       },
       "final": {
         "title": "11. Schlussbestimmungen",
         "bullet_1": "Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts (CISG).",
-        "bullet_2": "Erfüllungsort und Gerichtsstand für Kaufleute ist der Sitz der NavarroGroup.",
+        "bullet_2": "Erfüllungsort und Gerichtsstand für Kaufleute ist der Sitz der NavaTransport.",
         "bullet_3": "Sollten einzelne Bestimmungen unwirksam sein oder werden, bleibt die Wirksamkeit der übrigen Regelungen unberührt; die Parteien vereinbaren eine Regelung, die dem wirtschaftlichen Zweck am nächsten kommt."
       }
     }

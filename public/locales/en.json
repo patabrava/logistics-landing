@@ -302,17 +302,13 @@
       "cookies": "Cookie Settings"
     },
     "contact": {
-      "title": "Contact",
-      "address": "NavarroGroup GmbH\nMusterstraße 123\n10115 Berlin",
-      "phone": "+49 30 12345678",
-      "email": "info@logisticsco.de"
-    },
-    "copyright": "© {{year}} NavarroGroup GmbH. All rights reserved."
+    "title": "Contact",
+    "address": "NavaTransport GmbH\nMusterstraße 123\n10115 Berlin",
+    "phone": "+49 30 12345678",
+    "email": "info@logisticsco.de"
   },
-  "about": {
-    "headline": "About NavarroGroup",
-    "subheadline": "Your trusted partner for professional logistics solutions across Europe for over 15 years.",
-    "story": {
+  "copyright": " NavaTransport GmbH. All rights reserved."
+}
       "title": "Our DNA",
       "paragraph_1": "",
       "paragraph_2": "Our success is built on three pillars: outstanding service, cutting-edge technology, and an experienced team. We understand our customers' challenges and develop tailor-made solutions for every transport need.",
@@ -386,22 +382,22 @@
   },
   "terms": {
     "title": "Terms & Conditions (AGB)",
-    "intro": "The following provisions govern all transport and logistics services provided by NavarroGroup.",
+    "intro": "The following provisions govern all transport and logistics services provided by NavaTransport.",
     "updated": "Last updated: January 2024",
     "sections": {
       "scope": {
         "title": "1. Scope of Application",
-        "paragraph_1": "These General Terms and Conditions (\u201cTerms\u201d) apply to every contract, offer, and service provided by NavarroGroup in the field of transport and logistics.",
-        "paragraph_2": "Deviating or supplementary terms of the customer shall only become part of the contract if NavarroGroup has expressly agreed to them in text form."
+        "paragraph_1": "These General Terms and Conditions (\u201cTerms\u201d) apply to every contract, offer, and service provided by NavaTransport in the field of transport and logistics.",
+        "paragraph_2": "Deviating or supplementary terms of the customer shall only become part of the contract if NavaTransport has expressly agreed to them in text form."
       },
       "parties": {
         "title": "2. Contracting Parties & Contact Details",
-        "paragraph_1": "Navarro Group GmbH acts as the contractual partner and service provider.",
+        "paragraph_1": "NavaTransport GmbH acts as the contractual partner and service provider.",
         "paragraph_2": "All enquiries must be submitted via the communication channels specified in these Terms."
       },
       "services": {
         "title": "3. Services & Conclusion of Contract",
-        "paragraph_1": "Quotations issued by NavarroGroup are non-binding and refer solely to the services described therein.",
+        "paragraph_1": "Quotations issued by NavaTransport are non-binding and refer solely to the services described therein.",
         "bullet_1": "A contract is concluded only after written order confirmation (e.g., by email) or by execution of the service.",
         "bullet_2": "Changes or extensions to the scope of services require text form and may lead to adjusted fees.",
         "bullet_3": "Time and quantity commitments remain subject to available capacity and necessary official approvals."
@@ -425,7 +421,7 @@
       },
       "liability": {
         "title": "7. Liability & Insurance",
-        "bullet_1": "NavarroGroup is liable for damages only in cases of intent, gross negligence, or breach of essential contractual obligations.",
+        "bullet_1": "NavaTransport is liable for damages only in cases of intent, gross negligence, or breach of essential contractual obligations.",
         "bullet_2": "In cases of slight negligence of a cardinal duty, liability is limited to foreseeable, typical damage.",
         "bullet_3": "Statutory liability limits under the German Commercial Code (HGB) and applicable international conventions apply to cargo damage.",
         "bullet_4": "The customer must declare the value of the goods and arrange additional transport insurance if higher coverage is required."
@@ -441,14 +437,14 @@
       },
       "dataProtection": {
         "title": "10. Data Protection",
-        "paragraph_1": "NavarroGroup processes personal data strictly in accordance with the statutory requirements of the GDPR.",
+        "paragraph_1": "NavaTransport processes personal data strictly in accordance with the statutory requirements of the GDPR.",
         "paragraph_2": "Further details are available in our",
         "link_label": "Privacy Policy"
       },
       "final": {
         "title": "11. Final Provisions",
         "bullet_1": "The laws of the Federal Republic of Germany apply, excluding the UN Convention on Contracts for the International Sale of Goods (CISG).",
-        "bullet_2": "Place of performance and jurisdiction for merchants is the registered office of NavarroGroup.",
+        "bullet_2": "Place of performance and jurisdiction for merchants is the registered office of NavaTransport.",
         "bullet_3": "Should any provision be or become invalid, the remaining provisions remain in force; the parties shall agree on a valid provision that best reflects the economic intent."
       }
     }

@@ -3,8 +3,8 @@
 
 // Company Information
 export const COMPANY = {
-  NAME: 'NavarroGroup',
-  LEGAL_NAME: 'Navarro Group GmbH',
+  NAME: 'NavaTransport',
+  LEGAL_NAME: 'NavaTransport GmbH',
   FOUNDED_YEAR: 1995,
   ADDRESS: {
     STREET: 'Musterstraße 123',
@@ -132,10 +132,10 @@ export const UI = {
 
 // SEO Configuration
 export const SEO = {
-  DEFAULT_TITLE: 'NavarroGroup - Zuverlässige Logistik in ganz Europa',
+  DEFAULT_TITLE: 'NavaTransport - Zuverlässige Logistik in ganz Europa',
   DEFAULT_DESCRIPTION: 'Professionelle Transportlösungen von Deutschland bis in die EU. Straßentransport, Luftfracht, Seefracht und Lagerlösungen. Angebot innerhalb weniger Stunden.',
   DEFAULT_KEYWORDS: 'Logistik, Transport, Spedition, Europa, Deutschland, Straßentransport, Luftfracht, Seefracht',
-  SITE_NAME: 'NavarroGroup',
+  SITE_NAME: 'NavaTransport',
   TWITTER_HANDLE: '@logisticsco',
   DEFAULT_IMAGE: '/images/og-image.jpg',
   DEFAULT_LOCALE: 'de_DE'

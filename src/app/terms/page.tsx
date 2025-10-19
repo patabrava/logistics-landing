@@ -4,9 +4,9 @@ import Footer from '@/components/layout/Footer'
 import TermsContent from '@/components/legal/TermsContent'
 
 export const metadata: Metadata = {
-  title: 'AGB | NavarroGroup',
+  title: 'AGB | NavaTransport',
   description:
-    'Allgemeine Geschäftsbedingungen (AGB) der NavarroGroup – rechtliche Rahmenbedingungen für Transport- und Logistikleistungen.',
+    'Allgemeine Geschäftsbedingungen (AGB) der NavaTransport – rechtliche Rahmenbedingungen für Transport- und Logistikleistungen.',
   robots: {
     index: true,
     follow: false

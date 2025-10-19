@@ -20,14 +20,14 @@ const inter = Inter({
 // MONOCODE: Explicit Error Handling - Comprehensive SEO metadata following style.md specifications
 export const metadata: Metadata = {
   title: {
-    default: "NavarroGroup - Zuverlässige Logistik in ganz Europa",
-    template: "%s | NavarroGroup"
+    default: "NavaTransport - Zuverlässige Logistik in ganz Europa",
+    template: "%s | NavaTransport"
   },
   description: "Professionelle Logistiklösungen für Deutschland und Europa. Schnell, sicher, planbar. Express-Transport, Same-Day-Delivery und ADR-Transporte.",
   keywords: ["Logistik", "Transport", "Europa", "Deutschland", "Express", "Same-Day", "ADR", "Spedition"],
-  authors: [{ name: "NavarroGroup" }],
-  creator: "NavarroGroup",
-  publisher: "NavarroGroup",
+  authors: [{ name: "NavaTransport" }],
+  creator: "NavaTransport",
+  publisher: "NavaTransport",
   formatDetection: {
     email: false,
     address: false,
@@ -49,21 +49,21 @@ export const metadata: Metadata = {
     locale: "de_DE",
     alternateLocale: ["en_US"],
     url: "https://navarrogroup.de",
-    siteName: "NavarroGroup",
-    title: "NavarroGroup - Zuverlässige Logistik in ganz Europa",
+    siteName: "NavaTransport",
+    title: "NavaTransport - Zuverlässige Logistik in ganz Europa",
     description: "Professionelle Logistiklösungen für Deutschland und Europa. Schnell, sicher, planbar.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "NavarroGroup - Europäische Logistiklösungen",
+        alt: "NavaTransport - Europäische Logistiklösungen",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "NavarroGroup - Zuverlässige Logistik in ganz Europa",
+    title: "NavaTransport - Zuverlässige Logistik in ganz Europa",
     description: "Professionelle Logistiklösungen für Deutschland und Europa. Schnell, sicher, planbar.",
     images: ["/og-image.jpg"],
   },

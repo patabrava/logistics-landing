@@ -37,24 +37,24 @@ interface TermsTranslation {
 
 const fallbackEn: TermsTranslation = {
   title: 'Terms & Conditions (AGB)',
-  intro: 'The following provisions govern all transport and logistics services provided by NavarroGroup.',
+  intro: 'The following provisions govern all transport and logistics services provided by NavaTransport.',
   updated: 'Last updated: January 2024',
   sections: {
     scope: {
       title: '1. Scope of Application',
       paragraph_1:
-        'These General Terms and Conditions (“Terms”) apply to every contract, offer, and service provided by NavarroGroup in the field of transport and logistics.',
+        'These General Terms and Conditions (“Terms”) apply to every contract, offer, and service provided by NavaTransport in the field of transport and logistics.',
       paragraph_2:
-        'Deviating or supplementary terms of the customer shall only become part of the contract if NavarroGroup has expressly agreed to them in text form.'
+        'Deviating or supplementary terms of the customer shall only become part of the contract if NavaTransport has expressly agreed to them in text form.'
     },
     parties: {
       title: '2. Contracting Parties & Contact Details',
-      paragraph_1: 'Navarro Group GmbH acts as the contractual partner and service provider.',
+      paragraph_1: 'NavaTransport GmbH acts as the contractual partner and service provider.',
       paragraph_2: 'All enquiries must be submitted via the communication channels specified in these Terms.'
     },
     services: {
       title: '3. Services & Conclusion of Contract',
-      paragraph_1: 'Quotations issued by NavarroGroup are non-binding and refer solely to the services described therein.',
+      paragraph_1: 'Quotations issued by NavaTransport are non-binding and refer solely to the services described therein.',
       bullet_1: 'A contract is concluded only after written order confirmation (e.g., by email) or by execution of the service.',
       bullet_2: 'Changes or extensions to the scope of services require text form and may lead to adjusted fees.',
       bullet_3: 'Time and quantity commitments remain subject to available capacity and necessary official approvals.'
@@ -80,7 +80,7 @@ const fallbackEn: TermsTranslation = {
     },
     liability: {
       title: '7. Liability & Insurance',
-      bullet_1: 'NavarroGroup is liable for damages only in cases of intent, gross negligence, or breach of essential contractual obligations.',
+      bullet_1: 'NavaTransport is liable for damages only in cases of intent, gross negligence, or breach of essential contractual obligations.',
       bullet_2: 'In cases of slight negligence of a cardinal duty, liability is limited to foreseeable, typical damage.',
       bullet_3: 'Statutory liability limits under the German Commercial Code (HGB) and applicable international conventions apply to cargo damage.',
       bullet_4: 'The customer must declare the value of the goods and arrange additional transport insurance if higher coverage is required.'
@@ -97,14 +97,14 @@ const fallbackEn: TermsTranslation = {
     },
     dataProtection: {
       title: '10. Data Protection',
-      paragraph_1: 'NavarroGroup processes personal data strictly in accordance with the statutory requirements of the GDPR.',
+      paragraph_1: 'NavaTransport processes personal data strictly in accordance with the statutory requirements of the GDPR.',
       paragraph_2: 'Further details are available in our',
       link_label: 'Privacy Policy'
     },
     final: {
       title: '11. Final Provisions',
       bullet_1: 'The laws of the Federal Republic of Germany apply, excluding the UN Convention on Contracts for the International Sale of Goods (CISG).',
-      bullet_2: 'Place of performance and jurisdiction for merchants is the registered office of NavarroGroup.',
+      bullet_2: 'Place of performance and jurisdiction for merchants is the registered office of NavaTransport.',
       bullet_3:
         'Should any provision be or become invalid, the remaining provisions remain in force; the parties shall agree on a valid provision that best reflects the economic intent.'
     }
@@ -113,24 +113,24 @@ const fallbackEn: TermsTranslation = {
 
 const fallbackDe: TermsTranslation = {
   title: 'Allgemeine Geschäftsbedingungen (AGB)',
-  intro: 'Die nachfolgenden Bestimmungen regeln sämtliche Transport- und Logistikleistungen der NavarroGroup.',
+  intro: 'Die nachfolgenden Bestimmungen regeln sämtliche Transport- und Logistikleistungen der NavaTransport.',
   updated: 'Stand: Januar 2024',
   sections: {
     scope: {
       title: '1. Geltungsbereich',
       paragraph_1:
-        'Diese Allgemeinen Geschäftsbedingungen („AGB“) gelten für sämtliche Verträge, Angebote und Leistungen der NavarroGroup im Bereich Transport und Logistik.',
+        'Diese Allgemeinen Geschäftsbedingungen („AGB“) gelten für sämtliche Verträge, Angebote und Leistungen der NavaTransport im Bereich Transport und Logistik.',
       paragraph_2:
-        'Abweichende oder ergänzende Bedingungen des Auftraggebers werden nur Vertragsbestandteil, wenn NavarroGroup ihrer Geltung ausdrücklich in Textform zugestimmt hat.'
+        'Abweichende oder ergänzende Bedingungen des Auftraggebers werden nur Vertragsbestandteil, wenn NavaTransport ihrer Geltung ausdrücklich in Textform zugestimmt hat.'
     },
     parties: {
       title: '2. Vertragspartner & Kontaktdaten',
-      paragraph_1: 'Vertragspartner und Dienstleister ist die Navarro Group GmbH.',
+      paragraph_1: 'Vertragspartner und Dienstleister ist die NavaTransport GmbH.',
       paragraph_2: 'Anfragen sind ausschließlich über die in diesen AGB genannten Kommunikationswege einzureichen.'
     },
     services: {
       title: '3. Leistungen & Vertragsschluss',
-      paragraph_1: 'Von NavarroGroup abgegebene Angebote sind freibleibend und beziehen sich ausschließlich auf die jeweils beschriebenen Leistungen.',
+      paragraph_1: 'Von NavaTransport abgegebene Angebote sind freibleibend und beziehen sich ausschließlich auf die jeweils beschriebenen Leistungen.',
       bullet_1: 'Ein Vertrag kommt erst durch schriftliche Auftragsbestätigung (z. B. per E-Mail) oder durch Ausführung der Leistung zustande.',
       bullet_2: 'Änderungen oder Erweiterungen des Leistungsumfangs bedürfen der Textform und können zu angepassten Vergütungen führen.',
       bullet_3: 'Zeit- und Mengenzusagen stehen unter dem Vorbehalt ausreichender Kapazitäten sowie erforderlicher behördlicher Genehmigungen.'
@@ -156,7 +156,7 @@ const fallbackDe: TermsTranslation = {
     },
     liability: {
       title: '7. Haftung & Versicherung',
-      bullet_1: 'NavarroGroup haftet für Schäden nur bei Vorsatz, grober Fahrlässigkeit oder Verletzung wesentlicher Vertragspflichten.',
+      bullet_1: 'NavaTransport haftet für Schäden nur bei Vorsatz, grober Fahrlässigkeit oder Verletzung wesentlicher Vertragspflichten.',
       bullet_2: 'Bei leicht fahrlässiger Verletzung einer Kardinalpflicht ist die Haftung auf den vorhersehbaren, typischerweise eintretenden Schaden begrenzt.',
       bullet_3: 'Für Güterschäden gelten die gesetzlichen Haftungshöchstbeträge des Handelsgesetzbuchs (HGB) sowie einschlägiger internationaler Übereinkommen.',
       bullet_4: 'Der Auftraggeber hat den Warenwert anzugeben und bei Bedarf eine weitergehende Transportversicherung zu beauftragen.'
@@ -173,14 +173,14 @@ const fallbackDe: TermsTranslation = {
     },
     dataProtection: {
       title: '10. Datenschutz',
-      paragraph_1: 'NavarroGroup verarbeitet personenbezogene Daten ausschließlich gemäß den gesetzlichen Vorgaben der DSGVO.',
+      paragraph_1: 'NavaTransport verarbeitet personenbezogene Daten ausschließlich gemäß den gesetzlichen Vorgaben der DSGVO.',
       paragraph_2: 'Weitere Informationen entnehmen Sie bitte unserer',
       link_label: 'Datenschutzerklärung'
     },
     final: {
       title: '11. Schlussbestimmungen',
       bullet_1: 'Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts (CISG).',
-      bullet_2: 'Erfüllungsort und Gerichtsstand für Kaufleute ist der Sitz der NavarroGroup.',
+      bullet_2: 'Erfüllungsort und Gerichtsstand für Kaufleute ist der Sitz der NavaTransport.',
       bullet_3:
         'Sollten einzelne Bestimmungen unwirksam sein oder werden, bleibt die Wirksamkeit der übrigen Regelungen unberührt; die Parteien vereinbaren eine Regelung, die dem wirtschaftlichen Zweck am nächsten kommt.'
     }

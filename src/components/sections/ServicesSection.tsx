@@ -68,32 +68,18 @@ const getServicesContent = (language: string): ServicesContent => {
         : 'Tailored logistics solutions for your individual requirements',
       services: [
         {
-          id: 'full-truckload',
-          title: isGerman ? 'Full Truckload Transport' : 'Full Truckload Transport',
+          id: 'integrated-truckload',
+          title: isGerman ? 'Integrierte Truckload Services' : 'Integrated Truckload Services',
           description: isGerman 
-            ? 'Komplette Fahrzeugladungen für Ihre Transporte'
-            : 'Complete vehicle loads for your transport needs',
+            ? 'FTL- und LTL-Transporte aus einer Hand'
+            : 'FTL and LTL transport from a single source',
           features: [
             { text: isGerman ? 'Nationale und internationale Transporte' : 'Domestic and international transport', available: true },
-            { text: isGerman ? 'Transport von hochwertigen Gütern' : 'Transport of high value goods', available: true },
-            { text: isGerman ? 'Übergroßen Transport' : 'Oversized transport', available: true }
+            { text: isGerman ? 'Integrierte FTL & LTL Lösungen' : 'Integrated FTL & LTL solutions', available: true },
+            { text: isGerman ? 'Flexible Zeitplanung und Expressoptionen' : 'Flexible scheduling and express options', available: true }
           ],
           ctaText: isGerman ? 'Mehr erfahren' : 'Learn More',
           icon: 'truck'
-        },
-        {
-          id: 'less-than-truckload',
-          title: isGerman ? 'Less than Truckload Transport' : 'Less than Truckload Transport',
-          description: isGerman 
-            ? 'Kosteneffiziente Teilladungen und Sammelgut'
-            : 'Cost-effective partial loads and consolidated freight',
-          features: [
-            { text: isGerman ? 'Nationale und internationale Transporte' : 'Domestic and international transport', available: true },
-            { text: isGerman ? 'Transport von hochwertigen Gütern' : 'Transport of high-value goods', available: true },
-            { text: isGerman ? 'Kostenoptimierte Sammelladungen' : 'Cost-optimized consolidated shipments', available: true }
-          ],
-          ctaText: isGerman ? 'Mehr erfahren' : 'Learn More',
-          icon: 'warehouse'
         },
         {
           id: 'air-freight',
