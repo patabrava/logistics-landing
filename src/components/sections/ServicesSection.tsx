@@ -122,6 +122,34 @@ const getServicesContent = (language: string): ServicesContent => {
           ],
           ctaText: isGerman ? 'Mehr erfahren' : 'Learn More',
           icon: 'package'
+        },
+        {
+          id: 'oldtimers',
+          title: isGerman ? 'Oldtimer Transport' : 'Classic Car Transport',
+          description: isGerman 
+            ? 'Spezialisierter Transport für klassische Fahrzeuge'
+            : 'Specialized transport for classic vehicles',
+          features: [
+            { text: isGerman ? 'Geschlossene Transportfahrzeuge' : 'Enclosed transport vehicles', available: true },
+            { text: isGerman ? 'Versicherung für hochwertige Fahrzeuge' : 'Insurance for high-value vehicles', available: true },
+            { text: isGerman ? 'Tür-zu-Tür Service' : 'Door-to-door service', available: true }
+          ],
+          ctaText: isGerman ? 'Mehr erfahren' : 'Learn More',
+          icon: 'car'
+        },
+        {
+          id: 'digitalization',
+          title: isGerman ? 'Digitalisierung und Prozessoptimierung' : 'Digitalization and Process Optimization',
+          description: isGerman 
+            ? 'Moderne Technologielösungen für effiziente Logistik'
+            : 'Modern technology solutions for efficient logistics',
+          features: [
+            { text: isGerman ? 'Echtzeit-Sendungsverfolgung' : 'Real-time shipment tracking', available: true },
+            { text: isGerman ? 'Automatisierte Prozessabläufe' : 'Automated process workflows', available: true },
+            { text: isGerman ? 'KI-gestützte Routenoptimierung' : 'AI-powered route optimization', available: true }
+          ],
+          ctaText: isGerman ? 'Mehr erfahren' : 'Learn More',
+          icon: 'cpu'
         }
       ]
     };
@@ -188,6 +216,17 @@ const getServiceIconSVG = (iconName: string): React.ReactElement => {
     ship: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 15s2.5-3.5 5-3.5 5 3.5 8 3.5 5-3.5 5-3.5M3 20s2.5-3.5 5-3.5 5 3.5 8 3.5 5-3.5 5-3.5M6 8h4l2-3h4l-1 3h5l-2 4H4L6 8z" />
+      </svg>
+    ),
+    car: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h2a1 1 0 001-1m0 0h1m-6 0H9" />
+      </svg>
+    ),
+    cpu: (
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
       </svg>
     )
   };
@@ -487,7 +526,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
             </p>
           </motion.div>
 
-          {/* Style Guide Section 4: Services grid - 3 top, 2 bottom layout */}
+          {/* Style Guide Section 4: Services grid - 3 top, 3 middle, 1 bottom layout */}
           <div className="space-y-8">
             {/* Top row - 3 services */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -500,9 +539,9 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
               ))}
             </div>
             
-            {/* Bottom row - 2 services centered */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              {content.services.slice(3, 5).map((service, index) => (
+            {/* Middle row - 3 services */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {content.services.slice(3, 6).map((service, index) => (
                 <ServiceCard
                   key={`service-${service.id}`}
                   service={service}

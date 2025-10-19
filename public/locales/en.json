@@ -302,13 +302,17 @@
       "cookies": "Cookie Settings"
     },
     "contact": {
-    "title": "Contact",
-    "address": "NavaTransport GmbH\nMusterstraße 123\n10115 Berlin",
-    "phone": "+49 30 12345678",
-    "email": "info@logisticsco.de"
+      "title": "Contact",
+      "address": "NavaTransport GmbH\nMusterstraße 123\n10115 Berlin",
+      "phone": "+49 30 12345678",
+      "email": "info@logisticsco.de"
+    },
+    "copyright": " NavaTransport GmbH. All rights reserved."
   },
-  "copyright": " NavaTransport GmbH. All rights reserved."
-}
+  "about": {
+    "headline": "About NavaTransport",
+    "subheadline": "Your trusted partner for professional logistics solutions across Europe for over 15 years.",
+    "story": {
       "title": "Our DNA",
       "paragraph_1": "",
       "paragraph_2": "Our success is built on three pillars: outstanding service, cutting-edge technology, and an experienced team. We understand our customers' challenges and develop tailor-made solutions for every transport need.",

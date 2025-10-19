@@ -5,6 +5,8 @@ export const SERVICE_DETAIL_IDS = [
   'air-freight',
   'sea-freight',
   'packaging',
+  'oldtimers',
+  'digitalization',
 ] as const;
 
 export type ServiceDetailId = typeof SERVICE_DETAIL_IDS[number];
@@ -140,6 +142,64 @@ const buildServicesForLanguage = (
           ],
       images: ['/IMG_1629.jpeg', '/IMG_1641.jpeg'],
       ctaText: isGerman ? 'Angebot anfordern' : 'Request Quote',
+    },
+    oldtimers: {
+      id: 'oldtimers',
+      title: isGerman ? 'Oldtimer Transport' : 'Classic Car Transport',
+      description: isGerman
+        ? 'Spezialisierter Transport für klassische Fahrzeuge'
+        : 'Specialized transport for classic vehicles',
+      longDescription: isGerman
+        ? 'Professioneller und sicherer Transport für Oldtimer und Klassiker. Wir bieten maßgeschneiderte Lösungen für den nationalen und internationalen Transport wertvoller Fahrzeuge mit höchster Sorgfalt und Expertise.'
+        : 'Professional and secure transport for classic and vintage cars. We offer tailored solutions for domestic and international transport of valuable vehicles with the highest care and expertise.',
+      features: isGerman
+        ? [
+            'Geschlossene Transportfahrzeuge',
+            'Versicherung für hochwertige Fahrzeuge',
+            'Tür-zu-Tür Service',
+            'Internationale Oldtimer-Transporte',
+            'Fachmännische Beladung und Sicherung',
+            'Klimakontrollierte Optionen',
+          ]
+        : [
+            'Enclosed transport vehicles',
+            'Insurance for high-value vehicles',
+            'Door-to-door service',
+            'International classic car transport',
+            'Expert loading and securing',
+            'Climate-controlled options',
+          ],
+      images: ['/images/oldtimer-transport.jpg'],
+      ctaText: isGerman ? 'Angebot anfordern' : 'Request Quote',
+    },
+    digitalization: {
+      id: 'digitalization',
+      title: isGerman ? 'Digitalisierung und Prozessoptimierung' : 'Digitalization and Process Optimization',
+      description: isGerman
+        ? 'Moderne Technologielösungen für effiziente Logistik'
+        : 'Modern technology solutions for efficient logistics',
+      longDescription: isGerman
+        ? 'Optimieren Sie Ihre Logistikprozesse durch digitale Transformation. Wir bieten umfassende Lösungen zur Automatisierung, Echtzeitverfolgung und Datenanalyse, um Ihre Supply Chain effizienter und transparenter zu gestalten.'
+        : 'Optimize your logistics processes through digital transformation. We offer comprehensive solutions for automation, real-time tracking, and data analytics to make your supply chain more efficient and transparent.',
+      features: isGerman
+        ? [
+            'Echtzeit-Sendungsverfolgung',
+            'Automatisierte Prozessabläufe',
+            'Datenanalyse und Reporting',
+            'API-Integration in bestehende Systeme',
+            'Digitale Dokumentenverwaltung',
+            'KI-gestützte Routenoptimierung',
+          ]
+        : [
+            'Real-time shipment tracking',
+            'Automated process workflows',
+            'Data analytics and reporting',
+            'API integration with existing systems',
+            'Digital document management',
+            'AI-powered route optimization',
+          ],
+      images: ['/images/digitalization.jpg'],
+      ctaText: isGerman ? 'Mehr erfahren' : 'Learn More',
     },
   };
 };

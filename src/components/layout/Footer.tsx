@@ -63,9 +63,9 @@ const getFooterContent = (language: string) => {
       },
       contact: {
         title: isGerman ? 'Kontakt' : 'Contact',
-        address: 'NavaTransport\nMarienstraße 6\n61440 Oberursel',
+        address: 'Santiago Navarro\nImplerstrasse 22\n81371 München',
         phone: '+49 170 2846898',
-        email: 'info@navarrogroup.de'
+        email: 'santiago.navarro@navatransport.de'
       },
       copyright: isGerman 
         ? `© ${new Date().getFullYear()} NavaTransport. Alle Rechte vorbehalten.`
@@ -83,7 +83,7 @@ const getFooterContent = (language: string) => {
       legal: { title: 'Legal', links: [] },
       contact: { 
         title: 'Contact', 
-        address: 'NavaTransport\nMarienstraße 6\n61440 Oberursel', 
+        address: 'Santiago Navarro\nImplerstrasse 22\n81371 München', 
         phone: '+49 170 2846898', 
         email: 'info@navarrogroup.de'
       },
