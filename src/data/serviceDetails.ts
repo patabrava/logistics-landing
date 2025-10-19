@@ -54,11 +54,11 @@ const buildServicesForLanguage = (
             'Real-time shipment tracking',
           ],
       images: [
-        '/IMG_3091.jpeg',
-        '/IMG_3089.jpeg',
-        '/IMG_3090.jpeg',
-        '/IMG_1713.jpeg',
-        '/images/ltl-transport.jpg',
+        '/Camilo/Integrierte Truckload Services/Full Truckload/IMG_1725.jpeg',
+        '/Camilo/Integrierte Truckload Services/Full Truckload/IMG_1728.jpeg',
+        '/Camilo/Integrierte Truckload Services/Full Truckload/IMG_1733.jpeg',
+        '/Camilo/Integrierte Truckload Services/Full Truckload/IMG_1743.jpeg',
+        '/Camilo/Integrierte Truckload Services/Less than truckload/IMG_1827.jpeg',
       ],
       ctaText: isGerman ? 'Angebot anfordern' : 'Request Quote',
     },
@@ -86,7 +86,11 @@ const buildServicesForLanguage = (
             'Customs clearance',
             'Temperature-controlled transport',
           ],
-      images: ['/images/air-freight.jpg'],
+      images: [
+        '/Camilo/Luftfracht/8c0c3342-5158-4c01-8bbe-d75492416c02.jpeg',
+        '/Camilo/Luftfracht/efe48e1b-38d3-4b41-8e60-981b1ea9fc77.jpeg',
+        '/Camilo/Luftfracht/f5ea605c-01e1-4b2e-a9c9-30a818225b3b.jpeg',
+      ],
       ctaText: isGerman ? 'Angebot anfordern' : 'Request Quote',
     },
     'sea-freight': {
@@ -113,7 +117,11 @@ const buildServicesForLanguage = (
             'Port handling',
             'Documentation service',
           ],
-      images: ['/IMG_3093.jpeg'],
+      images: [
+        '/Camilo/Seefracht/IMG_3093.jpeg',
+        '/Camilo/Seefracht/e42b1737-f000-4032-9e3c-226a3e3f42c4.jpeg',
+        '/Camilo/Seefracht/f2500e60-c05d-4e69-b81a-6bd13a263a29.jpeg',
+      ],
       ctaText: isGerman ? 'Angebot anfordern' : 'Request Quote',
     },
     packaging: {
@@ -140,7 +148,11 @@ const buildServicesForLanguage = (
             'Special packaging',
             'Storage and order fulfillment',
           ],
-      images: ['/IMG_1629.jpeg', '/IMG_1641.jpeg'],
+      images: [
+        '/Camilo/Verpackung/IMG_1629.jpeg',
+        '/Camilo/Verpackung/IMG_1641.jpeg',
+        '/Camilo/Verpackung/IMG_1709.jpeg',
+      ],
       ctaText: isGerman ? 'Angebot anfordern' : 'Request Quote',
     },
     oldtimers: {
@@ -169,36 +181,45 @@ const buildServicesForLanguage = (
             'Expert loading and securing',
             'Climate-controlled options',
           ],
-      images: ['/images/oldtimer-transport.jpg'],
+      images: [
+        '/Camilo/Oldtimers/IMG_3089.jpeg',
+        '/Camilo/Oldtimers/IMG_3090.jpeg',
+        '/Camilo/Oldtimers/IMG_3091.jpeg',
+        '/Camilo/Oldtimers/IMG_3092.jpeg',
+      ],
       ctaText: isGerman ? 'Angebot anfordern' : 'Request Quote',
     },
     digitalization: {
       id: 'digitalization',
       title: isGerman ? 'Digitalisierung und Prozessoptimierung' : 'Digitalization and Process Optimization',
       description: isGerman
-        ? 'Moderne Technologielösungen für effiziente Logistik'
-        : 'Modern technology solutions for efficient logistics',
+        ? 'KI-gestützte Agenten für intelligente Logistikprozesse'
+        : 'AI-powered agents for intelligent logistics processes',
       longDescription: isGerman
-        ? 'Optimieren Sie Ihre Logistikprozesse durch digitale Transformation. Wir bieten umfassende Lösungen zur Automatisierung, Echtzeitverfolgung und Datenanalyse, um Ihre Supply Chain effizienter und transparenter zu gestalten.'
-        : 'Optimize your logistics processes through digital transformation. We offer comprehensive solutions for automation, real-time tracking, and data analytics to make your supply chain more efficient and transparent.',
+        ? 'Revolutionieren Sie Ihre Logistikprozesse mit intelligenten KI-Agenten. Unsere fortschrittlichen Automatisierungslösungen nutzen künstliche Intelligenz, um Ihre Abläufe zu optimieren, Kosten zu senken und die Effizienz zu maximieren. Von der automatischen Routenplanung bis zur prädiktiven Wartung – unsere KI-Agenten arbeiten rund um die Uhr für Ihren Erfolg.'
+        : 'Revolutionize your logistics processes with intelligent AI agents. Our advanced automation solutions leverage artificial intelligence to optimize your operations, reduce costs, and maximize efficiency. From automatic route planning to predictive maintenance – our AI agents work around the clock for your success.',
       features: isGerman
         ? [
-            'Echtzeit-Sendungsverfolgung',
-            'Automatisierte Prozessabläufe',
-            'Datenanalyse und Reporting',
-            'API-Integration in bestehende Systeme',
-            'Digitale Dokumentenverwaltung',
-            'KI-gestützte Routenoptimierung',
+            'Autonome KI-Agenten für Prozessautomatisierung',
+            'Intelligente Routenoptimierung in Echtzeit',
+            'Prädiktive Analyse für Wartung und Planung',
+            'Automatisierte Entscheidungsfindung',
+            'Machine Learning für kontinuierliche Verbesserung',
+            'KI-gestützte Kapazitätsplanung',
+            'Automatische Anomalieerkennung',
+            'Intelligente Dokumentenverarbeitung',
           ]
         : [
-            'Real-time shipment tracking',
-            'Automated process workflows',
-            'Data analytics and reporting',
-            'API integration with existing systems',
-            'Digital document management',
-            'AI-powered route optimization',
+            'Autonomous AI agents for process automation',
+            'Intelligent real-time route optimization',
+            'Predictive analysis for maintenance and planning',
+            'Automated decision-making',
+            'Machine learning for continuous improvement',
+            'AI-powered capacity planning',
+            'Automatic anomaly detection',
+            'Intelligent document processing',
           ],
-      images: ['/images/digitalization.jpg'],
+      images: [],
       ctaText: isGerman ? 'Mehr erfahren' : 'Learn More',
     },
   };

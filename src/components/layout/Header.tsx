@@ -294,7 +294,7 @@ export default function Header({
                 className="h-10 w-auto transition-all duration-300"
                 priority
               />
-              <span className="ml-3 font-geist font-bold text-xl">
+              <span className="ml-3 font-geist font-bold text-xl text-black">
                 {COMPANY.NAME}
               </span>
             </Link>

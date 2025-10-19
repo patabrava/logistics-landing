@@ -527,28 +527,14 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           </motion.div>
 
           {/* Style Guide Section 4: Services grid - 3 top, 3 middle, 1 bottom layout */}
-          <div className="space-y-8">
-            {/* Top row - 3 services */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {content.services.slice(0, 3).map((service, index) => (
-                <ServiceCard
-                  key={`service-${service.id}`}
-                  service={service}
-                  index={index}
-                />
-              ))}
-            </div>
-            
-            {/* Middle row - 3 services */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {content.services.slice(3, 6).map((service, index) => (
-                <ServiceCard
-                  key={`service-${service.id}`}
-                  service={service}
-                  index={index + 3}
-                />
-              ))}
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {content.services.map((service, index) => (
+              <ServiceCard
+                key={`service-${service.id}`}
+                service={service}
+                index={index}
+              />
+            ))}
           </div>
         </motion.div>
       </div>

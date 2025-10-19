@@ -81,10 +81,10 @@ export function AboutSection({ className }: AboutSectionProps) {
           <div className="relative">
             <div className="relative rounded-2xl h-96 overflow-hidden">
               <Image
-                src="/ChatGPT Image 18. Aug. 2025, 03_06_23.png"
+                src="/BROYli4sI2khH_beWXM9b.png"
                 alt={t('about.image_placeholder', 'Unternehmenszentrale')}
                 fill
-                className="object-cover"
+                className="object-cover object-center scale-110"
                 priority
               />
             </div>

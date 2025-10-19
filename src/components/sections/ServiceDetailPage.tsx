@@ -67,27 +67,29 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ serviceId 
             </div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, ease: [0.2, 0.8, 0.2, 1] }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-6"
-          >
-            {service.images.map((image, index) => (
-              <figure
-                key={`${service.id}-image-${index}`}
-                className="relative overflow-hidden rounded-3xl bg-gray-100 border border-gray-100 shadow-sm h-[420px]"
-              >
-                <Image
-                  src={image}
-                  alt={`${service.title} – ${index + 1}`}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-              </figure>
-            ))}
-          </motion.div>
+{service.images.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, ease: [0.2, 0.8, 0.2, 1] }}
+              className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+            >
+              {service.images.map((image, index) => (
+                <figure
+                  key={`${service.id}-image-${index}`}
+                  className="relative overflow-hidden rounded-3xl bg-gray-100 border border-gray-100 shadow-sm h-[420px]"
+                >
+                  <Image
+                    src={image}
+                    alt={`${service.title} – ${index + 1}`}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                </figure>
+              ))}
+            </motion.div>
+          )}
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
             <div className="lg:col-span-2">
