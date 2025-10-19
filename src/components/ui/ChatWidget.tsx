@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import Image from 'next/image';
 
 // NavaTransport chat integration configuration
 const CHAT_URL = 'https://digitalspine.app.n8n.cloud/webhook/61e97c35-bc3b-422f-b41c-598841f4a868/chat';
@@ -127,6 +128,22 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
     setIsOpen((prev) => !prev);
   };
 
+  const openChat = () => {
+    setIsOpen(true);
+  };
+
+  // Expose openChat function globally for CTA buttons
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      (window as any).openNavaTransportChat = openChat;
+    }
+    return () => {
+      if (typeof window !== 'undefined') {
+        delete (window as any).openNavaTransportChat;
+      }
+    };
+  }, []);
+
   const appendMessage = useCallback((message: Omit<ChatMessage, 'id' | 'timestamp'>) => {
     setMessages((prev) => [
       ...prev,
@@ -196,8 +213,8 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
     }
   }, [appendMessage, inputValue, isSending, sessionId]);
 
-  const handleKeyDown: React.KeyboardEventHandler<HTMLTextAreaElement> = (event) => {
-    if (event.key === 'Enter' && !event.shiftKey) {
+  const handleKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (event) => {
+    if (event.key === 'Enter') {
       event.preventDefault();
       handleSendMessage();
     }
@@ -205,8 +222,14 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
 
   const TypingIndicator = () => (
     <div className="flex items-start gap-2 animate-fade-in">
-      <div className="w-8 h-8 rounded-full bg-brand-500 flex items-center justify-center text-white text-sm font-semibold flex-shrink-0">
-        🤖
+      <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
+        <Image
+          src="/Google_AI_Studio_2025-10-19T23_34_02.499Z.png"
+          alt="Assistant"
+          width={32}
+          height={32}
+          className="w-full h-full object-cover"
+        />
       </div>
       <div className="bg-white border border-ink-100 rounded-2xl px-4 py-3 shadow-sm" style={{ boxShadow: '0 2px 6px rgba(15,23,42,.06)' }}>
         <div className="flex gap-1">
@@ -230,13 +253,19 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
     return (
       <div key={message.id} className={`flex gap-2 ${alignment} animate-fade-in`}>
         {!isUser && (
-          <div className="w-8 h-8 rounded-full bg-brand-500 flex items-center justify-center text-white text-sm font-semibold flex-shrink-0">
-            🤖
+          <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
+            <Image
+              src="/Google_AI_Studio_2025-10-19T23_34_02.499Z.png"
+              alt="Assistant"
+              width={32}
+              height={32}
+              className="w-full h-full object-cover"
+            />
           </div>
         )}
         <div className="flex flex-col gap-1 max-w-[75%]">
           <div
-            className={`rounded-2xl px-4 py-3 shadow-sm ${bubbleClasses}`}
+            className={`rounded-2xl px-4 py-3 shadow-sm text-[0.875rem] leading-relaxed ${bubbleClasses}`}
             style={{
               boxShadow: isUser ? BRAND_SHADOW_SM : '0 2px 6px rgba(15,23,42,.06)',
               whiteSpace: 'pre-line'
@@ -283,16 +312,15 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
 
       {isOpen && (
         <div
-          className="fixed bottom-[90px] right-5 w-full max-w-[380px] bg-surface-0 text-ink-900 z-[10000] flex flex-col"
+          className="fixed bottom-[90px] right-5 w-full max-w-[380px] bg-surface-0 text-ink-900 z-[10000] flex flex-col text-[15px] leading-[1.6]"
           style={{
             borderRadius: '24px',
             boxShadow: BRAND_SHADOW_LG
           }}
         >
-          <header className="flex items-center justify-between px-5 py-4 bg-navy-900 text-white" style={{ borderTopLeftRadius: '24px', borderTopRightRadius: '24px' }}>
+          <header className="flex items-center justify-between px-5 py-4 bg-navy-900" style={{ borderTopLeftRadius: '24px', borderTopRightRadius: '24px' }}>
             <div>
-              <p className="text-sm uppercase tracking-[0.08em] opacity-80">Digitale Beratung</p>
-              <h3 className="text-base font-semibold">{title}</h3>
+              <h3 className="text-base font-semibold text-white">{title}</h3>
             </div>
             <button
               onClick={toggleChat}
@@ -310,7 +338,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
           </div>
 
           <form
-            className="px-4 pb-4 pt-3 bg-surface-0 border-t border-ink-100"
+            className="px-4 pb-4 pt-3 bg-surface-0"
             onSubmit={(event) => {
               event.preventDefault();
               handleSendMessage();
@@ -319,43 +347,33 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
             <label htmlFor="navatransport-chat-input" className="sr-only">
               Nachricht an den NavaTransport Assistant eingeben
             </label>
-            <div className="rounded-2xl border border-ink-100 bg-white focus-within:border-brand-400 focus-within:shadow-[0_0_0_3px_rgba(243,127,62,.15)] transition-all duration-200">
-              <textarea
+            <div className="relative rounded-full border border-ink-200 bg-white focus-within:border-brand-500 focus-within:shadow-[0_0_0_3px_rgba(243,127,62,.12)] transition-all duration-200">
+              <input
                 id="navatransport-chat-input"
+                type="text"
                 value={inputValue}
                 onChange={(event) => setInputValue(event.target.value)}
                 onKeyDown={handleKeyDown}
-                rows={2}
-                placeholder="Frage stellen oder Ihr Transportvorhaben beschreiben..."
-                className="w-full resize-none rounded-2xl px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 focus:outline-none"
+                placeholder="Nachricht schreiben..."
+                className="w-full rounded-full pl-5 pr-12 py-3 text-sm text-ink-900 placeholder:text-ink-400 focus:outline-none bg-transparent"
               />
-              <div className="flex items-center justify-between px-4 pb-3">
-                <span className="text-xs text-ink-400">
-                  Drücken Sie Enter zum Senden · Shift + Enter für neue Zeile
-                </span>
-                <button
-                  type="submit"
-                  disabled={disabled}
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 text-white px-5 py-2.5 text-sm font-semibold transition-all duration-200 disabled:cursor-not-allowed disabled:bg-ink-300 disabled:opacity-50 hover:bg-brand-500 hover:shadow-lg hover:scale-105 active:scale-95"
-                >
-                  {isSending ? (
-                    <>
-                      <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                      </svg>
-                      <span>Sende...</span>
-                    </>
-                  ) : (
-                    <>
-                      <span>Senden</span>
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                      </svg>
-                    </>
-                  )}
-                </button>
-              </div>
+              <button
+                type="submit"
+                disabled={disabled}
+                className="absolute right-1.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-brand-600 text-white flex items-center justify-center transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-brand-500 hover:scale-110 active:scale-95"
+                aria-label="Nachricht senden"
+              >
+                {isSending ? (
+                  <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                ) : (
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+                  </svg>
+                )}
+              </button>
             </div>
           </form>
         </div>

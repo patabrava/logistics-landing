@@ -227,19 +227,24 @@ export default function HeroSection({
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <a
-                href="#contact"
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  logger.trackEvent('hero_primary_cta');
+                  if (typeof window !== 'undefined' && (window as any).openNavaTransportChat) {
+                    (window as any).openNavaTransportChat();
+                  }
+                }}
                 className="
                   inline-flex items-center justify-center gap-3 px-8 py-3 rounded-full
                   bg-emerald-500 text-white font-semibold shadow-lg shadow-emerald-500/30
                   hover:bg-emerald-400 transition-colors duration-200
                 "
                 data-analytics="hero_primary_cta"
-                onClick={() => logger.trackEvent('hero_primary_cta')}
               >
                 {primaryCta}
                 <MoveRight className="w-5 h-5" aria-hidden="true" />
-              </a>
+              </button>
 
               <a
                 href={`tel:${phoneHref}`}

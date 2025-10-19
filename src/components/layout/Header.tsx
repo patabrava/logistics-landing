@@ -322,7 +322,12 @@ export default function Header({
             
             {showCTA && (
               <button
-                onClick={(e) => handleNavigation({ id: 'cta', label: 'CTA', href: '#contact' }, e)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (typeof window !== 'undefined' && (window as any).openNavaTransportChat) {
+                    (window as any).openNavaTransportChat();
+                  }
+                }}
                 className={cn(
                   'px-6 py-2 rounded-md font-medium transition-all duration-200',
                   variant === 'transparent' && !state.isScrolled
@@ -390,7 +395,12 @@ export default function Header({
             
             {showCTA && (
               <button
-                onClick={(e) => handleNavigation({ id: 'mobile-cta', label: 'Mobile CTA', href: '#contact' }, e)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (typeof window !== 'undefined' && (window as any).openNavaTransportChat) {
+                    (window as any).openNavaTransportChat();
+                  }
+                }}
                 className="mt-4 px-4 py-3 bg-emerald-600 text-white rounded-md font-medium hover:bg-emerald-700 transition-colors duration-200"
               >
                 {currentLanguage === 'de' ? 'Kontakt' : 'Contact'}
