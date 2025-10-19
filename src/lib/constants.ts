@@ -20,8 +20,8 @@ export const COMPANY = {
     BUSINESS_HOURS: ''
   },
   WEBSITE: {
-    DOMAIN: 'logisticsco.de',
-    URL: 'https://www.logisticsco.de'
+    DOMAIN: 'navatransport.de',
+    URL: 'https://www.navatransport.de'
   }
 } as const;
 
