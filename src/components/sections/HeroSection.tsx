@@ -231,8 +231,9 @@ export default function HeroSection({
                 onClick={(e) => {
                   e.preventDefault();
                   logger.trackEvent('hero_primary_cta');
-                  if (typeof window !== 'undefined' && (window as any).openNavaTransportChat) {
-                    (window as any).openNavaTransportChat();
+                  const windowWithChat = window as Window & { openNavaTransportChat?: () => void };
+                  if (typeof window !== 'undefined' && windowWithChat.openNavaTransportChat) {
+                    windowWithChat.openNavaTransportChat();
                   }
                 }}
                 className="

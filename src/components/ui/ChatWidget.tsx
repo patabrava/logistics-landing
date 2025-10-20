@@ -65,7 +65,7 @@ const extractAssistantReply = (payload: unknown): string => {
 
   try {
     return JSON.stringify(payload, null, 2);
-  } catch (error) {
+  } catch {
     return 'Antwort konnte nicht interpretiert werden.';
   }
 };
@@ -135,11 +135,11 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
   // Expose openChat function globally for CTA buttons
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      (window as any).openNavaTransportChat = openChat;
+      (window as Window & { openNavaTransportChat?: () => void }).openNavaTransportChat = openChat;
     }
     return () => {
       if (typeof window !== 'undefined') {
-        delete (window as any).openNavaTransportChat;
+        delete (window as Window & { openNavaTransportChat?: () => void }).openNavaTransportChat;
       }
     };
   }, []);

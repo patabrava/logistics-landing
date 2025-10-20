@@ -72,6 +72,7 @@ const logger = {
 };
 
 // MONOCODE Explicit Error Handling: Form validation with detailed errors
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const validateFormData = (data: Partial<FormData>, language: string): FormErrors => {
   const errors: FormErrors = {};
   const isGerman = language === 'de';
@@ -137,6 +138,7 @@ const validateFormData = (data: Partial<FormData>, language: string): FormErrors
 };
 
 // MONOCODE Progressive Construction: Mailto URL generation
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const generateMailtoURL = (data: FormData, language: string): string => {
   try {
     const isGerman = language === 'de';
@@ -199,6 +201,7 @@ ${data.requirements}
 };
 
 // MONOCODE Explicit Error Handling: Safe content retrieval
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const getQuoteContent = (language: string): QuoteContent => {
   try {
     const isGerman = language === 'de';
@@ -352,6 +355,7 @@ const getQuoteContent = (language: string): QuoteContent => {
 };
 
 // MONOCODE Progressive Construction: Form field component
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const FormField: React.FC<{
   name: keyof FormData;
   field: QuoteContent['fields'][keyof FormData];
@@ -465,6 +469,7 @@ const FormField: React.FC<{
 };
 
 // Style Guide Section 5: Motion & Interaction - Animation variants
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -477,6 +482,7 @@ const containerVariants = {
   }
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const itemVariants = {
   hidden: { 
     opacity: 0, 

@@ -324,8 +324,9 @@ export default function Header({
               <button
                 onClick={(e) => {
                   e.preventDefault();
-                  if (typeof window !== 'undefined' && (window as any).openNavaTransportChat) {
-                    (window as any).openNavaTransportChat();
+                  const windowWithChat = window as Window & { openNavaTransportChat?: () => void };
+                  if (typeof window !== 'undefined' && windowWithChat.openNavaTransportChat) {
+                    windowWithChat.openNavaTransportChat();
                   }
                 }}
                 className={cn(
@@ -397,8 +398,9 @@ export default function Header({
               <button
                 onClick={(e) => {
                   e.preventDefault();
-                  if (typeof window !== 'undefined' && (window as any).openNavaTransportChat) {
-                    (window as any).openNavaTransportChat();
+                  const windowWithChat = window as Window & { openNavaTransportChat?: () => void };
+                  if (typeof window !== 'undefined' && windowWithChat.openNavaTransportChat) {
+                    windowWithChat.openNavaTransportChat();
                   }
                 }}
                 className="mt-4 px-4 py-3 bg-emerald-600 text-white rounded-md font-medium hover:bg-emerald-700 transition-colors duration-200"
